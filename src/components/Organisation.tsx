@@ -14,10 +14,12 @@ import { Tag } from "./Tag";
 export const Organisation = ({
   name,
   description,
+  department,
   tags,
 }: {
   name: string;
   description: string;
+  department: string;
   tags: string[];
 }) => {
   return (
@@ -30,7 +32,7 @@ export const Organisation = ({
       align="start"
     >
       <VStack justifyContent="flex-start" align="start">
-        <Text fontSize="sm">W4</Text>
+        <Text fontSize="sm">{department}</Text>
         <Text fontWeight="semibold" fontSize="lg">
           {name}
         </Text>
