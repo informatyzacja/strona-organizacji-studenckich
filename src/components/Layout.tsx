@@ -4,6 +4,8 @@ import React from "react";
 import { Lato } from "@next/font/google";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
+import { motion } from "framer-motion";
+import { ScrollToTop } from "./ScrollToTop";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -14,12 +16,21 @@ const lato = Lato({
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <Stack minH="100vh" justify="space-between" className={`${lato.variable}`}>
-      <div>
-        <Navbar />
-        <chakra.main>{children}</chakra.main>
-      </div>
-      <Footer />
-    </Stack>
+    <motion.div>
+      <Stack
+        minH="100vh"
+        as={motion.div}
+        style={{ overflow: "scroll" }}
+        justify="space-between"
+        className={`${lato.variable}`}
+      >
+        <div>
+          <Navbar />
+          <chakra.main>{children}</chakra.main>
+          <ScrollToTop />
+        </div>
+        <Footer />
+      </Stack>
+    </motion.div>
   );
 };
