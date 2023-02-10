@@ -45,7 +45,7 @@ export const List = ({
           justify="center"
         >
           <AnimatePresenceSSR mode="popLayout">
-            {data?.map((org) => (
+            {data?.slice(0, 10).map((org) => (
               <motion.div
                 key={org.id}
                 layout

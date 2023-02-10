@@ -32,7 +32,7 @@ const generateFakeOrganization = () => {
   return {
     id: faker.datatype.uuid(),
     name: faker.company.name(),
-    description: faker.lorem.sentences(2),
+    description: faker.commerce.productDescription(),
     logoUrl: faker.image.cats(150, 150, true),
     tags: faker.helpers.arrayElements(tags, 3),
     department: faker.helpers.arrayElement(departments),

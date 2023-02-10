@@ -1,28 +1,14 @@
 import { List } from "@/components/List";
 import { Search } from "@/components/Search";
-import { useSelectedTags } from "@/hooks/useSelectedTags";
+import { useSearch } from "@/hooks/useSearch";
 import { api } from "@/utils/api";
 import { Container, VStack, Heading, Tag } from "@chakra-ui/react";
 import { type NextPage } from "next";
-import { useMemo, useState } from "react";
 
 const Home: NextPage = () => {
   const { data } = api.organizations.getAll.useQuery();
-  const [search, setSearch] = useState("");
-  const { selectedTags } = useSelectedTags();
-  const filteredData = useMemo(
-    () =>
-      data?.filter(
-        (org) =>
-          (org.description.toLowerCase().includes(search.toLowerCase()) ||
-            org.name.toLowerCase().includes(search.toLowerCase()) ||
-            org.tags.some((tag) =>
-              tag.toLowerCase().includes(search.toLowerCase())
-            )) &&
-          selectedTags.every((tag) => org.tags.includes(tag))
-      ),
-    [data, search, selectedTags]
-  );
+
+  const { search, setSearch, results } = useSearch(data);
 
   return (
     <>
@@ -35,7 +21,7 @@ const Home: NextPage = () => {
             Wyszukiwarka organizacji studenckich
           </Heading>
           <Search value={search} setValue={setSearch} />
-          <List pt={8} data={filteredData} />
+          <List pt={8} data={results} />
         </VStack>
       </Container>
     </>

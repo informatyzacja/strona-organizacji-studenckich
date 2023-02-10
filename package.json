@@ -25,6 +25,7 @@
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.9.0",
     "framer-motion": "^9.0.2",
+    "fuse.js": "^6.6.2",
     "jotai": "^2.0.1",
     "next": "13.1.6",
     "next-auth": "^4.19.0",
