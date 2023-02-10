@@ -1,7 +1,7 @@
-import type { RouterOutputs } from '@/utils/api';
-import { useMemo, useState } from 'react'
-import { useFuse } from './useFuse';
-import { useSelectedTags } from './useSelectedTags';
+import type { RouterOutputs } from "@/utils/api";
+import { useMemo, useState } from "react";
+import { useFuse } from "./useFuse";
+import { useSelectedTags } from "./useSelectedTags";
 
 type Organizations = RouterOutputs["organizations"]["getAll"];
 
@@ -10,22 +10,28 @@ export const useSearch = (data?: Organizations) => {
   const { selectedTags } = useSelectedTags();
 
   const fuseResult = useFuse(data ?? [], search, {
-    keys: [{
-      name: "name",
-      weight: 2,
-    }, {
-      name: "description",
-      weight: 1,
-    }, {
-      name: "tags",
-      weight: 4,
-    }],
+    keys: [
+      {
+        name: "name",
+        weight: 3,
+      },
+      {
+        name: "description",
+        weight: 1,
+      },
+      {
+        name: "tags",
+        weight: 4,
+      },
+      {
+        name: "department",
+        weight: 2,
+      },
+    ],
     ignoreLocation: true,
     threshold: 0.3,
     includeMatches: true,
   });
-
-  console.log("fuseResult", JSON.stringify(fuseResult));
 
   const isEmptySearch = search.length === 0;
 
@@ -48,11 +54,9 @@ export const useSearch = (data?: Organizations) => {
     });
   }, [result, selectedTags]);
 
-
-
   return {
     search,
     setSearch,
     results: filteredByTag,
-  }
-}
+  };
+};
