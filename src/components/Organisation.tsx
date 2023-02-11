@@ -7,6 +7,8 @@ import {
   HStack,
   IconButton,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import slugify from "slugify";
 
 import { FaHeart } from "react-icons/fa";
 import { Tag } from "./Tag";
@@ -22,6 +24,8 @@ export const Organisation = ({
   department: string;
   tags: string[];
 }) => {
+  const router = useRouter();
+
   return (
     <VStack
       p={6}
@@ -48,7 +52,17 @@ export const Organisation = ({
         </Text>
       </VStack>
       <HStack mt="auto" spacing={4} justify="start">
-        <Button colorScheme="blue">Zobacz</Button>
+        <Button
+          colorScheme="blue"
+          onClick={() => {
+            void router.push({
+              pathname: "/organizacja/[slug]",
+              query: { slug: slugify(name) },
+            });
+          }}
+        >
+          Zobacz
+        </Button>
         <IconButton icon={<FaHeart />} aria-label="Dodaj do ulubionych" />
       </HStack>
     </VStack>

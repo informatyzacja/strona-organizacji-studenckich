@@ -7,11 +7,15 @@ import { theme } from "@/styles/theme";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Layout } from "@/components/Layout";
 import Head from "next/head";
+import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
+import { usePreserveScroll } from "@/hooks/usePreserveScroll";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  usePreserveScroll();
+
   return (
     <>
       <Head>
@@ -24,9 +28,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
       <ChakraProvider theme={theme}>
         <SessionProvider session={session}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <AnimatePresenceSSR mode="wait" initial={false}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </AnimatePresenceSSR>
         </SessionProvider>
       </ChakraProvider>
     </>
