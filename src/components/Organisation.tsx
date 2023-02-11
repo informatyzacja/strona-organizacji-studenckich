@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import slugify from "slugify";
-
 import { FaHeart } from "react-icons/fa";
 import { Tag } from "./Tag";
 

@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react"
 
 export const usePreserveScroll = () => {
   const router = useRouter()
-
   const scrollPositions = useRef<{ [url: string]: number }>({})
 
   useEffect(() => {
