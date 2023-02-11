@@ -1,4 +1,3 @@
-
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { faker } from "@faker-js/faker/locale/pl";
 
@@ -26,7 +25,7 @@ const departments = [
   "W10",
   "W11",
   "W12",
-]
+];
 
 const generateFakeOrganization = () => {
   return {
@@ -36,8 +35,8 @@ const generateFakeOrganization = () => {
     logoUrl: faker.image.cats(150, 150, true),
     tags: faker.helpers.arrayElements(tags, 3),
     department: faker.helpers.arrayElement(departments),
-  }
-}
+  };
+};
 
 const mockData = Array.from({ length: 30 }).map(generateFakeOrganization);
 
