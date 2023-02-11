@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
+      - name: Setup env
+        run: |
+          touch .env
+          echo NEXTAUTH_URL=http://localhost:3000 >> .env
+          echo NEXTAUTH_SECRET=secret >> .env
+          echo GOOGLE_CLIENT_ID=123 >> .env
+          echo GOOGLE_CLIENT_SECRET=123 >> .env
+          echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
+      - name: format
+        run: npm run format:check
+      - name: lint
+        run: npm run lint
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Setup env
+        run: |
+          touch .env
+          echo NEXTAUTH_URL=http://localhost:3000 >> .env
+          echo NEXTAUTH_SECRET=secret >> .env
+          echo GOOGLE_CLIENT_ID=123 >> .env
+          echo GOOGLE_CLIENT_SECRET=123 >> .env
+          echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
+      - name: Cache build
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/frontend/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Build
+        run: npm run build

@@ -1,5 +1,5 @@
-import { selectedTagsAtom } from '@/atoms/selectedTags';
-import { useAtom } from 'jotai'
+import { selectedTagsAtom } from "@/atoms/selectedTags";
+import { useAtom } from "jotai";
 
 export const useSelectedTags = () => {
   const [tags, setTags] = useAtom(selectedTagsAtom);
@@ -10,7 +10,7 @@ export const useSelectedTags = () => {
     } else {
       setTags([...tags, tag]);
     }
-  }
+  };
 
   return { selectedTags: tags, toggleTag };
-}
+};
