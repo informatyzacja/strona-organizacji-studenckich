@@ -7,10 +7,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
-import {
-  FaGlobeEurope,
-  FaFacebook,
-} from "react-icons/fa";
+import { FaGlobeEurope, FaFacebook } from "react-icons/fa";
 import type { ReactNode, SVGProps } from "react";
 
 const Logo = (props: SVGProps<SVGSVGElement>) => {
