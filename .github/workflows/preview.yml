@@ -65,7 +65,7 @@ jobs:
         run: |
           url=${{ steps.expose-tunnel.outputs.tunnel-url }}
           fixedUrl=${url::-6}
-          echo "::set-output name=tunnel-url::$fixedUrl"
+          echo "tunnel-url=${fixedUrl}" >> $GITHUB_OUTPUT
       - name: Install dependencies
         if: steps.check.outputs.triggered == 'true'
         uses: bahmutov/npm-install@v1
