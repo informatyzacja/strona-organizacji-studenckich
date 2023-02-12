@@ -1,0 +1,30 @@
+{
+  "branches": [
+    "master"
+  ],
+  "repositoryUrl": "git@github.com:informatyzacja/strona-organizacji-studenckich.git",
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "releaseRules": [
+          {
+            "type": "build",
+            "scope": "deps",
+            "release": "patch"
+          }
+        ]
+      }
+    ],
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    [
+      "@semantic-release/git",
+      {
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  ]
+}
