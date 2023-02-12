@@ -12,7 +12,17 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import Image from "next/image";
+import logoPwr from "../../public/logo-pwr.svg";
+import NextLink from "next/link";
 
+const PwrLogo = () => {
+  return (
+    <NextLink href="/">
+      <Image src={logoPwr as string} alt="logo-pwr" object-fit="contain" />
+    </NextLink>
+  );
+};
 export const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -41,13 +51,7 @@ export const Navbar = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            SOS
-          </Text>
+          <PwrLogo />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
