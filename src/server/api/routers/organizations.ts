@@ -31,15 +31,15 @@ const departments = [
 
 const generateFakeManagement = () => {
   return Array.from({ length: 3 }).map(() => faker.name.fullName());
-}
+};
 
 const generateFakeSocialLinks = () => {
   return {
     facebook: faker.internet.url(),
     instagram: faker.internet.url(),
     website: faker.internet.url(),
-  }
-}
+  };
+};
 
 const generateFakeOrganization = () => {
   return {
@@ -58,7 +58,9 @@ const generateFakeOrganization = () => {
   };
 };
 
-const globalMock = globalThis as unknown as { mockData: ReturnType<typeof generateFakeOrganization>[] };
+const globalMock = globalThis as unknown as {
+  mockData: ReturnType<typeof generateFakeOrganization>[];
+};
 
 const getData = () => {
   if (!globalMock.mockData) {
@@ -67,17 +69,23 @@ const getData = () => {
   }
 
   return globalMock.mockData;
-}
+};
 
 export const organizations = createTRPCRouter({
   getAll: publicProcedure.query(() => {
     return getData();
   }),
-  get: publicProcedure.input(z.object({
-    slug: z.string().min(1).max(100),
-  })).query(({ input }) => {
-    return getData().find((org) => {
-      return slugify(org.name) === input.slug;
-    }) ?? getData()[0];
-  })
+  get: publicProcedure
+    .input(
+      z.object({
+        slug: z.string().min(1).max(100),
+      })
+    )
+    .query(({ input }) => {
+      return (
+        getData().find((org) => {
+          return slugify(org.name) === input.slug;
+        }) ?? getData()[0]
+      );
+    }),
 });
