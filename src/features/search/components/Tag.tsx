@@ -1,4 +1,4 @@
-import { useSelectedTags } from "@/hooks/useSelectedTags";
+import { useSelectedTags } from "@/features/search/hooks/useSelectedTags";
 import type { TagProps } from "@chakra-ui/react";
 import { Tag as ChakraTag } from "@chakra-ui/react";
 import React from "react";

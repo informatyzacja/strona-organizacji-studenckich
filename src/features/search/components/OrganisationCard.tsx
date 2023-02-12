@@ -12,7 +12,7 @@ import slugify from "slugify";
 import { FaHeart } from "react-icons/fa";
 import { Tag } from "./Tag";
 
-export const Organisation = ({
+export const OrganisationCard = ({
   name,
   description,
   department,

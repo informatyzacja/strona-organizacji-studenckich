@@ -5,7 +5,6 @@ import { SessionProvider } from "next-auth/react";
 import { api } from "@/utils/api";
 import { theme } from "@/styles/theme";
 import { ChakraProvider } from "@chakra-ui/react";
-import { Layout } from "@/components/Layout";
 import Head from "next/head";
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { usePreserveScroll } from "@/hooks/usePreserveScroll";
@@ -29,9 +28,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <ChakraProvider theme={theme}>
         <SessionProvider session={session}>
           <AnimatePresenceSSR mode="wait" initial={false}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <Component {...pageProps} />
           </AnimatePresenceSSR>
         </SessionProvider>
       </ChakraProvider>

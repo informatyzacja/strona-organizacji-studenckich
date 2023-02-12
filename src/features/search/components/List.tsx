@@ -4,8 +4,8 @@ import type { BoxProps } from "@chakra-ui/react";
 import { VStack, Wrap, WrapItem, Text, Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
-import { AnimatePresenceSSR } from "./AnimatePresenceSSR";
-import { Organisation } from "./Organisation";
+import { AnimatePresenceSSR } from "../../../components/AnimatePresenceSSR";
+import { OrganisationCard } from "./OrganisationCard";
 
 export const List = ({
   data,
@@ -55,7 +55,7 @@ export const List = ({
                 transition={{ type: "spring", duration: 0.4 }}
               >
                 <WrapItem p={2}>
-                  <Organisation {...org} />
+                  <OrganisationCard {...org} />
                 </WrapItem>
               </motion.div>
             ))}
