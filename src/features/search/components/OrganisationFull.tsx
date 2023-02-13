@@ -18,8 +18,10 @@ import { Tag } from "./Tag";
 
 export const OrganisationFull = ({
   data,
+  forAdminPage,
 }: {
   data: RouterOutputs["organizations"]["get"];
+  forAdminPage?: boolean;
 }) => {
   if (!data) {
     return null;
@@ -27,9 +29,11 @@ export const OrganisationFull = ({
 
   return (
     <Container maxW="container.md" mt={16} pb={16}>
-      <Link href="/" color="gray" as={NextLink}>
-        Wróć
-      </Link>
+      {!forAdminPage ? (
+        <Link href="/" color="gray" as={NextLink}>
+          Wróć
+        </Link>
+      ) : null}
       <Heading as="h1" mt={4}>
         {data.name}
       </Heading>

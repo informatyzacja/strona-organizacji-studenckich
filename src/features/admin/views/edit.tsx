@@ -32,7 +32,7 @@ export const EditPage = () => {
   }
   return (
     <Layout>
-      <OrganisationFull data={data} />
+      <OrganisationFull data={data} forAdminPage={true} />
     </Layout>
   );
 };
