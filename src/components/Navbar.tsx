@@ -12,8 +12,18 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import NextImage from "next/image";
+import logoPwr from "../../public/logo-pwr.svg";
+import NextLink from "next/link";
 import { signIn } from "next-auth/react";
 
+const PwrLogo = () => {
+  return (
+    <NextLink href="/">
+      <NextImage src={logoPwr as string} alt="logo Pwr" />
+    </NextLink>
+  );
+};
 export const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -42,13 +52,7 @@ export const Navbar = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            SOS
-          </Text>
+          <PwrLogo />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
