@@ -15,6 +15,7 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NextImage from "next/image";
 import logoPwr from "../../public/logo-pwr.svg";
 import NextLink from "next/link";
+import { signIn } from "next-auth/react";
 
 const PwrLogo = () => {
   return (
@@ -68,6 +69,9 @@ export const Navbar = () => {
             fontWeight={400}
             variant={"link"}
             href={"#"}
+            onClick={() => {
+              void signIn();
+            }}
           >
             Zaloguj się
           </Button>

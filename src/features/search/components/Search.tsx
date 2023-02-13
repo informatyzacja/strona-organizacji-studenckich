@@ -1,5 +1,5 @@
-import { useDebounce } from "@/hooks/useDebounce";
-import { useSelectedTags } from "@/hooks/useSelectedTags";
+import { useDebounce } from "../hooks/useDebounce";
+import { useSelectedTags } from "../hooks/useSelectedTags";
 import { SearchIcon } from "@chakra-ui/icons";
 import type { StackProps } from "@chakra-ui/react";
 import { Wrap, WrapItem } from "@chakra-ui/react";

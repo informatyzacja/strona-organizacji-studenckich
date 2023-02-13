@@ -7,7 +7,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaGlobeEurope, FaFacebook } from "react-icons/fa";
 import type { ReactNode } from "react";
 import NextImage from "next/image";
 import logoPwr from "../../public/logo-pwr.svg";
@@ -67,14 +67,17 @@ export const Footer = () => {
           Komisja ds. Informatyzacji <br /> Dział Studencki
         </Text>
         <Stack direction={"row"} spacing={6}>
-          <SocialButton label={"Twitter"} href={"#"}>
-            <FaTwitter />
+          <SocialButton
+            label={"WebsiteDS"}
+            href={"https://dzialstudencki.pwr.edu.pl/"}
+          >
+            <FaGlobeEurope />
           </SocialButton>
-          <SocialButton label={"YouTube"} href={"#"}>
-            <FaYoutube />
-          </SocialButton>
-          <SocialButton label={"Instagram"} href={"#"}>
-            <FaInstagram />
+          <SocialButton
+            label={"FacebookDS"}
+            href={"https://www.facebook.com/DzialStudenckiPWr/"}
+          >
+            <FaFacebook />
           </SocialButton>
         </Stack>
       </Container>

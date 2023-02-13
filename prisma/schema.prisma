@@ -17,6 +17,59 @@ model Example {
     updatedAt DateTime @updatedAt
 }
 
+enum Role {
+    ADMIN
+    OWNER
+    USER
+}
+
+model ContactMethods {
+    id              String       @id @default(cuid())
+    createdAt       DateTime     @default(now())
+    updatedAt       DateTime     @updatedAt
+    contact_type    String
+    contact_link    String
+    organization_id String
+    organization    Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+}
+
+model Projects {
+    id              String       @id @default(cuid())
+    createdAt       DateTime     @default(now())
+    updatedAt       DateTime     @updatedAt
+    name            String
+    description     String
+    organization_id String
+    organization    Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+}
+
+model Managers {
+    id              String       @id @default(cuid())
+    createdAt       DateTime     @default(now())
+    updatedAt       DateTime     @updatedAt
+    name            String
+    organization_id String
+    email_address   String
+    organization    Organization @relation(fields: [organization_id], references: [id])
+}
+
+model Organization {
+    id               String           @id @default(cuid())
+    name             String
+    createdAt        DateTime         @default(now())
+    updatedAt        DateTime         @updatedAt
+    residence        String
+    description      String
+    long_description String           @db.Text
+    number_of_users  Int
+    foundation_date  DateTime
+    owner_id         String           @unique
+    owner            User             @relation(fields: [owner_id], references: [id], onDelete: Cascade)
+    ContactMethods   ContactMethods[]
+    Projects         Projects[]
+    Managers         Managers[]
+}
+
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -45,13 +98,15 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String        @id @default(cuid())
+    role          Role          @default(USER)
     name          String?
-    email         String?   @unique
+    email         String?       @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
+    organization  Organization?
 }
 
 model VerificationToken {
