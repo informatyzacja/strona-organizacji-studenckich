@@ -27,8 +27,7 @@ export const Breadcrumb = (props: BreadcrumbProps) => {
         return { href, title };
       }) ?? [];
 
-    // Add in a default "Home" crumb for the top-level
-    return [...crumblist];
+    return crumblist;
   };
 
   const breadCrumbItems = generateBreadCrumb();
