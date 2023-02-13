@@ -36,14 +36,12 @@ const columns = [
     cell: (info) => info.getValue().slice(0, 40) + "...",
     header: () => "Krótki opis",
   }),
-  columnHelper.accessor("members", {
-    header: () => "Ilość członków",
-  }),
   columnHelper.accessor("department", {
     header: () => "Wydział",
   }),
   columnHelper.accessor("tags", {
     header: () => "Tagi",
+    cell: (info) => info.getValue().join(", "),
   }),
 ];
 
