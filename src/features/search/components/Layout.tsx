@@ -2,10 +2,10 @@ import { chakra, Stack } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 import React from "react";
 import { Lato } from "@next/font/google";
-import { Footer } from "../../../components/Footer";
-import { Navbar } from "../../../components/Navbar";
+import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { ScrollToTop } from "../../../components/ScrollToTop";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const lato = Lato({
   subsets: ["latin"],

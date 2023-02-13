@@ -4,7 +4,7 @@ import type { BoxProps } from "@chakra-ui/react";
 import { VStack, Wrap, WrapItem, Text, Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
-import { AnimatePresenceSSR } from "../../../components/AnimatePresenceSSR";
+import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { OrganisationCard } from "./OrganisationCard";
 
 export const List = ({
