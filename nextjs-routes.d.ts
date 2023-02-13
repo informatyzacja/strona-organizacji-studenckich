@@ -10,6 +10,7 @@ declare module "nextjs-routes" {
     | StaticRoute<"/admin">
     | DynamicRoute<"/admin/organizacje/[slug]", { "slug": string }>
     | StaticRoute<"/admin/organizacje">
+    | StaticRoute<"/admin/organizacje/stworz">
     | DynamicRoute<"/api/auth/[...nextauth]", { "nextauth": string[] }>
     | DynamicRoute<"/api/trpc/[trpc]", { "trpc": string }>
     | StaticRoute<"/">

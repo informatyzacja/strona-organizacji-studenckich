@@ -11,6 +11,8 @@ import {
   Th,
   Tbody,
   Td,
+  Button,
+  HStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Layout } from "../components/Layout";
@@ -73,6 +75,17 @@ export const HomePage = () => {
 
   return (
     <Layout>
+      <HStack justify="flex-end">
+        <Button
+          variant="solid"
+          colorScheme="blue"
+          onClick={() => {
+            void router.push("/admin/organizacje/stworz");
+          }}
+        >
+          Stwórz nową
+        </Button>
+      </HStack>
       <TableContainer>
         <Table variant="simple" colorScheme="blackAlpha">
           <TableCaption>Wszystkie organizacje</TableCaption>
