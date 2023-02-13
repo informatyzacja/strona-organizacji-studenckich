@@ -32,7 +32,6 @@ export const Breadcrumb = (props: BreadcrumbProps) => {
   };
 
   const breadCrumbItems = generateBreadCrumb();
-
   if (!isClient) return <ChakraBreadcrumb {...props} />;
 
   return (
