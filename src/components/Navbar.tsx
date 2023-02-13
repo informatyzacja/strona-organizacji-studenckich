@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { signIn } from "next-auth/react";
 
 export const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -64,6 +65,9 @@ export const Navbar = () => {
             fontWeight={400}
             variant={"link"}
             href={"#"}
+            onClick={() => {
+              void signIn();
+            }}
           >
             Zaloguj się
           </Button>

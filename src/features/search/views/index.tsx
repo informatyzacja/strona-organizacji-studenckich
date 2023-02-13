@@ -1,17 +1,18 @@
-import { List } from "@/components/List";
-import { Search } from "@/components/Search";
-import { useSearch } from "@/hooks/useSearch";
+import { List } from "../components/List";
+import { Search } from "../components/Search";
+import { useSearch } from "../hooks/useSearch";
 import { api } from "@/utils/api";
 import { Container, VStack, Heading, Tag } from "@chakra-ui/react";
 import { type NextPage } from "next";
+import { Layout } from "../components/Layout";
 
-const Home: NextPage = () => {
+const SearchPage: NextPage = () => {
   const { data } = api.organizations.getAll.useQuery();
 
   const { search, setSearch, results } = useSearch(data);
 
   return (
-    <>
+    <Layout>
       <Container pt={20} maxW="container.xl">
         <VStack w={{ base: "100%", md: "900px" }} mx="auto" align="center">
           <Tag px={2} mb={2} colorScheme="blue">
@@ -24,8 +25,8 @@ const Home: NextPage = () => {
           <List pt={8} data={results} />
         </VStack>
       </Container>
-    </>
+    </Layout>
   );
 };
 
-export default Home;
+export default SearchPage;

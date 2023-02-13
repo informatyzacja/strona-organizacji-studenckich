@@ -1,4 +1,4 @@
-import { selectedTagsAtom } from "@/atoms/selectedTags";
+import { selectedTagsAtom } from "../atoms/selectedTags";
 import { useAtom } from "jotai";
 
 export const useSelectedTags = () => {
