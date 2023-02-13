@@ -12,14 +12,14 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import Image from "next/image";
+import NextImage from "next/image";
 import logoPwr from "../../public/logo-pwr.svg";
 import NextLink from "next/link";
 
 const PwrLogo = () => {
   return (
     <NextLink href="/">
-      <Image src={logoPwr as string} alt="logo-pwr" object-fit="contain" />
+      <NextImage src={logoPwr as string} alt="logo Pwr" />
     </NextLink>
   );
 };

@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import type { ReactNode } from "react";
-import Image from "next/image";
+import NextImage from "next/image";
 import logoPwr from "../../public/logo-pwr.svg";
 import logoSSPwr from "../../public/logo-sspwr.svg";
 
@@ -61,12 +61,8 @@ export const Footer = () => {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <Image src={logoPwr as string} alt="logo-pwr" object-fit="contain" />
-        <Image
-          src={logoSSPwr as string}
-          alt="logo-sspwr"
-          object-fit="contain"
-        />
+        <NextImage src={logoPwr as string} alt="logo Pwr" />
+        <NextImage src={logoSSPwr as string} alt="logo SSPwr" />
         <Text>
           Komisja ds. Informatyzacji <br /> Dział Studencki
         </Text>
