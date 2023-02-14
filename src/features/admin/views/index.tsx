@@ -25,10 +25,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useRouter } from "next/router";
-import slugify from "slugify";
 
 const columnHelper =
-  createColumnHelper<RouterOutputs["organizations"]["get"]>();
+  createColumnHelper<RouterOutputs["organizations"]["list"][number]>();
 
 const columns = [
   columnHelper.accessor("name", {
@@ -38,21 +37,21 @@ const columns = [
     cell: (info) => info.getValue().slice(0, 40) + "...",
     header: () => "Krótki opis",
   }),
-  columnHelper.accessor("department", {
+  columnHelper.accessor("residence", {
     header: () => "Wydział",
   }),
-  columnHelper.accessor("tags", {
+  columnHelper.accessor("Tags", {
     header: () => "Tagi",
     cell: (info) => info.getValue().join(", "),
   }),
 ];
 
 export const HomePage = () => {
-  const { data, isLoading } = api.organizations.getAll.useQuery();
+  const { data, isLoading } = api.organizations.list.useQuery();
 
   const [sorting, setSorting] = useState<SortingState>([]);
 
-  const table = useReactTable<RouterOutputs["organizations"]["get"]>({
+  const table = useReactTable<RouterOutputs["organizations"]["list"][number]>({
     data: data ?? [],
     columns,
     state: {
@@ -126,11 +125,10 @@ export const HomePage = () => {
                   if (!row.original) {
                     return;
                   }
-
                   void router.push({
                     pathname: "/admin/organizacje/[slug]",
                     query: {
-                      slug: slugify(row.original.name),
+                      slug: row.original.slug,
                     },
                   });
                 }}

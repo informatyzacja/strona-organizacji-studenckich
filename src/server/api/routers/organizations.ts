@@ -1,79 +1,23 @@
 import { createTRPCRouter, publicProcedure } from "../trpc";
-import { faker } from "@faker-js/faker/locale/pl";
 import { z } from "zod";
-import slugify from "slugify";
-
-const tags = [
-  "Druk3D",
-  "Piwo",
-  "Fotografia",
-  "Programowanie",
-  "Muzyka",
-  "Taniec",
-  "Kultura",
-  "Sport",
-];
-
-const departments = [
-  "W1",
-  "W2",
-  "W3",
-  "W4",
-  "W5",
-  "W6",
-  "W7",
-  "W8",
-  "W9",
-  "W10",
-  "W11",
-  "W12",
-];
-
-const generateFakeManagement = () => {
-  return Array.from({ length: 3 }).map(() => faker.name.fullName());
-};
-
-const generateFakeSocialLinks = () => {
-  return {
-    facebook: faker.internet.url(),
-    instagram: faker.internet.url(),
-    website: faker.internet.url(),
-  };
-};
-
-const generateFakeOrganization = () => {
-  return {
-    id: faker.datatype.uuid(),
-    name: faker.company.name(),
-    description: faker.commerce.productDescription(),
-    longDescription: faker.lorem.paragraphs(9),
-    management: generateFakeManagement(),
-    createdAt: faker.date.past(),
-    numberOfProjects: faker.datatype.number(10),
-    members: faker.datatype.number(100),
-    socials: generateFakeSocialLinks(),
-    logoUrl: faker.image.cats(150, 150, true),
-    tags: faker.helpers.arrayElements(tags, 3),
-    department: faker.helpers.arrayElement(departments),
-  };
-};
-
-const globalMock = globalThis as unknown as {
-  mockData: ReturnType<typeof generateFakeOrganization>[];
-};
-
-const getData = () => {
-  if (!globalMock.mockData) {
-    const mockData = Array.from({ length: 30 }).map(generateFakeOrganization);
-    globalMock.mockData = mockData;
-  }
-
-  return globalMock.mockData;
-};
+import { TRPCError } from "@trpc/server";
 
 export const organizations = createTRPCRouter({
-  getAll: publicProcedure.query(() => {
-    return getData();
+  list: publicProcedure.query(async ({ ctx }) => {
+    const organizations = await ctx.prisma.organization.findMany({
+      select: {
+        Tags: true,
+        name: true,
+        slug: true,
+        description: true,
+        residence: true,
+      },
+    });
+
+    return organizations.map((organization) => ({
+      ...organization,
+      Tags: organization.Tags.map((tag) => tag.text),
+    }));
   }),
   get: publicProcedure
     .input(
@@ -81,11 +25,30 @@ export const organizations = createTRPCRouter({
         slug: z.string().min(1).max(100),
       })
     )
-    .query(({ input }) => {
-      return (
-        getData().find((org) => {
-          return slugify(org.name) === input.slug;
-        }) ?? getData()[0]
-      );
+    .query(async ({ input, ctx }) => {
+      const organization = await ctx.prisma.organization.findUnique({
+        where: {
+          slug: input.slug,
+        },
+        include: {
+          ContactMethods: true,
+          Tags: true,
+          owner: true,
+          Managers: true,
+          Projects: true,
+        },
+      });
+
+      if (!organization) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Organization not found",
+        });
+      }
+
+      return {
+        ...organization,
+        Tags: organization.Tags.map((tag) => tag.text),
+      };
     }),
 });

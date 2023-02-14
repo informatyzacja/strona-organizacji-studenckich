@@ -7,17 +7,7 @@ import { Input, InputGroup, InputRightElement, VStack } from "@chakra-ui/react";
 import type { ComponentProps } from "react";
 import React, { useEffect, useState } from "react";
 import { Tag } from "./Tag";
-
-const availableTags = [
-  "Druk3D",
-  "Piwo",
-  "Fotografia",
-  "Programowanie",
-  "Muzyka",
-  "Taniec",
-  "Kultura",
-  "Sport",
-];
+import { api } from "@/utils/api";
 
 const SelectableTag = (
   props: ComponentProps<typeof Tag> & {
@@ -47,6 +37,7 @@ export const Search = ({
   const [search, setSearch] = useState(value);
   const debouncedSearch = useDebounce(search, 200);
   const { toggleTag } = useSelectedTags();
+  const { data: tags } = api.tags.list.useQuery();
 
   useEffect(() => {
     setValue(debouncedSearch);
@@ -69,7 +60,7 @@ export const Search = ({
         </InputRightElement>
       </InputGroup>
       <Wrap w="100%" alignItems="start" pt={2}>
-        {availableTags.map((tag) => (
+        {tags?.map((tag) => (
           <WrapItem key={tag}>
             <SelectableTag
               tag={tag}

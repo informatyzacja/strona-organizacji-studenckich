@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { useFuse } from "./useFuse";
 import { useSelectedTags } from "./useSelectedTags";
 
-type Organizations = RouterOutputs["organizations"]["getAll"];
+type Organizations = RouterOutputs["organizations"]["list"];
 
 export const useSearch = (data?: Organizations) => {
   const [search, setSearch] = useState("");
@@ -49,8 +49,8 @@ export const useSearch = (data?: Organizations) => {
     }
 
     return result.filter((item) => {
-      const { tags } = item;
-      return selectedTags.every((tag) => tags.includes(tag));
+      const { Tags } = item;
+      return selectedTags.every((tag) => Tags.includes(tag));
     });
   }, [result, selectedTags]);
 

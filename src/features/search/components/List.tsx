@@ -11,7 +11,7 @@ export const List = ({
   data,
   ...styles
 }: {
-  data?: RouterOutputs["organizations"]["getAll"];
+  data?: RouterOutputs["organizations"]["list"];
 } & BoxProps) => {
   return (
     <Box {...styles}>
@@ -47,7 +47,7 @@ export const List = ({
           <AnimatePresenceSSR mode="popLayout">
             {data?.slice(0, 10).map((org) => (
               <motion.div
-                key={org.id}
+                key={org.name}
                 layout
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
