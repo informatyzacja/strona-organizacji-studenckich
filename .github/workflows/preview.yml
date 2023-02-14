@@ -86,6 +86,7 @@ jobs:
           echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
           echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
           npm run build
+          npm run db:seed
           npx prisma migrate deploy
 
       - name: Starting app
