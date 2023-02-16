@@ -7,7 +7,7 @@ import { type NextPage } from "next";
 import { Layout } from "../components/Layout";
 
 const SearchPage: NextPage = () => {
-  const { data } = api.organizations.getAll.useQuery();
+  const { data } = api.organizations.list.useQuery();
 
   const { search, setSearch, results } = useSearch(data);
 

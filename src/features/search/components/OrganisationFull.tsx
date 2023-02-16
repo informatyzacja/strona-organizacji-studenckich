@@ -38,7 +38,7 @@ export const OrganisationFull = ({
         {data.name}
       </Heading>
       <Wrap mt={2}>
-        {data.tags.map((tag) => (
+        {data.Tags.map((tag) => (
           <WrapItem key={tag}>
             <Tag tag={tag} />
           </WrapItem>
@@ -46,9 +46,9 @@ export const OrganisationFull = ({
       </Wrap>
       <Text mt={8}>{data.description}</Text>
       <OrganisationStats
-        members={data.members}
+        members={data.numberOfUsers}
         createdAt={data.createdAt}
-        numberOfProjects={data.numberOfProjects}
+        numberOfProjects={data.Projects.length}
       />
       <br />
       <Text>{data.longDescription}</Text>
@@ -56,20 +56,26 @@ export const OrganisationFull = ({
         Zarząd
       </Heading>
       <UnorderedList>
-        {data.management.map((member) => (
-          <ListItem key={member}>{member}</ListItem>
+        {data.Managers.map((member) => (
+          <ListItem key={member.id}>{member.name}</ListItem>
         ))}
       </UnorderedList>
       <Heading as="h2" size="md" mt={4} mb={2}>
         Kontakt
       </Heading>
       <List>
-        {Object.entries(data.socials).map(([key, value]) => (
-          <ListItem key={key}>
+        {data.ContactMethods.map((contactMethod) => (
+          <ListItem key={contactMethod.id}>
             <HStack>
-              <Text textTransform="capitalize">{key}:</Text>
-              <Link href={value} target="_blank" color="gray">
-                {value}
+              <Text textTransform="capitalize">
+                {contactMethod.contactType}:
+              </Text>
+              <Link
+                href={contactMethod.contactLink}
+                target="_blank"
+                color="gray"
+              >
+                {contactMethod.contactLink}
               </Link>
             </HStack>
           </ListItem>

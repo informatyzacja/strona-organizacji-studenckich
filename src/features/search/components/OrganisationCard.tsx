@@ -8,20 +8,21 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import slugify from "slugify";
 import { FaHeart } from "react-icons/fa";
 import { Tag } from "./Tag";
 
 export const OrganisationCard = ({
   name,
   description,
-  department,
-  tags,
+  slug,
+  residence,
+  Tags,
 }: {
   name: string;
   description: string;
-  department: string;
-  tags: string[];
+  slug: string;
+  residence: string;
+  Tags: string[];
 }) => {
   const router = useRouter();
 
@@ -35,12 +36,12 @@ export const OrganisationCard = ({
       align="start"
     >
       <VStack justifyContent="flex-start" align="start">
-        <Text fontSize="sm">{department}</Text>
+        <Text fontSize="sm">{residence}</Text>
         <Text fontWeight="semibold" fontSize="lg">
           {name}
         </Text>
         <Wrap pt={2} direction="row">
-          {tags.map((tag) => (
+          {Tags.map((tag) => (
             <WrapItem key={tag}>
               <Tag tag={tag} />
             </WrapItem>
@@ -56,7 +57,7 @@ export const OrganisationCard = ({
           onClick={() => {
             void router.push({
               pathname: "/organizacja/[slug]",
-              query: { slug: slugify(name) },
+              query: { slug },
             });
           }}
         >

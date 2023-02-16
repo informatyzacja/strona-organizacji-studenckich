@@ -23,51 +23,59 @@ enum Role {
     USER
 }
 
+model Tag {
+    id            String         @id @default(cuid())
+    text          String         @unique
+    organizations Organization[]
+}
+
 model ContactMethods {
-    id              String       @id @default(cuid())
-    createdAt       DateTime     @default(now())
-    updatedAt       DateTime     @updatedAt
-    contact_type    String
-    contact_link    String
-    organization_id String
-    organization    Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+    id             String       @id @default(cuid())
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+    contactType    String
+    contactLink    String
+    organizationId String
+    organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
 
 model Projects {
-    id              String       @id @default(cuid())
-    createdAt       DateTime     @default(now())
-    updatedAt       DateTime     @updatedAt
-    name            String
-    description     String
-    organization_id String
-    organization    Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+    id             String       @id @default(cuid())
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+    name           String
+    description    String
+    organizationId String
+    organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
 
 model Managers {
-    id              String       @id @default(cuid())
-    createdAt       DateTime     @default(now())
-    updatedAt       DateTime     @updatedAt
-    name            String
-    organization_id String
-    email_address   String
-    organization    Organization @relation(fields: [organization_id], references: [id])
+    id             String       @id @default(cuid())
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+    name           String
+    organizationId String
+    email          String?
+    organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
 
 model Organization {
-    id               String           @id @default(cuid())
-    name             String
-    createdAt        DateTime         @default(now())
-    updatedAt        DateTime         @updatedAt
-    residence        String
-    description      String
-    long_description String           @db.Text
-    number_of_users  Int
-    foundation_date  DateTime
-    owner_id         String           @unique
-    owner            User             @relation(fields: [owner_id], references: [id], onDelete: Cascade)
-    ContactMethods   ContactMethods[]
-    Projects         Projects[]
-    Managers         Managers[]
+    id              String           @id @default(cuid())
+    name            String
+    createdAt       DateTime         @default(now())
+    updatedAt       DateTime         @updatedAt
+    residence       String
+    description     String
+    slug            String           @unique
+    longDescription String           @db.Text
+    numberOfUsers   Int
+    foundationDate  DateTime
+    ownerId         String           @unique
+    owner           User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    ContactMethods  ContactMethods[]
+    Projects        Projects[]
+    Managers        Managers[]
+    Tags            Tag[]
 }
 
 // Necessary for Next auth
