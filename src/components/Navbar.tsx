@@ -8,14 +8,26 @@ import {
   Collapse,
   Link,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
+  Avatar,
+  Center,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  Divider,
+  VStack,
+  HStack,
+  ScaleFade,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NextImage from "next/image";
 import logoPwr from "../../public/logo-pwr.svg";
 import NextLink from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { Loading } from "./Loading";
 
 const PwrLogo = () => {
   return (
@@ -26,6 +38,8 @@ const PwrLogo = () => {
 };
 export const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
+  const { status, data } = useSession();
+  const router = useRouter();
 
   return (
     <Box bg={useColorModeValue("white", "gray.800")}>
@@ -57,27 +71,79 @@ export const Navbar = () => {
             <DesktopNav />
           </Flex>
         </Flex>
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
-            onClick={() => {
-              void signIn();
-            }}
-          >
-            Zaloguj się
-          </Button>
-        </Stack>
+        {status === "loading" ? <Loading /> : null}
+        {status === "unauthenticated" ? (
+          <ScaleFade in={true}>
+            <Stack
+              flex={{ base: 1, md: 0 }}
+              justify={"flex-end"}
+              direction={"row"}
+              spacing={6}
+            >
+              <Button
+                fontSize={"sm"}
+                fontWeight={400}
+                variant={"link"}
+                onClick={() => {
+                  void signIn("google");
+                }}
+              >
+                Zaloguj się
+              </Button>
+            </Stack>
+          </ScaleFade>
+        ) : null}
+        {status === "authenticated" ? (
+          <ScaleFade in={true}>
+            <Box ml={4} display={{ base: "none", md: "flex" }}>
+              <Menu direction="rtl" placement="bottom" autoSelect={false}>
+                <MenuButton
+                  as={Button}
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
+                  minW={0}
+                  border={"2px solid transparent"}
+                  _hover={{
+                    border: "2px solid black",
+                  }}
+                  aria-label="Menu użytkownika"
+                >
+                  <Avatar
+                    size={"sm"}
+                    name={data.user?.name ?? ""}
+                    src={data.user.image ?? ""}
+                    referrerPolicy="no-referrer"
+                  />
+                </MenuButton>
+                <MenuList alignItems={"center"} p={3}>
+                  <Center>
+                    <Avatar
+                      size={"2xl"}
+                      name={data.user?.name ?? ""}
+                      src={data.user.image ?? ""}
+                      referrerPolicy="no-referrer"
+                    />
+                  </Center>
+                  <Center mt={4}>
+                    <p>{data.user?.email}</p>
+                  </Center>
+                  <MenuDivider />
+                  <MenuItem
+                    onClick={() => {
+                      void signOut({ redirect: false }).then(() => {
+                        void router.push("/");
+                      });
+                    }}
+                  >
+                    Wyloguj się
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
+          </ScaleFade>
+        ) : null}
       </Flex>
-
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
@@ -113,6 +179,8 @@ const DesktopNav = () => {
 };
 
 const MobileNav = () => {
+  const { data, status } = useSession();
+
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
@@ -122,6 +190,28 @@ const MobileNav = () => {
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
+      <Divider />
+      {status === "authenticated" ? (
+        <VStack>
+          <HStack>
+            <Avatar
+              size="sm"
+              name={data?.user?.name ?? ""}
+              src={data.user.image ?? ""}
+            />
+            <p>{data?.user?.name}</p>
+          </HStack>
+          <Button
+            colorScheme="blue"
+            variant="outline"
+            onClick={() => {
+              void signOut();
+            }}
+          >
+            Wyloguj się
+          </Button>
+        </VStack>
+      ) : null}
     </Stack>
   );
 };
