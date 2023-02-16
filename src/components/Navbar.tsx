@@ -96,7 +96,6 @@ export const Navbar = () => {
         {status === "authenticated" ? (
           <ScaleFade in={true}>
             <Box ml={4} display={{ base: "none", md: "flex" }}>
-              {/* <Text>{JSON.stringify(data)}</Text> */}
               <Menu direction="rtl" placement="bottom" autoSelect={false}>
                 <MenuButton
                   as={Button}
