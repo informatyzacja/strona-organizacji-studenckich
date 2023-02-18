@@ -15,7 +15,12 @@ export const config = {
 };
 
 const imagesDirectory = path.join(process.cwd(), "upload", "images");
-const acceptedImageTypes = ["image/png", "image/jpeg", "image/svg+xml"];
+const acceptedImageTypes = [
+  "image/png",
+  "image/jpeg",
+  "image/svg+xml",
+  "image/webp",
+];
 
 const app = express();
 const serveFiles = express.static(imagesDirectory);
