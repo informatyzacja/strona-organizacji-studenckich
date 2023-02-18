@@ -5,7 +5,11 @@ import path from "path";
 import fs from "fs";
 import { route } from "nextjs-routes";
 import { getServerAuthSession } from "@/server/auth";
-import { maxFileSize, uploadResponseSchema } from "./schema";
+import {
+  acceptedImageTypes,
+  maxFileSize,
+  uploadResponseSchema,
+} from "./schema";
 
 export const config = {
   api: {
@@ -15,12 +19,6 @@ export const config = {
 };
 
 const imagesDirectory = path.join(process.cwd(), "upload", "images");
-const acceptedImageTypes = [
-  "image/png",
-  "image/jpeg",
-  "image/svg+xml",
-  "image/webp",
-];
 
 const app = express();
 const serveFiles = express.static(imagesDirectory);

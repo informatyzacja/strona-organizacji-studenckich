@@ -1,7 +1,7 @@
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { useForm } from "@/hooks/useForm";
 import { useUpload } from "@/hooks/useUpload";
-import { maxFileSize } from "@/server/api/file/schema";
+import { acceptedImageTypes, maxFileSize } from "@/server/api/file/schema";
 import {
   Button,
   FormControl,
@@ -157,7 +157,7 @@ export const CreatePage = () => {
                     <Input
                       {...register("logo")}
                       type="file"
-                      accept="image/png, image/jpeg, image/svg+xml"
+                      accept={acceptedImageTypes.join(", ")}
                       backgroundColor="white"
                       sx={{
                         "::file-selector-button": {
