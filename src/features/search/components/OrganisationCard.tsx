@@ -24,7 +24,7 @@ export const OrganisationCard = ({
   description: string;
   logoUrl: string | null;
   slug: string;
-  residence: string;
+  residence?: string;
   Tags: string[];
 }) => {
   const router = useRouter();
@@ -33,7 +33,7 @@ export const OrganisationCard = ({
     <VStack
       p={6}
       w="400px"
-      h="340px"
+      h="24rem"
       shadow="md"
       justify="space-between"
       align="start"

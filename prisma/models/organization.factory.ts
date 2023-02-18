@@ -2,8 +2,6 @@ import { faker } from "@faker-js/faker/locale/pl";
 import type { Prisma } from "@prisma/client";
 import slugify from "slugify";
 import { contactMethodFactory } from "./contactMethod.factory";
-import { managerFactory } from "./manager.factory";
-import { projectFactory } from "./project.factory";
 import { tagFactory } from "./tag.factory";
 import { userFactory } from "./user.factory";
 
@@ -22,6 +20,13 @@ const departments = [
   "W12",
 ];
 
+const organisationTypes = [
+  "Agenda Kultury",
+  "Koło Naukowe",
+  "Media Studenckie",
+  "Organizacja Studencka",
+];
+
 export const organizationFactory = (
   props?: Partial<Prisma.OrganizationCreateInput>
 ): Prisma.OrganizationCreateInput => {
@@ -37,10 +42,10 @@ export const organizationFactory = (
     longDescription: faker.lorem.paragraphs(9),
     createdAt: faker.date.past(),
     logoUrl: "/test_logo.png",
+    type: faker.helpers.arrayElement(organisationTypes),
     slug: slugify(name) + faker.random.numeric(4),
-    numberOfUsers: faker.datatype.number(100),
     foundationDate: faker.date.past(),
-    residence: faker.helpers.arrayElement(departments),
+    department: faker.helpers.arrayElement(departments),
     owner: {
       create: userFactory({ role: "OWNER" }),
     },
@@ -54,18 +59,6 @@ export const organizationFactory = (
     },
     ContactMethods: {
       create: Array.from({ length: 3 }).map(() => contactMethodFactory()),
-    },
-    Managers: {
-      createMany: {
-        data: Array.from({ length: 3 }).map(() => managerFactory()),
-      },
-    },
-    Projects: {
-      createMany: {
-        data: Array.from({
-          length: faker.datatype.number({ min: 0, max: 4 }),
-        }).map(() => projectFactory()),
-      },
     },
     ...props,
   };

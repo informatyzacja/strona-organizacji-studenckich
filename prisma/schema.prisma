@@ -39,43 +39,21 @@ model ContactMethods {
     organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 }
 
-model Projects {
-    id             String       @id @default(cuid())
-    createdAt      DateTime     @default(now())
-    updatedAt      DateTime     @updatedAt
-    name           String
-    description    String
-    organizationId String
-    organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-}
-
-model Managers {
-    id             String       @id @default(cuid())
-    createdAt      DateTime     @default(now())
-    updatedAt      DateTime     @updatedAt
-    name           String
-    organizationId String
-    email          String?
-    organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-}
-
 model Organization {
     id              String           @id @default(cuid())
     name            String
     createdAt       DateTime         @default(now())
     updatedAt       DateTime         @updatedAt
-    residence       String
+    department      String?
     description     String
     logoUrl         String?
+    type            String           
     slug            String           @unique
-    longDescription String           @db.Text
-    numberOfUsers   Int
-    foundationDate  DateTime
+    longDescription String?           @db.Text
+    foundationDate  DateTime?
     ownerId         String           @unique
     owner           User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)
     ContactMethods  ContactMethods[]
-    Projects        Projects[]
-    Managers        Managers[]
     Tags            Tag[]
 }
 

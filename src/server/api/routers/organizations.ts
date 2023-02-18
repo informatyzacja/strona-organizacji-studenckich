@@ -9,9 +9,10 @@ export const organizations = createTRPCRouter({
         Tags: true,
         name: true,
         slug: true,
+        type: true,
         description: true,
-        residence: true,
         logoUrl: true,
+        department: true,
       },
     });
 
@@ -35,8 +36,6 @@ export const organizations = createTRPCRouter({
           ContactMethods: true,
           Tags: true,
           owner: true,
-          Managers: true,
-          Projects: true,
         },
       });
 
