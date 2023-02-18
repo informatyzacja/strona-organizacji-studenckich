@@ -83,19 +83,19 @@ export const CreatePage = () => {
       <Heading mb={4}>Stwórz organizacje</Heading>
       <form
         onSubmit={handleSubmit(async (data) => {
-          console.log("submit");
           if (data.logo instanceof FileList && data.logo[0]) {
-            await uploadAsync(data.logo[0]).catch(() => {
+            try {
+              await uploadAsync(data.logo[0]);
+              toast({
+                title: "Organizacja została dodana",
+              });
+            } catch {
               toast({
                 status: "error",
                 title: "Błąd podczas dodawania organizacji",
                 description: `Nie udało się dodać organizacji`,
               });
-            });
-
-            toast({
-              title: "Organizacja została dodana",
-            });
+            }
           }
         })}
       >
