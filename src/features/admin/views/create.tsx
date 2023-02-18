@@ -1,5 +1,7 @@
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { useForm } from "@/hooks/useForm";
+import { useUpload } from "@/hooks/useUpload";
+import { maxFileSize } from "@/server/api/file/schema";
 import {
   Button,
   FormControl,
@@ -47,6 +49,20 @@ const schema = z.object({
   description: z.string().default(""),
   long_description: z.string().optional().default(""),
   number_of_users: z.number().optional().default(0),
+  logo: z
+    .instanceof(typeof FileList !== "undefined" ? FileList : Array)
+    .superRefine((value, ctx) => {
+      if (value instanceof FileList && value[0]) {
+        if (value[0].size > maxFileSize) {
+          ctx.addIssue({
+            code: "custom",
+            message: `Zbyt duży rozmiar pliku. Maksymalny rozmiar to ${Math.round(
+              maxFileSize / 1024 / 1024
+            )} MB`,
+          });
+        }
+      }
+    }),
 });
 
 export const CreatePage = () => {
@@ -61,15 +77,26 @@ export const CreatePage = () => {
     status: "success",
   });
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
-
+  const { uploadAsync } = useUpload();
   return (
     <Layout>
       <Heading mb={4}>Stwórz organizacje</Heading>
       <form
-        onSubmit={handleSubmit(() => {
-          toast({
-            title: "Organizacja została dodana",
-          });
+        onSubmit={handleSubmit(async (data) => {
+          console.log("submit");
+          if (data.logo instanceof FileList && data.logo[0]) {
+            await uploadAsync(data.logo[0]).catch(() => {
+              toast({
+                status: "error",
+                title: "Błąd podczas dodawania organizacji",
+                description: `Nie udało się dodać organizacji`,
+              });
+            });
+
+            toast({
+              title: "Organizacja została dodana",
+            });
+          }
         })}
       >
         <VStack spacing={0} maxW={{ base: "100%", md: "600px" }} align="start">
@@ -112,7 +139,7 @@ export const CreatePage = () => {
                 }}
               >
                 <VStack align="start" mt={2} mb={6} w="100%">
-                  <FormControl isRequired>
+                  <FormControl isRequired isInvalid={errors.name !== undefined}>
                     <FormLabel>Nazwa organizacji</FormLabel>
                     <Input
                       {...register("name")}
@@ -121,10 +148,34 @@ export const CreatePage = () => {
                     />
                     <FormErrorMessage>
                       {errors.name?.message &&
-                        "Nieprawidłowa nazwa organizacji"}
+                        "Nieprawidłowa nazwa organizacji"}{" "}
+                      123
                     </FormErrorMessage>
                   </FormControl>
-                  <FormControl isRequired>
+                  <FormControl isInvalid={errors.logo !== undefined}>
+                    <FormLabel>Logo</FormLabel>
+                    <Input
+                      {...register("logo")}
+                      type="file"
+                      accept="image/png, image/jpeg, image/svg+xml"
+                      backgroundColor="white"
+                      sx={{
+                        "::file-selector-button": {
+                          height: 10,
+                          padding: 0,
+                          mr: 4,
+                          background: "none",
+                          border: "none",
+                          fontWeight: "bold",
+                        },
+                      }}
+                    />
+                    <FormErrorMessage>{errors.logo?.message}</FormErrorMessage>
+                  </FormControl>
+                  <FormControl
+                    isRequired
+                    isInvalid={errors.residence !== undefined}
+                  >
                     <FormLabel>Wydział</FormLabel>
                     <Select {...register("residence")} variant="">
                       {departments.map((department) => (
