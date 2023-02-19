@@ -1,0 +1,316 @@
+[
+  {
+    "email": "konstrukcje.arch@pwr.edu.pl",
+    "name": "Strukturalne Koło Naukowe InStructA",
+    "description": "Koło InStructA to grupa młodych ludzi, którzy wspólnie realizują różnorodne koncepcje kształtowania przestrzeni. Od wielu lat aktywnie działamy, aby rozwiązywać kolejne zagadki strukturalne. Poznajemy metody konstruowania, badamy, poszukujemy nowatorskich rozwiązań, projektujemy pawilony, budujemy je i przy okazji świetnie się bawimy. Każda myśl jest warta dalszych poszukiwań i wszystko zależy od ludzi, którzy tworzą nasz zespół, więc nic nie zdarza się dwa razy. Wspólnie wybieramy ścieżki, którymi chcemy podążać. Napisz jeżeli chcesz do nas dołączyć i razem zdecydujemy co skonstruujemy.",
+    "department": "W1 - Wydział Architektury",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "restart@pwr.edu.pl",
+    "name": "Koło Naukowe Fizyki Budowli RESTART",
+    "description": "KN Fizyki Budowli „RESTART” zostało założone w 2021 roku na Politechnice Wrocławskiej. Celem Koła jest podnoszenie kwalifikacji i świadomości z zakresu fizyki budowli, efektywności energetycznej, budownictwa zrównoważonego oraz wykorzystywania odnawialnych źródeł energii w budownictwie. Członkowie Koła realizują swoje cele poprzez podnoszenie własnych kwalifikacji, udział w projektach, badaniach naukowych i wydarzeniach specjalnych, organizowanie warsztatów oraz spotkań czy współpracę z firmami i kołami naukowymi zajmującymi się podobną tematyką na innych wydziałach czy uczelniach.",
+    "department": "W2 - Wydział Budownictwa Lądowego i Wodnego",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "knmmb@pwr.edu.pl",
+    "name": "Koło Naukowe Młodzi Menedżerowie Budownictwa",
+    "description": "Jesteśmy Kołem Naukowym z Wydziału Budownictwa Lądowego i Wodnego działającym od 2010 roku. Naszym głównym celem jest zdobywanie, poszerzanie i wykorzystywanie zdobytej wiedzy w praktyce. Organizujemy szkolenia i wyjścia na budowę oraz realizujemy różnorodne projekty, z których mogą skorzystać wszyscy studenci z naszego wydziału.",
+    "department": "W2 - Wydział Budownictwa Lądowego i Wodnego",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "mlodzimostowcy@pwr.edu.pl",
+    "name": "Koło Naukowe Młodzi Mostowcy PWr",
+    "description": "Pogłębianie znajomości wybranych problemów projektowania i budowy mostów, pogłębianie wiedzy teoretycznej z zakresu wymiarowania konstrukcji mostowych, doskonalenie metod obliczeniowych, uczestnictwo w konferencjach naukowych, udział w konkursach mostowych, uczestnictwo w badaniach naukowych, organizacja spotkań naukowych z firmami i zakładami budowlanymi, organizacja wycieczek technicznych.",
+    "department": "W2 - Wydział Budownictwa Lądowego i Wodnego",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "knmole@pwr.edu.pl",
+    "name": "Koło Naukowe MOLE",
+    "description": "Działalność naukowa koła skupiona jest wokół tematyki szeroko rozumianej geotechniki, zwłaszcza fundamentowania, budownictwa podziemnego i inżynierii miejskiej. W ramach tej tematyki organizowane są seminaria, prezentacje, wyjazdy techniczne. Studenci biorą również udział w konferencjach.",
+    "department": "W2 - Wydział Budownictwa Lądowego i Wodnego",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "biotop@pwr.edu.pl",
+    "name": "Koło Naukowe Bio-Top",
+    "description": "Jesteśmy kołem naukowym prowadzącym badania związane z grzybami owadobójczymi i ich oddziaływaniem na rośliny i owady. Poszukujemy bezpiecznych i skutecznych środków ochrony roślin, biostymulatorów wzrostu roślin oraz nawozów. W odpowiedzi na zmiany klimatyczne poszukujemy też rozwiązań wpisujących się w zielony ład oraz gospodarkę cyrkularną. Prowadzimy działania popularyzujące wykorzystywanie ekologicznych środków ochrony roślin, a także innych aktualnie istotnych obszarów działania biotechnologii, jak na przykład związanych z pandemią SARS-CoV2.",
+    "department": "W3 - Wydział Chemiczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "phobia@pwr.edu.pl",
+    "name": "Międzywydziałowe Koło Naukowe Photonics and Bionanotechnology Association PhoBiA",
+    "description": "PhoBiA to wyjątkowe koło naukowe działające na Politechnice Wrocławskiej zrzeszające pasjonatów zarówno fotoniki, nanomateriałów, mikroskopii jak i nauk biologicznych. W ramach swojej działalności członkowie koła naukowego PhoBiA co roku organizują dwa międzynarodowe wydarzenia – konferencję PANIC oraz konkurs MANIAC. Konferencja PANIC (PhoBiA Annual Nanophotonics International Conference) przykuwać swoją uwagę nie tylko ekspertów w dziedzinie szeroko pojętej nanofotoniki, ale również studentów stawiających swoje pierwsze kroki w naukowej karierze. Natomiast MANIAC (Microscope Art Non-limited International Annual Contest) to konkurs fotografii wykonywanej za pomocą dowolnego mikroskopu przez naukowców z całego świata, którego zwieńczeniem jest wystawa plenerowa w przestrzeni miejskiej Wrocławia.",
+    "department": "W3 - Wydział Chemiczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "consilium@pwr.edu.pl",
+    "name": "Koło Naukowe Projektantów Chemicznych CONSILIUM",
+    "description": "Koncentrujemy się na praktycznym podejściu do rozwiązywania problemów technicznych różnego rodzaju instalacji w przemyśle chemicznym za pomocą symulacji komputerowych i wiedzy inżynierskiej. Uczymy naszych członków krytycznego myślenia i pracy w grupach dzięki projektom „Dla przemysłu”. Nasze motto to – spraw by praca szukała Ciebie! Każde nasze spotkanie ma ładunek merytoryczny dzięki prowadzonym szkoleniom „Od studenta dla studenta” z ChemCADa, Inventora, AutoCADa, MatLABa, CFD (Workbench Fluent) i innych.",
+    "department": "W3 - Wydział Chemiczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "chemitech@pwr.edu.pl",
+    "name": "Studenckie Koło Naukowe Technologów Chemicznych \"ChemiTech\"",
+    "description": "Nasze Koło zrzesza studentów Wydziału Chemicznego zainteresowanych zagadnieniami Technologii Chemicznej. Koło prowadzi działalność na wielu polach, realizując projekty badawcze i organizując specjalistyczne konkursy oraz konferencje. Drugim aspektem działalności ChemiTechu jest czynny udział w życiu Politechniki przez współorganizację warsztatów i pokazów dla młodzieży oraz szkoleń specjalistycznych i spotkań z firmami branżowymi dla studentów.",
+    "department": "W3 - Wydział Chemiczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "kn.whitehats@pwr.edu.pl",
+    "name": "White Hats",
+    "description": "White Hats to koło naukowe działające od roku 2018, w którym wspólnie poznajemy aspekty cyberbezpieczeństwa, znacząco wykraczające poza program studiów. Chcemy nie tylko szerzyć wiedzę o tym jak być bezpiecznym w Internecie, ale również wspólnie zdobywamy konkretne umiejętności pożądane na rynku pracy w sektorze bezpieczeństwa IT. Szkolimy studentów z zakresu testów bezpieczeństwa jak i prowadzimy własną drużynę, biorącą udział w różnorodnych turniejach związanych z cyberbezpieczeństem (CTF, Attack&amp;Defense). Organizujemy również własny turniej CTF – Break the Syntax.",
+    "department": "W4 - Wydział Informatyki i Telekomunikacji",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "automatyk@pwr.edu.pl",
+    "name": "Stowarzyszenie Naukowe Studentów AUTOMATYK",
+    "description": "SNS Automatyk jest kołem naukowym działającym przy Wydziale Elektrycznym Politechniki Wrocławskiej. Zajmujemy się realizacją projektów grupowych z dziedziny automatyki przemysłowej, mikrosterowników i robotyki. Jesteśmy również organizatorami Mistrzostw Polski Programistów PLC.",
+    "department": "W5 - Wydział Elektryczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "revimining@pwr.edu.pl",
+    "name": "Koło Naukowe REVIMINING",
+    "description": "Jesteśmy grupą studentów działających na Wydziale Geoinżynierii, Górnictwa i Geologii Politechniki Wrocławskiej, którzy są zainteresowani zdobywaniem i poszerzaniem wiedzy teoretycznej oraz praktycznej w zakresie szeroko rozumianego górnictwa, zwłaszcza rewitalizacji terenów pogórniczych. Nasze działania opierają się na wyjazdach terenowych do czynnych i zamkniętych już kopalń, udziale i organizacji różnych wydarzeń naukowych i tworzeniu wielu innych, ciekawych projektów. Jesteśmy ludźmi renesansu, dlatego każdy u nas znajdzie coś dla siebie.",
+    "department": "W6 - Wydział Geoinżynierii, Górnictwa i Geologii",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "et@pwr.edu.pl",
+    "name": "Koło Naukowe Environmental Team",
+    "description": "Jesteśmy kołem naukowym, które działa przy wydziale Inżynierii Środowiska. Nasza działalność opiera się przede wszystkim na:Działamy w 12 sekcjach tematycznych: Sekcja Aqua; Sekcja Biomonitoring; Sekcja Biotechnologia Środowiska; Sekcja Budynków Niskoenergetycznych i Pasywnych Sekcja Czyste i Zdrowe Powietrze; Sekcja Gospodarki Odpadami; Sekcja Heattech; Sekcja Jakość Powietrza Wewnętrznego; Sekcja Ochrona Klimatu; Sekcja Tworzyw Sztucznych i Recyklingu; Sekcja Wodociągów i Kanalizacji; Sekcja Zaawansowanych Metod Oczyszczania Ścieków.",
+    "department": "W7 - Wydział Inżynierii Środowiska",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "debatelab@pwr.edu.pl",
+    "name": "Koło Naukowe Debate Lab",
+    "description": "Główne cele działalności koła związane są z debatami tj. pogłębianie wiedzy i rozwijanie zainteresowań studentów w zakresie argumentacji, logicznego wnioskowania i sztuki debatowania, czy zaznajomienie studentów z różnymi formami debatowania.",
+    "department": "W8 - Wydział Zarządzania",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "plomien@pwr.edu.pl",
+    "name": "Studenckie Koło Naukowe PŁOMIEŃ",
+    "description": "Studenckie Koło Naukowe Płomień zrzesza studentów, którzy chcą realizować swoje zainteresowania w dziedzinie energetyki. Najważniejszą działalnością koła są projekty naukowe, które prężnie się rozwijają. Dodatkowo organizujemy warsztaty, konferencje oraz wycieczki.",
+    "department": "W9 - Wydział Mechaniczno-Energetyczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "cadfem@pwr.edu.pl",
+    "name": "Koło Naukowe CAD/FEM",
+    "description": "",
+    "department": "W10 - Wydział Mechaniczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "sknmat@pwr.edu.pl",
+    "name": "Koło naukowe Materiałoznawstwa im. doc. Rudolfa Haimanna",
+    "description": "Studenckie Koło Naukowe Materiałoznawstwa stara się kontynuować myśl doc. Rudolfa Haimanna, rozbudowując wkład Politechniki Wrocławskiej w rozwój i popularyzację wiedzy o inżynierii materiałowej. Działalność koła skupia się wokół realizacji oraz analizy wyników badań niezbędnych do wykonania ekspertyz materiałowych stopów metali i/lub kompozytów. Członkowie koła, dzięki dostępowi do wyposażenia laboratorium, mają możliwość przeprowadzenia analizy badanych materiałów z zastosowaniem badań fraktograficznych, mikroskopii świetlnej, elektronowej, sił atomowych, pomiarów twardości, itd., a także modyfikowania własności materiałów poprzez przeprowadzanie zabiegów obróbki cieplnej.",
+    "department": "W10 - Wydział Mechaniczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "synergia@pwr.edu.pl",
+    "name": "Koło Naukowe Mechatroniki i Robotyki „Synergia”",
+    "description": "Naszymi działaniami staramy się propagować mechatronikę jako interdyscyplinarną dziedzinę nauki. Przede wszystkim jednak mamy na celu umożliwienie studentom zdobycia dodatkowej wiedzy i doświadczenia, oraz przelanie ich innowacyjnych pomysłów w rzeczywiste, zrealizowane projekty mogące przyczynić się do rozwoju dziedzin będących w sferze naszych zainteresowań.Zgodnie z koncepcyjnymi założeniami naszej działalności każdy godny uwagi projekt przelewany jest w rzeczywisty model. Organizujemy również pokazy i prezentacje w celu rozpowszechnienia i ukazania potencjału mechatroniki wśród profesorów, studentów i licealistów. Swoje osiągnięcia członkowie koła mogą prezentować wspomnianych prezentacjach, jak i różnorodnych konkursach i festiwalach w których staramy się brać aktywny udział.",
+    "department": "W10 - Wydział Mechaniczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "kn-osn@pwr.edu.pl",
+    "name": "Koło Naukowe Obrabiarek Sterowanych Numerycznie (OSN)",
+    "description": "W kole naukowym pracujemy z wieloma technologiami ubytkowymi wykorzystywanymi w przemyśle! W większości przypadków są to technologie mające na celu poprzez usunięcie materiał w danym procesie, nadać właściwy kształt oraz wymiary gotowego przedmiotu. Nie skupiamy się jednak jedynie na tych technologiach, od pewnego czasu pracujemy z drukarkami 3D w technologii FDM/FFF.",
+    "department": "W10 - Wydział Mechaniczny",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "nabla@pwr.edu.pl",
+    "name": "Koło Naukowe Fizyków NABLA",
+    "description": "Działalność koła obejmuje:",
+    "department": "W11 - Wydział Podstawowych Problemów Techniki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "foton@pwr.edu.pl",
+    "name": "Koło Naukowe FOTON",
+    "description": "Koło to powstało na skutek chęci zdobywania coraz większej ilości wiedzy poprzez realizację projektów wymyślonych przez nas, a nie przez profesorów, doktorów czy innych pracowników Politechniki Wrocławskiej. Współpracujemy z podobnymi organizacjami, czynnie uczestniczymy w ważnych konferencjach, rozwijamy własne projekty tj. Kryptografię kwantową, czy Modulator SLM. Jesteśmy głównie grupą studentów z wydziału Podstawowych Problemów Techniki, ale nie tylko. Są wśród nas zapaleni numerycy, teoretycy, laboranci. Pragniemy współpracować z każdym, kto pragnie wiedzy i kto znajduje w sobie nieodpartą potrzebę realizacji różnych projektów.",
+    "department": "W11 - Wydział Podstawowych Problemów Techniki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "qubit@pwr.edu.pl",
+    "name": "Koło Naukowe Informatyki Kwantowej QUBIT",
+    "description": "Koło Naukowe Qubit zrzesza studentów Politechniki Wrocławskiej. Nasze główne zainteresowania to algorytmy kwantowe, kryptografia (zarówno kwantowa, jak i postkwantowa) oraz konstruowanie fizycznych urządzeń wykorzystujących zjawiska mikroświata. Zachęcamy do dołączenia teoretyków, programistów, elektroników chcących zbudować coś namacalnego i wszelkiego rodzaju pasjonatów!",
+    "department": "W11 - Wydział Podstawowych Problemów Techniki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "knimp@pwr.edu.pl",
+    "name": "Koło Naukowe Inżynierii Materiałów Półprzewodnikowych „IMP”",
+    "description": "Koło Naukowe IMP zajmuje się zjednoczeniem studentów Wydziału Podstawowych Problemów Techniki, poszerzaniem ich wiedzy w zakresie inżynierii materiałowej w szczególności o półprzewodnikach.",
+    "department": "W11 - Wydział Podstawowych Problemów Techniki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "nanoin@pwr.edu.pl",
+    "name": "Koło Naukowe Nanoinżynierii NANOIN",
+    "description": "NANOIN to koło naukowe zrzeszające pasjonatów nanoinżynierii. W ramach działalności organizuje spotkania dyskusyjne, wykłady i warsztaty, wyjazdy do ośrodków naukowych, a także Wydziałową Integracyjno-Naukową Konferencję Ogólnofizyczną. Głównym celem jest poszerzanie wiedzy o współczesnych technologiach w nanoskali.",
+    "department": "W11 - Wydział Podstawowych Problemów Techniki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "osachapter@pwr.edu.pl",
+    "name": "Koło Naukowe OSA",
+    "description": "Wroclaw University of Science and Technology – OSA Student Chapter jest stworzony dla studentów pasjonujących się szeroko pojętą optyką. Celem Koła Naukowego jest pogłębienie wiedzy i rozwój zainteresowań studentów poprzez pracę w projektach badawczych oraz udział w międzynarodowych konferencjach naukowych, jak również podniesienie umiejętności w zakresie kreatywnego rozwiązywania problemów oraz pracy w grupie.",
+    "department": "W11 - Wydział Podstawowych Problemów Techniki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "qant@pwr.edu.pl",
+    "name": "Koło Naukowe Q-Ant",
+    "description": "Q-Ant udowadnia, że mechanika kwantowa to nie tylko teoretyczna wiedza zawarta w opasłych książkach, ale podstawa dla inżynierii i przemysłu jutra. W ramach koła wykonujemy projekty badawcze opatrzone szyldem fizyki kwantowej, a także organizujemy spotkania, podczas których wymieniamy się własną wiedzą oraz rozmawiamy z pracownikami Politechniki Wrocławskiej o pracach badawczych prowadzonych na uczelni. Towarzyszy nam przekonanie, że technologie kwantowe wkroczą do codziennego życia lada dzień i warto być na to przygotowanym.",
+    "department": "W11 - Wydział Podstawowych Problemów Techniki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "spie@pwr.edu.pl",
+    "name": "Koło Naukowe SPIE",
+    "description": "Koło Naukowe SPIE jest chapterem międzynarodowej organizacji SPIE i zrzesza osoby zainteresowane optyką i fotoniką. Główne profile działalności koła to rozwój naukowy członków poprzez organizowanie seminariów i wykładów oraz branie udziału i organizowanie konferencji (OPTO). Dodatkowo chętni członkowie zajmują się edukacją – organizują warsztaty dla szkół podstawowych i liceów związane z różnymi zagadnieniami optyki. W kole można poznać wielu ciekawych ludzi oraz nawiązać nowe owocne znajomości – nie tylko prywatne, ale też naukowe!",
+    "department": "W11 - Wydział Podstawowych Problemów Techniki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "m3@pwr.edu.pl",
+    "name": "Koło Naukowe Mikroinżynierii, Mikroelektroniki i Mikrosystemów \"M3\"",
+    "description": "Koło naukowe M3, od chwili rozpoczęcia działalności w 2003 roku, oferuje studentom oraz doktorantom pogłębienie wiedzy z zakresu modelowania, wytwarzania oraz badania mikrosystemów. Tematyka działalności koncentruje się wokół przedmiotu prac badawczych prowadzonych w Katedrze Mikrosystemów, tj. dotyczących przede wszystkim rodziny czujników i aktuatorów mikromechanicznych, lab-on-chip oraz mikrosystemów fluidycznych.",
+    "department": "W12 - Wydział Elektroniki, Fotoniki i Mikrosystemów",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "aerospace@pwr.edu.pl",
+    "name": "Koło Naukowe PWr Aerospace",
+    "description": "Jesteśmy grupą studentów, mających jedną wizję - Wrocław będący kosmiczną stolicą Polski.Stawiamy kolejne kroki w kierunku rozwijania technologii kosmicznych wysyłając misje stratosferyczne, rakietowe, tworząc sondy na międzynarodowe konkursy. Aktualnie tworzymy nanosatelitę WroSat.Naszą wiedzą i doświadczeniem chętnie dzielimy się z innymi, organizując warsztaty oraz prelekcje, przypominając, że z góry widać więcej.",
+    "department": "W12 - Wydział Elektroniki, Fotoniki i Mikrosystemów",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "konar@pwr.edu.pl",
+    "name": "Koło Naukowe Robotyków KoNaR",
+    "description": "KNR KoNaR skupia się na rozwoju oraz propagowaniu wiedzy z zakresu robotyki. Zajmujemy się tematyką sterowania robotów, sztucznej inteligencji oraz systemów wbudowanych. Nasi członkowie wraz ze swoimi konstrukcjami biorą udział i zdobywają liczne nagrody w turniejach robotycznych w kraju i za granicą. Sami jesteśmy organizatorami jednego z największych w Polsce wydarzeń w postaci Międzynarodowych Zawodów Robotów Robotic Arena, których poprzednia XII edycja miała miejsce na płycie głównej Hali Stulecia.",
+    "department": "W12 - Wydział Elektroniki, Fotoniki i Mikrosystemów",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "spent@pwr.edu.pl",
+    "name": "Studenckie Stowarzyszenie Naukowe SPENT",
+    "description": "Stowarzyszenie Polskich Entuzjastów NanoTechnologii SPENT to grupa studentów i doktorantów zafascynowanych nanonauką. SPENT działa przy Katedrze Nanometrologii, której pracownicy stanowią wsparcie dla działań młodszych członków. Stowarzyszenie zrzesza przedstawicieli różnych dziedzin, przez co jest miejscem niezwykłej synergii nauki. Częstymi gośćmi są eksperci z różnych ośrodków badawczych, z którymi organizowane są również wymiany i warsztaty.",
+    "department": "W12 - Wydział Elektroniki, Fotoniki i Mikrosystemów",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "knm@pwr.edu.pl",
+    "name": "Koło Naukowe Matematyki",
+    "description": "Koło Naukowe Matematyki zajmuje się głównie popularyzacją matematyki w środowisku studentów Politechniki Wrocławskiej. Prowadzimy wykłady popularnonaukowe, organizujemy konkursy i pojawiamy się przy okazji wielu wydarzeń, które odbywają się na PWr, takich jak Dolnośląski Festiwal Nauki, Dni Matematyki, Gratislavia czy Dni Aktywności Studenckiej. Pracujemy również naukowo z zamiarem publikowania naszych odkryć.",
+    "department": "W13 - Wydział Matematyki",
+    "organisation": "Koło Naukowe"
+  },
+  {
+    "email": "best@pwr.edu.pl",
+    "name": "BEST Wrocław",
+    "description": "Board of European Students of Technology jest międzynarodową organizacją zrzeszającą studentów uczelni technicznych z całej Europy, mającą na celu jednoczenie kultur oraz umożliwienie rozwoju i edukacji przyszłych inżynierów. BEST ma charakter apolityczny oraz niedochodowy, a jego priorytetem jest dialog, współpraca oraz wymiany pomiędzy studentami z różnych krajów. Realizując projekty takie jak zagraniczne kursy naukowe, konferencje, szkolenia, hackathony czy konkursy inżynierskie, kreowanyjest wizerunek współczesnego inżyniera gotowego do podjęcia różnorodnych wyzwań. Ponadto poprzez współpracę z uczelniami technicznymi oraz czołowymi firmami organizacja BEST pozwala na dobry start na międzynarodowym rynku pracy.",
+    "organisation": "Organizacja Studencka"
+  },
+  {
+    "email": "kliwro@pwr.edu.pl",
+    "name": "KliWRO",
+    "description": "Celem KliWRO jest międzywydziałowa działalność, mająca na celu poszerzanie świadomości studentów na temat zrównoważonego rozwoju oraz ochrony klimatu. Skupiamy się na projektach edukacyjnych i staramy się promować odpowiedzialność klimatyczną wśród przyszłych inżynierów. Uważamy, że przyszłość jest w naszych rękach – chcielibyśmy inicjować działania proekologiczne wśród studentów oraz zachęcać ich do dyskusji na temat ich wpływu na przyszłość naszej planety. Dotychczasowe projekty, z którymi byliśmy związani to Dni Klimatu PWr (we współpracy z Centrum Zrównoważonego Rozwoju i Ochrony Klimatu) oraz Metropolitalny Climathon organizowany przez Climathon Poland.",
+    "organisation": "Organizacja Studencka"
+  },
+  {
+    "email": "nzs@pwr.edu.pl",
+    "name": "Niezależne Zrzeszenie Studentów Politechniki Wrocławskiej",
+    "description": "Niezależne Zrzeszenie Studentów, poprzez swoją aktywność na forum uczelni i kraju, broni praw studenckich, organizuje życie społeczne i kulturalne młodego pokolenia oraz kreuje rozwój organizacji i swoich członków. Na uczelni przeprowadzane są projekt takie jak Wampiriada, Konkurs Konstrukcji Studenckich „KOKOS”, Drogowskazy Kariery czy też Gra Nocna. Naszym hasłem przewodnim jest #NieZmarnujStudiów, bo wierzymy, że razem można zrobić znacznie więcej niż tylko zaliczyć semestr. Dołacz do nas i przekonaj się, że warto!",
+    "organisation": "Organizacja Studencka"
+  },
+  {
+    "email": "pwrams@pwr.edu.pl",
+    "name": "PWR Aircraft Maintenance",
+    "description": "Organizacja PWR Aircraft Maintenance zajmuje się remontem oraz bieżącym utrzymaniem statków powietrznych należących do Politechniki Wrocławskiej. Ściśle współpracuje z pracownikami Inżynierii Lotniczej nad wzbogaceniem dydaktyki kierunku Lotnictwo i Kosmonautyka oraz konserwacją silników i agregatów lotniczych.",
+    "organisation": "Organizacja Studencka"
+  },
+  {
+    "email": "radadoktorantow@pwr.edu.pl",
+    "name": "Rada Doktorantów Politechniki Wrocławskiej",
+    "description": "Rada Doktorantów Politechniki Wrocławskiej jest organem stanowiącym Samorząd wszystkich osób kształcących się w ramach zarówno Studiów doktoranckich, jak i Szkoły Doktorskiej na Politechnice Wrocławskiej. Działamy na rzecz środowiska doktoranckiego naszej Uczelni, prowadzimy rozmowy z osobami decyzyjnymi na Uczelni odnośnie wszelkich zmian w aktach prawnych i planach strategicznych, działając dla polepszenia funkcjonowania Politechniki Wrocławskiej. Współpracujemy ze środowiskami doktoranckimi w Polsce, komunikując się z Krajową Reprezentacją Doktorantów oraz porozumieniami: lokalnym Porozumieniem Doktorantów Uczelni Wrocławskich oraz z uczelniami o zbliżonym do nas profilu w Porozumieniu Doktorantów Uczelni Technicznych. Przejawiamy również chęć współpracy z innymi podmiotami w obrębie naszej Uczelni, w szczególności odnośnie organizacji wydarzeń mogących mieć znaczenie dla doktorantów naszej Uczelni.",
+    "organisation": "Organizacja Studencka"
+  },
+  {
+    "email": "tutech@pwr.edu.pl",
+    "name": "TuTech",
+    "description": "Organizacja zrzeszająca studentów biorących udział w projekcie tutoringu dla wybitnie uzdolnionych. Naszym głównym celem jest promocja tutoringu jako formy edukacji na Politechnice Wrocławskiej.",
+    "organisation": "Organizacja Studencka"
+  },
+  {
+    "email": "chor@pwr.edu.pl",
+    "name": "Akademicki Chór Politechniki Wrocławskiej",
+    "description": "Akademicki Chór Politechniki Wrocławskiej to zespół o długiej (niemalże 50-letniej) tradycji. W naszym repertuarze jest miejsce na utwory a capella, wielkie dzieła wokalno-instrumentalne, a ostatnimi czasy nawet opery! Regularnie współpracujemy z wieloma zespołami z Dolnego Śląska (m.in. NFM Filharmonia Wrocławska, Opera Wrocławska, Filharmonia Sudecka, Filharmonia Dolnośląska) i nie tylko!",
+    "organisation": "Agenda Kultury"
+  },
+  {
+    "email": "fosa@pwr.edu.pl",
+    "name": "Akademicki Klub Realizatorów Filmowych FOSA",
+    "description": "Akademicki Klub Realizatorów Filmowych FOSA (w skrócie AKRF FOSA) istnieje jako agenda kultury Politechniki Wrocławskiej od 1978 roku. Jego sztandarową działalnością jest umożliwienie wszystkim chętnym zrobienie własnego filmu oraz uzyskanie rzetelnych, profesjonalnych podstaw wiedzy i umiejętności realizatorskich. FOSA prowadzi szkolenie w zakresie reżyserii dokumentu i fabuły, techniki operatorskiej, scenopisarstwa, montażu, elementów gry aktorskiej. Oprócz kręcenia filmów członkowie Klubu uczą się pośrednio i często bezwiednie współpracy w grupie, zarządzania, szacunku do pracy i czasu innych ludzi, pracy pod presją, wyzbywają się kompleksów, nabierają pewności siebie, dowiadują się o mocnych i słabych cechach swojego charakteru.",
+    "organisation": "Agenda Kultury"
+  },
+  {
+    "email": "bigband@pwr.edu.pl",
+    "name": "Big Band Politechniki Wrocławskiej",
+    "description": "Ideą Big Bandu jest zrzeszanie studentów PWr oraz innych uczelni na wspólnych próbach, gdzie przygotowujemy program muzyczny, dając możliwość rozwoju uzdolnionym muzycznie studentom oraz umożliwiając wspólne wyjazdy na koncerty. Z wielką radością przyjmujemy każdy nowy instrument, bo otwiera to coraz szersze możliwości tego, co możemy razem stworzyć i jak możemy zabrzmieć.",
+    "organisation": "Agenda Kultury"
+  },
+  {
+    "email": "kameralny@pwr.edu.pl",
+    "name": "Kameralny Chór Politechniki Wrocławskiej",
+    "description": "Kameralny Chór Politechniki Wrocławskiej to studenci, absolwenci i pracownicy Politechniki, którzy kochają spędzać poniedziałkowe i środowe wieczory nad chóralną partyturą. Choć nie są nam obce wielkie, wokalno-instrumentalne dzieła Mozarta i Moniuszki, utwory renesansowych polifonistów i mistrzów baroku, to za nami także udział w teatralnej sekcji offowej Przeglądu Piosenki Aktorskiej, performance na zaproszenie polskich i zagranicznych artystów i wiele innych działań z pogranicza współczesnych sztuk audio-wizualnych. Jeśli masz zajawkę muzyczno-artystyczną, trochę wolnego czasu i potrzebę poznania zakręconych na punkcie śpiewu ludzi, to koniecznie dołącz do nas!Próby odbywają się w Studenckim Centrum Kultury Muzycznej ul. Powstańców Śląskich 137a w poniedziałki i środy 19.00-21.30.",
+    "organisation": "Agenda Kultury"
+  },
+  {
+    "email": "klubstudenckibajer@pwr.edu.pl",
+    "name": "Klub Studencki Bajer",
+    "description": "Klub Studencki Bajer zajmuje się organizacją imprez tanecznych, koncertów i innych inicjatyw kulturalno–rozrywkowych dla studentów. Ponadto wspiera pod względem technicznym i muzycznym realizację wielu wydarzeń tworzonych przez inne organizacje studenckie Politechniki Wrocławskiej. Misją klubu jest integracja środowiska studenckiego.",
+    "organisation": "Agenda Kultury"
+  },
+  {
+    "email": "terra.wroclaw@pwr.edu.pl",
+    "name": "Międzynarodowy Projekt Muzyczny TERRA",
+    "description": "Międzynarodowa Grupa Muzyczna TERRA (Ziemia) powstała 40 lat temu w środowisku studentów zagranicznych Politechniki Wrocławskiej i jest jedną z najdłużej działających studenckich grup muzycznych, będąca swoistym wrocławskim eksperymentem komunikacji międzykulturowej poprzez muzykę. W tym czasie TERRA dała ponad 2000 koncertów, a przez zespół przewinęło się ponad 500 wykonawców z 40 krajów świata, w większości studentów Uczelni Wrocławskich, ale także wielu znanych muzyków i tancerzy. Działając pod hasłem Piosenka zbliża narody – Piosenka nie zna granic, poprzez udział w koncertach, przeglądach i festiwalach, TERRA promuje od lat Politechnikę Wrocławską, aktywizując studentów obcokrajowców do działań twórczych i integracyjnych przybliżających różnorodność kultur. Założycielem i liderem zespołu od momentu powstania jest ówczesny bułgarski student ICT Wydziału Elektroniki Dimczo Angelow, wokalista, gitarzysta i promotor wielokulturowości.",
+    "organisation": "Agenda Kultury"
+  },
+  {
+    "email": "sktt@pwr.edu.pl",
+    "name": "Studencki Klub Tańca Towarzyskiego ISKRA",
+    "description": "Naszą życiową pasją jest Taniec Towarzyski. Rozwijamy nasze umiejętności poprzez treningi na 3 poziomach zaawansowania – podstawowym , średnim i zaawansowanym. Każdy znajdzie coś dla siebie, zarówno osoby które chcą zacząć tańczyć jak i osoby posiadające klasy sportowe. Na zajęciach uczymy się tańców towarzyskich zarówno standardowych – walc angielski, walc wiedeński, tango, quickstep, foxtrot, jak i latynoamerykańskich – samba, cha cha, rumba, jive, paso doble. Oprócz 10 tańców, tańczymy także popularne formy tańca taki jak salsa czy bachata.",
+    "organisation": "Agenda Kultury"
+  },
+  {
+    "email": "kontakt-skt@pwr.edu.pl",
+    "name": "Studencki Klub Turystyczny",
+    "description": "Od 15 lat organizujemy wyjazdy w góry, na żagle i kajaki. Mogą w nich brać udział studenci i absolwenci Politechniki Wrocławskiej, a także innych uczelni. Dwa razy w roku przygotowujemy największy rajd na PWr- Rajd Elektryka, a w wakacje dwutygodniową wyprawę w góry wysokie Ukrainy, Rumunii czy Bułgarii.",
+    "organisation": "Agenda Kultury"
+  },
+  {
+    "email": "zak_pwr@pwr.edu.pl",
+    "name": "Miesięcznik Studentów Politechniki Wrocławskiej \"Żak\"",
+    "description": "„Żak” ukazuje się nieprzerwanie od 1999 roku. Co miesiąc, w nakładzie 4000 darmowych egzemplarzy, docieramy do studentów Politechniki Wrocławskiej, opisując sprawy dla nich ważne, opowiadając o działalności aktywnych kolegów lub po prostu dzieląc się naszymi pasjami. Jesteśmy pismem niezależnym, którego działalność jest finansowana przez Politechnikę Wrocławską.",
+    "organisation": "Media Studenckie"
+  }
+]

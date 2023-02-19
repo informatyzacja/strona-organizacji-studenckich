@@ -6,14 +6,12 @@ import {
   Text,
   Wrap,
   WrapItem,
-  UnorderedList,
   ListItem,
   List,
   HStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import React from "react";
-import { OrganisationStats } from "./OrganisationStats";
 import { Tag } from "./Tag";
 
 export const OrganisationFull = ({
@@ -45,42 +43,33 @@ export const OrganisationFull = ({
         ))}
       </Wrap>
       <Text mt={8}>{data.description}</Text>
-      <OrganisationStats
-        members={data.numberOfUsers}
-        createdAt={data.createdAt}
-        numberOfProjects={data.Projects.length}
-      />
       <br />
       <Text>{data.longDescription}</Text>
-      <Heading as="h2" size="md" mt={4} mb={2}>
-        Zarząd
-      </Heading>
-      <UnorderedList>
-        {data.Managers.map((member) => (
-          <ListItem key={member.id}>{member.name}</ListItem>
-        ))}
-      </UnorderedList>
-      <Heading as="h2" size="md" mt={4} mb={2}>
-        Kontakt
-      </Heading>
-      <List>
-        {data.ContactMethods.map((contactMethod) => (
-          <ListItem key={contactMethod.id}>
-            <HStack>
-              <Text textTransform="capitalize">
-                {contactMethod.contactType}:
-              </Text>
-              <Link
-                href={contactMethod.contactLink}
-                target="_blank"
-                color="gray"
-              >
-                {contactMethod.contactLink}
-              </Link>
-            </HStack>
-          </ListItem>
-        ))}
-      </List>
+      {data.ContactMethods.length > 0 ? (
+        <>
+          <Heading as="h2" size="md" mt={4} mb={2}>
+            Kontakt
+          </Heading>
+          <List>
+            {data.ContactMethods.map((contactMethod) => (
+              <ListItem key={contactMethod.id}>
+                <HStack>
+                  <Text textTransform="capitalize">
+                    {contactMethod.contactType}:
+                  </Text>
+                  <Link
+                    href={contactMethod.contactLink}
+                    target="_blank"
+                    color="gray"
+                  >
+                    {contactMethod.contactLink}
+                  </Link>
+                </HStack>
+              </ListItem>
+            ))}
+          </List>
+        </>
+      ) : null}
     </Container>
   );
 };
