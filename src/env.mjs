@@ -14,6 +14,7 @@ const server = z.object({
   SMTP_HOST: z.string().min(1),
   SMTP_USERNAME: z.string().min(1),
   SMTP_PASSWORD: z.string().min(1),
+  EMAIL_FROM: z.string().min(1),
 });
 
 const client = z.object({
@@ -36,6 +37,7 @@ const processEnv = {
   SMTP_HOST: process.env.SMTP_HOST,
   SMTP_USERNAME: process.env.SMTP_USERNAME,
   SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+  EMAIL_FROM: process.env.EMAIL_FROM,
 };
 
 // Don't touch the part below
