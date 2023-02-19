@@ -11,6 +11,7 @@ export const organizations = createTRPCRouter({
         slug: true,
         description: true,
         residence: true,
+        logoUrl: true,
       },
     });
 

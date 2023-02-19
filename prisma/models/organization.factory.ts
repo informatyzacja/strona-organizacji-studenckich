@@ -36,6 +36,7 @@ export const organizationFactory = (
     description: faker.commerce.productDescription(),
     longDescription: faker.lorem.paragraphs(9),
     createdAt: faker.date.past(),
+    logoUrl: "/test_logo.png",
     slug: slugify(name) + faker.random.numeric(4),
     numberOfUsers: faker.datatype.number(100),
     foundationDate: faker.date.past(),

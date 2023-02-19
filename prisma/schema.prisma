@@ -66,6 +66,7 @@ model Organization {
     updatedAt       DateTime         @updatedAt
     residence       String
     description     String
+    logoUrl         String?
     slug            String           @unique
     longDescription String           @db.Text
     numberOfUsers   Int
