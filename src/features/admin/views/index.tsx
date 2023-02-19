@@ -37,9 +37,6 @@ const columns = [
     cell: (info) => info.getValue().slice(0, 40) + "...",
     header: () => "Krótki opis",
   }),
-  columnHelper.accessor("residence", {
-    header: () => "Wydział",
-  }),
   columnHelper.accessor("Tags", {
     header: () => "Tagi",
     cell: (info) => info.getValue().join(", "),
