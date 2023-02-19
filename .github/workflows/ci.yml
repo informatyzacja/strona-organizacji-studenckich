@@ -1,5 +1,16 @@
 name: CI
 
+variables:
+  ENV_VARIABLES: echo NEXTAUTH_URL=http://localhost:3000 >> .env
+    echo NEXTAUTH_SECRET=secret >> .env
+    echo GOOGLE_CLIENT_ID=123 >> .env
+    echo GOOGLE_CLIENT_SECRET=123 >> .env
+    echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
+    echo SMTP_HOST="smtp.gmail.com" >> .env
+    echo SMTP_USERNAME="example@gmail.com" >> .env
+    echo SMTP_PASSWORD="example_password" >> .env
+    echo EMAIL_FROM="example name" >> .env
+
 on:
   push:
     branches: ["main"]
@@ -20,15 +31,7 @@ jobs:
       - name: Setup env
         run: |
           touch .env
-          echo NEXTAUTH_URL=http://localhost:3000 >> .env
-          echo NEXTAUTH_SECRET=secret >> .env
-          echo GOOGLE_CLIENT_ID=123 >> .env
-          echo GOOGLE_CLIENT_SECRET=123 >> .env
-          echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
-          echo SMTP_HOST="smtp.gmail.com" >> .env
-          echo SMTP_USERNAME="example@gmail.com" >> .env
-          echo SMTP_PASSWORD="example_password" >> .env
-          echo EMAIL_FROM="example name" >> .env
+          $ENV_VARIABLES
       - name: format
         run: npm run format:check
       - name: lint
@@ -44,11 +47,7 @@ jobs:
       - name: Setup env
         run: |
           touch .env
-          echo NEXTAUTH_URL=http://localhost:3000 >> .env
-          echo NEXTAUTH_SECRET=secret >> .env
-          echo GOOGLE_CLIENT_ID=123 >> .env
-          echo GOOGLE_CLIENT_SECRET=123 >> .env
-          echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
+          $ENV_VARIABLES
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
         with:
