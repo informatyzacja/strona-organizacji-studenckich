@@ -26,7 +26,7 @@ jobs:
           echo GOOGLE_CLIENT_SECRET=123 >> .env
           echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
           echo SMTP_HOST="smtp.gmail.com" >> .env
-          echo SMTP_LOGIN="example@gmail.com" >> .env
+          echo SMTP_USERNAME="example@gmail.com" >> .env
           echo SMTP_PASSWORD="example_password" >> .env
           echo EMAIL_FROM="example name" >> .env
       - name: format
