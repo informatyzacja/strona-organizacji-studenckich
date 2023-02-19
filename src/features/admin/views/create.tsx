@@ -89,11 +89,13 @@ export const CreatePage = () => {
               toast({
                 title: "Organizacja została dodana",
               });
-            } catch {
+            } catch (e) {
+              console.error(e);
+
               toast({
                 status: "error",
                 title: "Błąd podczas dodawania organizacji",
-                description: `Nie udało się dodać organizacji`,
+                description: `Nie udało się dodać organizacji (więcej informacji w konsoli)`,
               });
             }
           }
