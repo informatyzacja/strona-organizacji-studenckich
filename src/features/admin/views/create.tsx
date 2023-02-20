@@ -6,7 +6,6 @@ import { api, standaloneApiClient } from "@/utils/api";
 import {
   Button,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -20,6 +19,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import slugify from "slugify";
 import { z } from "zod";
+import { FormField } from "../components/FormField";
 import { Layout } from "../components/Layout";
 
 const departments = [
@@ -199,17 +199,18 @@ export const CreatePage = () => {
         })}
       >
         <VStack spacing={0} maxW={{ base: "100%", md: "600px" }} align="start">
-          <FormControl isRequired isInvalid={errors.email !== undefined} mb={4}>
-            <FormLabel>Email organizacji</FormLabel>
+          <FormField
+            label="Email organizacji"
+            isRequired
+            error={errors.email?.message}
+            mb={4}
+          >
             <Input
-              {...register("email", {
-                validate: {},
-              })}
+              {...register("email")}
               variant=""
               placeholder="Email organizacji"
             />
-            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-          </FormControl>
+          </FormField>
           <FormControl display="flex" alignItems="center" pb={4}>
             <FormLabel htmlFor="additional-info" mb="0">
               Czy chcesz sam(a) uzupełniać dane?
@@ -231,24 +232,21 @@ export const CreatePage = () => {
                 }}
               >
                 <VStack align="start" mt={2} mb={6} w="100%">
-                  <FormControl
+                  <FormField
                     isRequired
-                    isInvalid={"name" in errors && errors.name !== undefined}
+                    label="Nazwa organizacji"
+                    error={"name" in errors && errors.name?.message}
                   >
-                    <FormLabel>Nazwa organizacji</FormLabel>
                     <Input
                       {...register("name")}
                       variant=""
                       placeholder="Nazwa organizacji"
                     />
-                    <FormErrorMessage>
-                      {"name" in errors && errors.name?.message}
-                    </FormErrorMessage>
-                  </FormControl>
-                  <FormControl
-                    isInvalid={"logo" in errors && errors.logo !== undefined}
+                  </FormField>
+                  <FormField
+                    label="Logo"
+                    error={"logo" in errors && errors.logo?.message}
                   >
-                    <FormLabel>Logo</FormLabel>
                     <Input
                       {...register("logo")}
                       type="file"
@@ -265,15 +263,12 @@ export const CreatePage = () => {
                         },
                       }}
                     />
-                    <FormErrorMessage>
-                      {"logo" in errors && errors.logo?.message}
-                    </FormErrorMessage>
-                  </FormControl>
-                  <FormControl
+                  </FormField>
+                  <FormField
                     isRequired
-                    isInvalid={"type" in errors && errors.type !== undefined}
+                    label="Typ"
+                    error={"type" in errors && errors.type?.message}
                   >
-                    <FormLabel>Typ</FormLabel>
                     <Select {...register("type")} variant="">
                       {organisationTypes.map((type) => (
                         <option key={type} value={type}>
@@ -281,10 +276,7 @@ export const CreatePage = () => {
                         </option>
                       ))}
                     </Select>
-                    <FormErrorMessage>
-                      {"type" in errors && errors.type?.message}
-                    </FormErrorMessage>
-                  </FormControl>
+                  </FormField>
                   <AnimatePresenceSSR mode="wait">
                     {watch("type") === "Koło Naukowe" ? (
                       <motion.div
@@ -299,14 +291,7 @@ export const CreatePage = () => {
                           width: "100%",
                         }}
                       >
-                        <FormControl
-                          isRequired
-                          isInvalid={
-                            "department" in errors &&
-                            errors.department !== undefined
-                          }
-                        >
-                          <FormLabel>Wydział/Filia</FormLabel>
+                        <FormField label="Wydział/Filia">
                           <Select {...register("department")} variant="">
                             {departments.map((department) => (
                               <option key={department} value={department}>
@@ -314,40 +299,30 @@ export const CreatePage = () => {
                               </option>
                             ))}
                           </Select>
-                          <FormErrorMessage>
-                            {"department" in errors &&
-                              errors.department?.message &&
-                              "Nieprawidłowy wydział/filia"}
-                          </FormErrorMessage>
-                        </FormControl>
+                        </FormField>
                       </motion.div>
                     ) : null}
                   </AnimatePresenceSSR>
-                  <FormControl
+                  <FormField
                     isRequired
-                    isInvalid={
-                      "description" in errors &&
-                      errors.description !== undefined
+                    label="Krótki opis (do 200 znaków)"
+                    error={
+                      "description" in errors && errors.description?.message
                     }
                   >
-                    <FormLabel>Krótki opis (maksymalnie 200 znaków)</FormLabel>
                     <Textarea
                       {...register("description")}
                       variant=""
                       placeholder="Opis"
                     />
-                    <FormErrorMessage>
-                      {"description" in errors && errors.description?.message}
-                    </FormErrorMessage>
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Długi opis</FormLabel>
+                  </FormField>
+                  <FormField label="Długi opis">
                     <Textarea
                       {...register("longDescription")}
                       variant=""
                       placeholder="Opis"
                     />
-                  </FormControl>
+                  </FormField>
                 </VStack>
               </motion.div>
             ) : null}
