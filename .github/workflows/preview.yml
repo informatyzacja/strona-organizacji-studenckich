@@ -85,10 +85,10 @@ jobs:
           echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} >> .env
           echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
           echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
-          echo SMTP_HOST=${{ secrets.SMTP_HOST}} >> .env
-          echo SMTP_USERNAME=${{ secrets.SMTP_USERNAME}} >> .env
-          echo SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD}} >> .env
-          echo EMAIL_FROM=${{ secrets.EMAIL_FROM}} >> .env
+          echo SMTP_HOST="${{ secrets.SMTP_HOST}}" >> .env
+          echo SMTP_USERNAME="${{ secrets.SMTP_USERNAME }}" >> .env
+          echo SMTP_PASSWORD="${{ secrets.SMTP_PASSWORD}}" >> .env
+          echo EMAIL_FROM="${{ secrets.EMAIL_FROM}}" >> .env
           npm run build
           npm run db:seed
           npx prisma migrate deploy
