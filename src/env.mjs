@@ -11,6 +11,10 @@ const server = z.object({
   NEXTAUTH_URL: z.string().min(1),
   GOOGLE_CLIENT_ID: z.string().min(1),
   GOOGLE_CLIENT_SECRET: z.string().min(1),
+  SMTP_HOST: z.string().min(1),
+  SMTP_USERNAME: z.string().min(1),
+  SMTP_PASSWORD: z.string().min(1),
+  EMAIL_FROM: z.string().min(1),
 });
 
 const client = z.object({
@@ -30,6 +34,10 @@ const processEnv = {
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_USERNAME: process.env.SMTP_USERNAME,
+  SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+  EMAIL_FROM: process.env.EMAIL_FROM,
 };
 
 // Don't touch the part below

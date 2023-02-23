@@ -25,6 +25,10 @@ jobs:
           echo GOOGLE_CLIENT_ID=123 >> .env
           echo GOOGLE_CLIENT_SECRET=123 >> .env
           echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
+          echo SMTP_HOST="smtp.gmail.com" >> .env
+          echo SMTP_USERNAME="example@gmail.com" >> .env
+          echo SMTP_PASSWORD="example_password" >> .env
+          echo EMAIL_FROM="example name" >> .env
       - name: format
         run: npm run format:check
       - name: lint
@@ -45,6 +49,10 @@ jobs:
           echo GOOGLE_CLIENT_ID=123 >> .env
           echo GOOGLE_CLIENT_SECRET=123 >> .env
           echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
+          echo SMTP_HOST="smtp.gmail.com" >> .env
+          echo SMTP_USERNAME="example@gmail.com" >> .env
+          echo SMTP_PASSWORD="example_password" >> .env
+          echo EMAIL_FROM="example name" >> .env
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
         with:
