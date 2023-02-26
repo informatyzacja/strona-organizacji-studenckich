@@ -90,8 +90,8 @@ jobs:
           echo SMTP_PASSWORD="password" >> .env
           echo EMAIL_FROM="emailfrom" >> .env
           npm run build
-          npm run db:seed
           npx prisma migrate deploy
+          npm run db:seed
 
       - name: Starting app
         if: steps.check.outputs.triggered == 'true'
