@@ -8,9 +8,9 @@ declare module "nextjs-routes" {
   export type Route =
     | StaticRoute<"/404">
     | StaticRoute<"/admin">
-    | DynamicRoute<"/admin/organizacje/[slug]", { "slug": string }>
     | StaticRoute<"/admin/organizacje">
     | StaticRoute<"/admin/organizacje/stworz">
+    | DynamicRoute<"/admin/organizacje/[slug]", { "slug": string }>
     | DynamicRoute<"/api/auth/[...nextauth]", { "nextauth": string[] }>
     | DynamicRoute<"/api/file/[name]", { "name": string }>
     | DynamicRoute<"/api/trpc/[trpc]", { "trpc": string }>
