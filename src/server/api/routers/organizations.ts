@@ -47,10 +47,7 @@ export const organizations = createTRPCRouter({
         });
       }
 
-      return {
-        ...organization,
-        Tags: organization.Tags.map((tag) => tag.text),
-      };
+      return organization;
     }),
 
   createByEmail: adminProcedure
@@ -82,7 +79,7 @@ export const organizations = createTRPCRouter({
       })
     )
     .mutation(async ({ input, ctx }) => {
-      const organization = await ctx.prisma.organization.create({
+      return ctx.prisma.organization.create({
         data: {
           name: input.name,
           slug: input.slug,
@@ -115,7 +112,5 @@ export const organizations = createTRPCRouter({
           },
         },
       });
-
-      return organization;
     }),
 });

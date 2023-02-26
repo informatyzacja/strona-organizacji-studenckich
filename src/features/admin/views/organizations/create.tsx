@@ -19,8 +19,8 @@ import { motion } from "framer-motion";
 import React from "react";
 import slugify from "slugify";
 import { z } from "zod";
-import { FormField } from "../components/FormField";
-import { Layout } from "../components/Layout";
+import { FormField } from "../../components/FormField";
+import { Layout } from "../../components/Layout";
 
 const departments = [
   "W1 - Wydział Architektury",
@@ -97,7 +97,7 @@ const schema = z.discriminatedUnion("addManually", [
   addManuallySchema,
 ]);
 
-export const CreatePage = () => {
+export const CreateOrganizationPage = () => {
   const {
     register,
     handleSubmit,
