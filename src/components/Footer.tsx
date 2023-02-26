@@ -7,7 +7,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
-import { FaGlobeEurope, FaFacebook } from "react-icons/fa";
+import { FaGlobeEurope, FaFacebook, FaGithub } from "react-icons/fa";
 import type { ReactNode } from "react";
 import NextImage from "next/image";
 import logoPwr from "../../public/logo-pwr.svg";
@@ -78,6 +78,15 @@ export const Footer = () => {
             href={"https://www.facebook.com/DzialStudenckiPWr/"}
           >
             <FaFacebook />
+          </SocialButton>
+
+          <SocialButton
+            label={"Github"}
+            href={
+              "https://github.com/informatyzacja/strona-organizacji-studenckich"
+            }
+          >
+            <FaGithub />
           </SocialButton>
         </Stack>
       </Container>

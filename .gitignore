@@ -43,3 +43,5 @@ yarn-error.log*
 
 # uploaded files
 upload
+
+/postgres-data/
