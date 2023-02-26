@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { FaHeart } from "react-icons/fa";
 import { Tag } from "./Tag";
+import { useSession } from "next-auth/react";
 
 export const OrganisationCard = ({
   name,
@@ -28,7 +29,7 @@ export const OrganisationCard = ({
   Tags: string[];
 }) => {
   const router = useRouter();
-
+  const { status } = useSession();
   return (
     <VStack
       p={6}
@@ -84,7 +85,9 @@ export const OrganisationCard = ({
         >
           Zobacz
         </Button>
-        <IconButton icon={<FaHeart />} aria-label="Dodaj do ulubionych" />
+        {status === "authenticated" ? (
+          <IconButton icon={<FaHeart />} aria-label="Dodaj do ulubionych" />
+        ) : null}
       </HStack>
     </VStack>
   );
