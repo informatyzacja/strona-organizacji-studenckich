@@ -93,7 +93,7 @@ const columns = [
   }),
   columnHelper.accessor("_count.organizations", {
     id: "organizationsCount",
-    header: () => "Ilość organizacji",
+    header: () => "Liczba organizacji",
   }),
   columnHelper.display({
     id: "actions",
