@@ -1,4 +1,5 @@
 import { Loading } from "@/components/Loading";
+import { Tag } from "@/features/search";
 import NotFound from "@/pages/404";
 import { api } from "@/utils/api";
 import { Heading } from "@chakra-ui/react";
@@ -26,7 +27,8 @@ export const GetTagPage = () => {
   return (
     <Layout>
       <Heading size="lg" mb={4}>
-        Organizacje z tagiem {data.text}
+        Organizacje z tagiem
+        <Tag size="lg" ml={3} px={3} mt={1} tag={data.text} />
       </Heading>
       <OrganizationsTable
         data={data.organizations.map((organization) => ({
