@@ -32,16 +32,11 @@ export const DeleteModal = ({
         <ModalCloseButton />
         <ModalBody>{children}</ModalBody>
         <ModalFooter>
-          <Button
-            isLoading={isLoading}
-            colorScheme="red"
-            mr={3}
-            onClick={onDelete}
-          >
-            Usuń
+          <Button mr={3} onClick={onClose}>
+            Anuluj
           </Button>
-          <Button variant="ghost" onClick={onClose}>
-            Zamknij
+          <Button isLoading={isLoading} colorScheme="red" onClick={onDelete}>
+            Usuń
           </Button>
         </ModalFooter>
       </ModalContent>

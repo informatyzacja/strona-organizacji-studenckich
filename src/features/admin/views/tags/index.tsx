@@ -82,7 +82,7 @@ const RowActions = ({ id, text }: { id: string; text: string }) => {
           });
         }}
       >
-        Czy na pewno chcesz usunąć tag <Tag ml={2} tag={text} />?
+        Czy na pewno chcesz usunąć tag <Tag ml={1} tag={text} />?
       </DeleteModal>
     </>
   );
