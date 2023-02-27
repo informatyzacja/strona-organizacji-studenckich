@@ -1,10 +1,19 @@
 import { useForm } from "@/hooks/useForm";
 import { api } from "@/utils/api";
-import { Button, Heading, Input, useToast, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Heading,
+  Input,
+  Link,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
 import React from "react";
 import { z } from "zod";
 import { FormField } from "../../components/FormField";
 import { Layout } from "../../components/Layout";
+import NextLink from "next/link";
+import { route } from "nextjs-routes";
 
 const schema = z.object({
   text: z
@@ -31,7 +40,18 @@ export const CreateTagPage = () => {
 
   return (
     <Layout>
-      <Heading mb={4}>Stwórz tag</Heading>
+      <Link
+        href={route({
+          pathname: "/admin/tagi",
+        })}
+        color="gray"
+        as={NextLink}
+      >
+        Wróć
+      </Link>
+      <Heading mt={2} mb={4}>
+        Stwórz tag
+      </Heading>
       <form
         onSubmit={handleSubmit(async (data) => {
           try {
