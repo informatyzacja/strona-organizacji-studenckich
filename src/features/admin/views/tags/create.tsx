@@ -19,7 +19,7 @@ const schema = z.object({
   text: z
     .string()
     .min(1, "Tag nie może być pusty")
-    .max(100, "Tag może mieć maksymalnie 100 znaków"),
+    .max(30, "Tag może mieć maksymalnie 30 znaków"),
 });
 
 export const CreateTagPage = () => {

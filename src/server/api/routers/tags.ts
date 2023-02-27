@@ -49,7 +49,7 @@ export const tags = createTRPCRouter({
     .input(
       z.object({
         id: z.string(),
-        text: z.string(),
+        text: z.string().min(1).max(30),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -58,7 +58,7 @@ export const tags = createTRPCRouter({
   create: protectedProcedure
     .input(
       z.object({
-        text: z.string(),
+        text: z.string().min(1).max(30),
       })
     )
     .mutation(async ({ ctx, input }) => {
