@@ -34,9 +34,7 @@ type Tag = RouterOutputs["tags"]["listAdmin"][number];
 const columnHelper = createColumnHelper<Tag>();
 
 const RowActions = ({ id, text }: { id: string; text: string }) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { onOpen, onClose, isOpen } = useDisclosure();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const toast = useToast();
   const utils = api.useContext();
   const { mutate, isLoading } = api.tags.delete.useMutation({
