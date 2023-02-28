@@ -4,11 +4,34 @@
 <svg
    version="1.1"
    id="svg10862"
-   width="372.66931"
-   height="79.293335"
-   viewBox="0 0 372.66931 79.293335"
+   width="372.672"
+   height="79.292"
+   viewBox="0 0 372.672 79.292"
+   sodipodi:docname="logo-pwr.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview5137"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="3.6412979"
+     inkscape:cx="155.43908"
+     inkscape:cy="39.683652"
+     inkscape:window-width="956"
+     inkscape:window-height="1036"
+     inkscape:window-x="960"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10862" />
   <defs
      id="defs10866">
     <clipPath
@@ -42,7 +65,7 @@
   </defs>
   <g
      id="g10870"
-     transform="matrix(1.3333333,0,0,1.3333333,0,2.3156667e-6)">
+     transform="scale(1.3333333)">
     <g
        id="g10872">
       <g

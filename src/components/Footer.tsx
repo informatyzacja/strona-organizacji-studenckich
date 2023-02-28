@@ -12,6 +12,7 @@ import type { ReactNode } from "react";
 import NextImage from "next/image";
 import logoPwr from "../../public/logo-pwr.svg";
 import logoSSPwr from "../../public/logo-sspwr.svg";
+import logoDS from "../../public/logo-dzial-studencki.svg";
 
 const SocialButton = ({
   children,
@@ -63,9 +64,8 @@ export const Footer = () => {
       >
         <NextImage src={logoPwr as string} alt="logo Pwr" />
         <NextImage src={logoSSPwr as string} alt="logo SSPwr" />
-        <Text>
-          Komisja ds. Informatyzacji <br /> Dział Studencki
-        </Text>
+        <NextImage src={logoDS as string} alt="logo SSPwr" />
+
         <Stack direction={"row"} spacing={6}>
           <SocialButton
             label={"WebsiteDS"}
