@@ -1,5 +1,17 @@
-import { HomePage } from "./views";
-import { EditPage } from "./views/edit";
-import { CreatePage } from "./views/create";
+import { OrganizationsPage } from "./views/organizations";
+import { EditOrganizationPage } from "./views/organizations/edit";
+import { CreateOrganizationPage } from "./views/organizations/create";
+import { TagsPage } from "./views/tags";
+import { CreateTagPage } from "./views/tags/create";
+import { GetTagPage } from "./views/tags/get";
+import { HomePage } from "./views/Home";
 
-export { HomePage, EditPage, CreatePage };
+export {
+  OrganizationsPage,
+  EditOrganizationPage,
+  CreateOrganizationPage,
+  TagsPage,
+  CreateTagPage,
+  GetTagPage,
+  HomePage,
+};

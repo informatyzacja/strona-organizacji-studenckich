@@ -9,6 +9,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  Link,
   Select,
   Switch,
   Textarea,
@@ -16,11 +17,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { route } from "nextjs-routes";
 import React from "react";
 import slugify from "slugify";
 import { z } from "zod";
-import { FormField } from "../components/FormField";
-import { Layout } from "../components/Layout";
+import { FormField } from "../../components/FormField";
+import { Layout } from "../../components/Layout";
+import NextLink from "next/link";
 
 const departments = [
   "W1 - Wydział Architektury",
@@ -97,7 +100,7 @@ const schema = z.discriminatedUnion("addManually", [
   addManuallySchema,
 ]);
 
-export const CreatePage = () => {
+export const CreateOrganizationPage = () => {
   const {
     register,
     handleSubmit,
@@ -119,7 +122,18 @@ export const CreatePage = () => {
 
   return (
     <Layout>
-      <Heading mb={4}>Stwórz organizacje</Heading>
+      <Link
+        href={route({
+          pathname: "/admin/organizacje",
+        })}
+        color="gray"
+        as={NextLink}
+      >
+        Wróć
+      </Link>
+      <Heading mt={2} mb={4}>
+        Stwórz organizacje
+      </Heading>
       <form
         onSubmit={handleSubmit(async (data) => {
           if (!data.addManually) {

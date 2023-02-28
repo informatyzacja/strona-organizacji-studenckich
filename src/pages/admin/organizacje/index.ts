@@ -1,3 +1,3 @@
-import { HomePage } from "@/features/admin";
+import { OrganizationsPage } from "@/features/admin";
 
-export default HomePage;
+export default OrganizationsPage;

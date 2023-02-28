@@ -1,3 +1,3 @@
-import { EditPage } from "@/features/admin";
+import { EditOrganizationPage } from "@/features/admin";
 
-export default EditPage;
+export default EditOrganizationPage;

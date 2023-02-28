@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import React from "react";
 import { Box, useDisclosure } from "@chakra-ui/react";
-import { FiHome, FiTrendingUp, FiCompass, FiSettings } from "react-icons/fi";
+import { FiHome, FiTrendingUp } from "react-icons/fi";
+import { HiTag } from "react-icons/hi";
 import { Navbar } from "./Navbar";
 import type { LinkItem } from "./Sidebar";
 import { Sidebar } from "./Sidebar";
@@ -9,10 +10,13 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const LinkItems: Array<LinkItem> = [
-  { name: "Panel", icon: FiHome },
-  { name: "Organizacje", icon: FiTrendingUp },
-  { name: "Użytkownicy", icon: FiCompass },
-  { name: "Ustawienia", icon: FiSettings },
+  { name: "Panel", icon: FiHome, route: { pathname: "/admin" } },
+  {
+    name: "Organizacje",
+    icon: FiTrendingUp,
+    route: { pathname: "/admin/organizacje" },
+  },
+  { name: "Tagi", icon: HiTag, route: { pathname: "/admin/tagi" } },
 ];
 
 export const Layout = ({ children }: { children: ReactNode }) => {

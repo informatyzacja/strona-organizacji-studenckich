@@ -8,6 +8,8 @@ import {
   Drawer,
   DrawerContent,
 } from "@chakra-ui/react";
+import type { Route } from "nextjs-routes";
+import { route } from "nextjs-routes";
 import React from "react";
 import type { IconType } from "react-icons";
 import { NavItem } from "./NavItem";
@@ -15,6 +17,7 @@ import { NavItem } from "./NavItem";
 export interface LinkItem {
   name: string;
   icon: IconType;
+  route: Route;
 }
 
 export const Sidebar = ({
@@ -73,7 +76,7 @@ export const SidebarContent = ({
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {links.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} href={route(link.route)}>
           {link.name}
         </NavItem>
       ))}

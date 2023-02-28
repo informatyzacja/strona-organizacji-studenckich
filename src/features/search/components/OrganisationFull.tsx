@@ -37,8 +37,8 @@ export const OrganisationFull = ({
       </Heading>
       <Wrap mt={2}>
         {data.Tags.map((tag) => (
-          <WrapItem key={tag}>
-            <Tag tag={tag} />
+          <WrapItem key={tag.text}>
+            <Tag tag={tag.text} />
           </WrapItem>
         ))}
       </Wrap>

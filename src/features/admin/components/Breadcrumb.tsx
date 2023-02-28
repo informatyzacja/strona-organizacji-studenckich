@@ -40,7 +40,7 @@ export const Breadcrumb = (props: BreadcrumbProps) => {
           key={index}
           isCurrentPage={index === breadCrumbItems.length - 1}
         >
-          <NextLink href={href as "/"}>
+          <NextLink href={href as "/"} legacyBehavior>
             <BreadcrumbLink textTransform="capitalize">{title}</BreadcrumbLink>
           </NextLink>
         </BreadcrumbItem>

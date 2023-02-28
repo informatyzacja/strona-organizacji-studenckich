@@ -4,9 +4,9 @@ import NotFound from "@/pages/404";
 import { api } from "@/utils/api";
 import { useRouter } from "next/router";
 import React from "react";
-import { Layout } from "../components/Layout";
+import { Layout } from "../../components/Layout";
 
-export const EditPage = () => {
+export const EditOrganizationPage = () => {
   const router = useRouter<"/admin/organizacje/[slug]">();
   const { slug } = router.query;
 

@@ -1,3 +1,3 @@
-import { CreatePage } from "@/features/admin";
+import { CreateOrganizationPage } from "@/features/admin";
 
-export default CreatePage;
+export default CreateOrganizationPage;
