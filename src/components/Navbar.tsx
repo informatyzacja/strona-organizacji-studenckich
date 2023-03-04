@@ -96,6 +96,29 @@ export const Navbar = () => {
         {status === "authenticated" ? (
           <ScaleFade in={true}>
             <Box ml={4} display={{ base: "none", md: "flex" }}>
+              {data.user.role === "ADMIN" ? (
+                <Button
+                  colorScheme="blue"
+                  variant="outline"
+                  onClick={() => {
+                    void router.push("/admin");
+                  }}
+                >
+                  Panel Administratora
+                </Button>
+              ) : null}
+              {data.user.role === "OWNER" ? (
+                <Button
+                  colorScheme="blue"
+                  variant="outline"
+                  onClick={() => {
+                    void router.push("/manager");
+                  }}
+                >
+                  Zarządzanie organizacją
+                </Button>
+              ) : null}
+              <Box w={4} />
               <Menu direction="rtl" placement="bottom" autoSelect={false}>
                 <MenuButton
                   as={Button}
