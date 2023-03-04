@@ -33,7 +33,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
     return null;
   }
 
-  if (data.user.role !== "ADMIN" && data.user.role !== "OWNER") {
+  if (data.user.role !== "ADMIN") {
     void router.push("/");
     return null;
   }
