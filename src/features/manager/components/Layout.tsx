@@ -14,12 +14,12 @@ const LinkItems: Array<LinkItem> = [
   {
     name: "Moja organizacja",
     icon: FiTrendingUp,
-    route: { pathname: "/manager/" },
+    route: { pathname: "/manager" },
   },
   {
     name: "Zgłoszone zmiany",
     icon: HiTag,
-    route: { pathname: "/manager/" },
+    route: { pathname: "/manager" },
   },
 ];
 
