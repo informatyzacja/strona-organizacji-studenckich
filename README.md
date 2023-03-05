@@ -28,3 +28,11 @@ Pozwoli na wyszukiwanie organizacji studenckich i koł naukowych po słowach klu
 
 1. `npm install`
 2. `npm run dev`
+
+Jeżeli chcemy wczytać przykładowe dane:
+
+3. `npm run db:seed`
+
+Aby zmieniać dane w bazie danych, należy użyć Prisma studio:
+
+- `npm run db:studio`

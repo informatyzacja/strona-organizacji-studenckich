@@ -8,6 +8,7 @@
     "dev:app": "wait-on tcp:5432 && next dev",
     "dev:db": "docker compose -f docker-compose.dev.yml up --force-recreate -V ",
     "db:seed": "prisma db seed",
+    "db:studio": "prisma studio",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "format:check": "prettier --check src",
