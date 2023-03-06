@@ -31,7 +31,7 @@ Pozwoli na wyszukiwanie organizacji studenckich i koł naukowych po słowach klu
 
 Jeżeli chcemy wczytać przykładowe dane:
 
-3. `npm run db:seed`
+- `npm run db:seed`
 
 Aby zmieniać dane w bazie danych, należy użyć Prisma studio:
 
