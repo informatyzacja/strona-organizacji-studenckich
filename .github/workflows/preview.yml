@@ -84,7 +84,7 @@ jobs:
           result-encoding: string
           github-token: ${{ secrets.CI_GITHUB_TOKEN }}
           script: |
-            const { id } = context.payload.comment; 
+            const { node_id } = context.payload.comment; 
 
             const query = `
               mutation minimizeComment($id: ID!) {
@@ -94,7 +94,7 @@ jobs:
               }
             `;
 
-            await github.graphql(query, { id });
+            await github.graphql(query, { id: node_id });
 
       - name: Add info about dependency install
         uses: marocchino/sticky-pull-request-comment@v2
