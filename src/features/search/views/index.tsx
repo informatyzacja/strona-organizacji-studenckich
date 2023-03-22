@@ -19,7 +19,7 @@ const SearchPage: NextPage = () => {
             znajdź organizacje dla siebie!
           </Tag>
           <Heading size="lg" fontWeight="semibold" pb={16} textAlign="center">
-            Wyszukiwarka organizacji studenckich
+            Wyszukiwarka fajnych piesków
           </Heading>
           <Search value={search} setValue={setSearch} />
           <List pt={8} data={results} />
