@@ -66,6 +66,14 @@ jobs:
           url=${{ steps.expose-tunnel.outputs.tunnel-url }}
           fixedUrl=${url::-6}
           echo "tunnel-url=${fixedUrl}" >> $GITHUB_OUTPUT
+      - name: Add info about dependency install
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: steps.expose-tunnel.outputs.tunnel-url != ''
+        with:
+          recreate: true
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          message: |
+            **🖼️ Preview Environment:** _Installing dependencies..._
       - name: Install dependencies
         if: steps.check.outputs.triggered == 'true'
         uses: bahmutov/npm-install@v1
@@ -76,6 +84,14 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Add info about build
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: steps.expose-tunnel.outputs.tunnel-url != ''
+        with:
+          recreate: true
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          message: |
+            **🖼️ Preview Environment:** _Building..._
       - name: Build frontend
         if: steps.check.outputs.triggered == 'true'
         run: |
@@ -90,7 +106,7 @@ jobs:
           echo SMTP_PASSWORD="password" >> .env
           echo EMAIL_FROM="emailfrom" >> .env
           npm run build
-          npx prisma migrate deploy
+          npm run db:push
           npm run db:seed
 
       - name: Starting app
@@ -98,26 +114,30 @@ jobs:
         run: npm start &
 
       # Post a comment on the Pull Request with the URL to the tunnel.
-      - name: Post preview environment as comment on PR
-        uses: actions/github-script@v6
+      - name: Comment PR
+        uses: marocchino/sticky-pull-request-comment@v2
         if: steps.expose-tunnel.outputs.tunnel-url != ''
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.issues.createComment({
-                issue_number: "${{ github.event.issue.number || github.event.pull_request.number }}",
-                owner: "${{ github.repository_owner }}",
-                repo: "${{ github.event.repository.name }}",
-                body: `**🖼️ Preview Environment:** ${{ steps.tunnel-url.outputs.tunnel-url }}
+          recreate: true
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          message: |
+            **🖼️ Preview Environment:** ${{ steps.tunnel-url.outputs.tunnel-url }}
 
-              You can stop the preview by clicking "Cancel" on the [GitHub Action](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).`
-            })
+              You can stop the preview by clicking "Cancel" on the [GitHub Action](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
 
       # Keep the CI job alive for 30 minutes before we time out.
       - name: Wait for 30 minutes before timing out (unless overwritten)
         if: steps.expose-tunnel.outputs.tunnel-url != ''
         run: |
           echo "Tunnel URL is ${{ steps.tunnel-url.outputs.tunnel-url }}"
-          timeout 30m sleep 7200
+          timeout 31m sleep 1800
           # Gracefully exit if the timeout hits.
           exit 0
+      - name: Close comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: steps.expose-tunnel.outputs.tunnel-url != ''
+        with:
+          recreate: true
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          message: |
+            🖼️ Preview Environment is **not** running. To start it again, comment `/preview` on this PR.
