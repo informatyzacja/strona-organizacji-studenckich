@@ -165,13 +165,13 @@ jobs:
         if: steps.expose-tunnel.outputs.tunnel-url != ''
         run: |
           echo "Tunnel URL is ${{ steps.tunnel-url.outputs.tunnel-url }}"
-          timeout 31m sleep 1800
+          timeout 31m sleep 7200
           # Gracefully exit if the timeout hits.
           exit 0
 
       - name: Close comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: steps.expose-tunnel.outputs.tunnel-url != ''
+        if: ${{ failure() }}
         with:
           recreate: true
           number: ${{ github.event.issue.number || github.event.pull_request.number }}
