@@ -66,7 +66,7 @@ jobs:
           echo "tunnel-url=${fixedUrl}" >> $GITHUB_OUTPUT
       - name: Delete preview comment
         if: steps.check.outputs.triggered == 'true'
-        id: sha
+        id: delete-comment
         uses: actions/github-script@v6
         with:
           result-encoding: string
