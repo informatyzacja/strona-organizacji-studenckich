@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       triggered: ${{ steps.check.outputs.triggered || steps.check-pr.outputs.triggered }}
+      has_comment: ${{ steps.check.outputs.triggered }}
     steps:
       - name: Check if the comment was a command, and react with 👀 if it was
         if: github.event.issue.pull_request
@@ -90,6 +91,7 @@ jobs:
 
       - name: Hide preview comment
         uses: actions/github-script@v6
+        if: ${{ needs.check.outputs.has_comment == 'true' }}
         with:
           result-encoding: string
           github-token: ${{ secrets.CI_GITHUB_TOKEN }}
