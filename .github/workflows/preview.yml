@@ -186,10 +186,28 @@ jobs:
 
       - name: Close comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: ${{ success() || failure() || cancelled() }}
+        if: ${{ success() }}
         with:
           recreate: true
           number: ${{ github.event.issue.number || github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
           message: |
-            🖼️ Preview Environment is **not** running. To start it again, comment `/preview` on this PR.
+            🖼️ Preview Environment exceeded the maximum time of 60 minutes. To start it again, comment `/preview` on this PR.
+      - name: Close comment when cancelled
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: ${{ cancelled() }}
+        with:
+          recreate: true
+          number: ${{ github.event.issue.number || github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          message: |
+            🖼️ Preview Environment was cancelled (because of newer preview or manual cancellation). To start it again, comment `/preview` on this PR.
+      - name: Close comment when failed
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: ${{ failure() }}
+        with:
+          recreate: true
+          number: ${{ github.event.issue.number || github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          message: |
+            🖼️ Preview Environment failed to start. You can see more info here [GitHub Action](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}). To start it again, comment `/preview` on this PR.
