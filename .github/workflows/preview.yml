@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       triggered: ${{ steps.check.outputs.triggered }}
+      triggered_by_ci: ${{ steps.checkCI.outputs.triggered }}
     steps:
       - name: Check if the comment was a command, and react with 👀 if it was
         if: github.event.issue.pull_request
@@ -22,6 +23,14 @@ jobs:
           prefix_only: true
         env:
           GITHUB_TOKEN: "${{ secrets.CI_GITHUB_TOKEN }}"
+      - name: Check if it was CI comment
+        if: github.event.issue.pull_request
+        uses: famly/pull-request-comment-trigger@master
+        id: checkCI
+        with:
+          trigger: "/preview CI"
+        env:
+          GITHUB_TOKEN: "${{ secrets.CI_GITHUB_TOKEN }}"
       - name: Check if it was pull request open to main branch
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2
@@ -30,7 +39,7 @@ jobs:
           number: ${{ github.event.issue.number || github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
           message: |
-            /preview
+            /preview CI
 
   run-preview:
     runs-on: ubuntu-latest
@@ -95,7 +104,7 @@ jobs:
 
       - name: Hide preview comment
         uses: actions/github-script@v6
-        if: ${{ needs.check.outputs.has_comment == 'true' }}
+        if: ${{ needs.check.outputs.triggered_by_ci != 'true' }}
         with:
           result-encoding: string
           github-token: ${{ secrets.CI_GITHUB_TOKEN }}
