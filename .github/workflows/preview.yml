@@ -71,6 +71,7 @@ jobs:
         if: steps.expose-tunnel.outputs.tunnel-url != ''
         with:
           recreate: true
+          number: ${{ github.event.issue.number || github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
           message: |
             **🖼️ Preview Environment:** _Installing dependencies..._
@@ -88,6 +89,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         if: steps.expose-tunnel.outputs.tunnel-url != ''
         with:
+          number: ${{ github.event.issue.number || github.event.pull_request.number }}
           recreate: true
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
           message: |
@@ -118,6 +120,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         if: steps.expose-tunnel.outputs.tunnel-url != ''
         with:
+          number: ${{ github.event.issue.number || github.event.pull_request.number }}
           recreate: true
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
           message: |
@@ -138,6 +141,7 @@ jobs:
         if: steps.expose-tunnel.outputs.tunnel-url != ''
         with:
           recreate: true
+          number: ${{ github.event.issue.number || github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
           message: |
             🖼️ Preview Environment is **not** running. To start it again, comment `/preview` on this PR.
