@@ -69,15 +69,7 @@ jobs:
         id: delete-comment
         uses: actions/github-script@v6
         with:
-          result-encoding: string
-          script: |
-            console.log(context);
-            const { owner, repo, number: pull_number, comment_id } = context.issue;
-            await github.rest.issues.deleteComment({
-                owner,
-                repo,
-                comment_id,
-              });
+          script: console.log(context)
       - name: Add info about dependency install
         uses: marocchino/sticky-pull-request-comment@v2
         if: steps.expose-tunnel.outputs.tunnel-url != ''
