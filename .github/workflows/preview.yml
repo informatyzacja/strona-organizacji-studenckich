@@ -18,7 +18,6 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-      # The first thing we do is check if the comment was indeed a trigger.
       - name: Check if the comment was a command, and react with 👀 if it was
         if: github.event.issue.pull_request
         uses: famly/pull-request-comment-trigger@master
@@ -27,7 +26,7 @@ jobs:
           trigger: "/preview"
           reaction: eyes
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.CI_GITHUB_TOKEN }}"
       - name: Extract current commit
         if: steps.check.outputs.triggered == 'true'
         id: sha
@@ -46,10 +45,12 @@ jobs:
         if: steps.check.outputs.triggered == 'true'
         with:
           ref: ${{ steps.sha.outputs.result }}
+
       - uses: actions/setup-node@v3
         if: steps.check.outputs.triggered == 'true'
         with:
           node-version: 16
+
       - name: Start frontend tunnel
         id: expose-tunnel
         if: steps.check.outputs.triggered == 'true'
@@ -64,11 +65,13 @@ jobs:
           url=${{ steps.expose-tunnel.outputs.tunnel-url }}
           fixedUrl=${url::-6}
           echo "tunnel-url=${fixedUrl}" >> $GITHUB_OUTPUT
+          
       - name: Delete preview comment
         if: steps.check.outputs.triggered == 'true'
         uses: actions/github-script@v6
         with:
           result-encoding: string
+          github-token: ${{ secrets.CI_GITHUB_TOKEN }}
           script: |
             const { id } = context.payload.comment; 
             const { owner, repo } = context.issue;
@@ -77,6 +80,7 @@ jobs:
                 repo,
                 comment_id: id,
               });
+
       - name: Add info about dependency install
         uses: marocchino/sticky-pull-request-comment@v2
         if: steps.expose-tunnel.outputs.tunnel-url != ''
@@ -96,6 +100,7 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
       - name: Add info about build
         uses: marocchino/sticky-pull-request-comment@v2
         if: steps.expose-tunnel.outputs.tunnel-url != ''
@@ -147,6 +152,7 @@ jobs:
           timeout 31m sleep 1800
           # Gracefully exit if the timeout hits.
           exit 0
+
       - name: Close comment
         uses: marocchino/sticky-pull-request-comment@v2
         if: steps.expose-tunnel.outputs.tunnel-url != ''
