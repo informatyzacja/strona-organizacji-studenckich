@@ -171,7 +171,7 @@ jobs:
 
       - name: Close comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: ${{ failure() }}
+        if: ${{ failure() || cancelled() }}
         with:
           recreate: true
           number: ${{ github.event.issue.number || github.event.pull_request.number }}
