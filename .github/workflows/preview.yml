@@ -66,10 +66,17 @@ jobs:
           echo "tunnel-url=${fixedUrl}" >> $GITHUB_OUTPUT
       - name: Delete preview comment
         if: steps.check.outputs.triggered == 'true'
-        id: delete-comment
         uses: actions/github-script@v6
         with:
-          script: console.log(context)
+          result-encoding: string
+          script: |
+            const { id } = context.payload.comment; 
+            const { owner, repo } = context.issue;
+            await github.rest.issues.deleteComment({
+                owner,
+                repo,
+                comment_id: id,
+              });
       - name: Add info about dependency install
         uses: marocchino/sticky-pull-request-comment@v2
         if: steps.expose-tunnel.outputs.tunnel-url != ''
