@@ -153,7 +153,6 @@ jobs:
       - name: Starting app
         run: npm start &
 
-      # Post a comment on the Pull Request with the URL to the tunnel.
       - name: Comment PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
@@ -165,17 +164,16 @@ jobs:
 
               You can stop the preview by clicking "Cancel" on the [GitHub Action](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
 
-      # Keep the CI job alive for 30 minutes before we time out.
-      - name: Wait for 30 minutes before timing out (unless overwritten)
+      - name: Wait for 60 minutes before timing out (unless overwritten)
         run: |
           echo "Tunnel URL is ${{ steps.tunnel-url.outputs.tunnel-url }}"
-          timeout 31m sleep 7200
+          timeout 61m sleep 3600
           # Gracefully exit if the timeout hits.
           exit 0
 
       - name: Close comment
         uses: marocchino/sticky-pull-request-comment@v2
-        if: ${{ failure() || cancelled() }}
+        if: ${{ success() || failure() || cancelled() }}
         with:
           recreate: true
           number: ${{ github.event.issue.number || github.event.pull_request.number }}
