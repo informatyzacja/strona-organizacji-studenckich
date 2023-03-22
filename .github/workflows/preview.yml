@@ -78,12 +78,23 @@ jobs:
           echo "tunnel-url=${fixedUrl}" >> $GITHUB_OUTPUT
 
       - name: Hide preview comment
-        uses: int128/hide-comment-action@v1
         if: steps.check.outputs.triggered == 'true'
+        uses: actions/github-script@v6
         with:
-          starts-with: |
-            /preview
-          token: ${{ secrets.CI_GITHUB_TOKEN }}
+          result-encoding: string
+          github-token: ${{ secrets.CI_GITHUB_TOKEN }}
+          script: |
+            const { id } = context.payload.comment; 
+
+            const query = `
+              mutation minimizeComment($id: ID!) {
+                minimizeComment(input: { classifier: OUTDATED, subjectId: $id }) {
+                  clientMutationId
+                }
+              }
+            `;
+
+            await github.graphql(query, { id });
 
       - name: Add info about dependency install
         uses: marocchino/sticky-pull-request-comment@v2
