@@ -4,10 +4,6 @@ on:
   issue_comment:
     types: [created]
 
-concurrency:
-  group: ${{ github.event.issue.number || github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
   check-comment:
     runs-on: ubuntu-latest
@@ -32,6 +28,11 @@ jobs:
           prefix_only: true
         env:
           GITHUB_TOKEN: "${{ secrets.CI_GITHUB_TOKEN }}"
+
+      - uses: n1hility/cancel-previous-runs@v3
+        if: steps.check.outputs.triggered == 'true'
+        with:
+          token: ${{ secrets.CI_GITHUB_TOKEN }}
 
       - name: Add info about starting new preview
         uses: marocchino/sticky-pull-request-comment@v2
