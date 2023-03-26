@@ -99,6 +99,7 @@
     "*": "prettier --write --ignore-unknown"
   },
   "volta": {
-    "node": "16.19.1"
+    "node": "16.19.1",
+    "npm": "8.19.4"
   }
 }

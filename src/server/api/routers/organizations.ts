@@ -15,6 +15,9 @@ export const organizations = createTRPCRouter({
         logoUrl: true,
         department: true,
       },
+      orderBy: {
+        logoUrl: "asc",
+      },
     });
 
     return organizations.map((organization) => ({
