@@ -1,6 +1,6 @@
 {
   "name": "sos",
-  "version": "1.10.1",
+  "version": "1.11.0",
   "private": true,
   "scripts": {
     "build": "next build",
