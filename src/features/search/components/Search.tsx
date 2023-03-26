@@ -8,6 +8,7 @@ import type { ComponentProps } from "react";
 import React, { useEffect, useState } from "react";
 import { Tag } from "./Tag";
 import { api } from "@/utils/api";
+import { useNumberOfOrganizationsToShow } from "../hooks/useNumberOfOrganizationsToShow";
 
 const SelectableTag = (
   props: ComponentProps<typeof Tag> & {
@@ -37,11 +38,13 @@ export const Search = ({
   const [search, setSearch] = useState(value);
   const debouncedSearch = useDebounce(search, 200);
   const { toggleTag } = useSelectedTags();
+  const { reset } = useNumberOfOrganizationsToShow();
   const { data: tags } = api.tags.list.useQuery();
 
   useEffect(() => {
     setValue(debouncedSearch);
-  }, [debouncedSearch, setValue]);
+    reset();
+  }, [debouncedSearch, reset, setValue]);
 
   return (
     <VStack {...styles}>

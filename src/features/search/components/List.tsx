@@ -1,11 +1,13 @@
 import type { RouterOutputs } from "@/utils/api";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import type { BoxProps } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { VStack, Wrap, WrapItem, Text, Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React from "react";
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { OrganisationCard } from "./OrganisationCard";
+import { useNumberOfOrganizationsToShow } from "../hooks/useNumberOfOrganizationsToShow";
 
 export const List = ({
   data,
@@ -13,6 +15,8 @@ export const List = ({
 }: {
   data?: RouterOutputs["organizations"]["list"];
 } & BoxProps) => {
+  const { numberOfOrganizations, loadMore } = useNumberOfOrganizationsToShow();
+
   return (
     <Box {...styles}>
       <AnimatePresenceSSR>
@@ -45,7 +49,7 @@ export const List = ({
           justify="center"
         >
           <AnimatePresenceSSR mode="popLayout">
-            {data?.slice(0, 10).map((org) => (
+            {data?.slice(0, numberOfOrganizations).map((org) => (
               <motion.div
                 key={org.name}
                 layout
@@ -61,6 +65,13 @@ export const List = ({
             ))}
           </AnimatePresenceSSR>
         </Wrap>
+        {data && data?.length > numberOfOrganizations ? (
+          <Box>
+            <Button mt={8} mb={8} onClick={() => loadMore()}>
+              Pokaż więcej
+            </Button>
+          </Box>
+        ) : null}
       </VStack>
     </Box>
   );
