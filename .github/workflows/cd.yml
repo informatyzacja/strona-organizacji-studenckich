@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://sos.sspwr.edu.eu.org
+      url: https://aktywni.pwr.edu.pl
     steps:
       - name: Deploy
         uses: appleboy/ssh-action@v0.1.7
@@ -21,12 +21,15 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          proxy_host: ${{ secrets.PROXY_HOST }}
+          proxy_username: ${{ secrets.PROXY_USERNAME }}
+          proxy_key: ${{ secrets.KEY }}
           envs: CI
           script: |
             cd ${{ secrets.APP_DIR }}
             rm .env
             touch .env
-            echo NEXTAUTH_URL=https://sos.sspwr.edu.eu.org >> .env
+            echo NEXTAUTH_URL=https://aktywni.pwr.edu.pl >> .env
             echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env
             echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} >> .env
             echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
