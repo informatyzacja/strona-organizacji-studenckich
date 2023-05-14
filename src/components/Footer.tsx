@@ -11,7 +11,6 @@ import { FaGlobeEurope, FaFacebook, FaGithub } from "react-icons/fa";
 import type { ReactNode } from "react";
 import NextImage from "next/image";
 import logoPwr from "../../public/logo-pwr.svg";
-import logoSSPwr from "../../public/logo-sspwr.svg";
 import logoDS from "../../public/logo-dzial-studencki.svg";
 
 const SocialButton = ({
@@ -63,8 +62,7 @@ export const Footer = () => {
         align={{ base: "center", md: "center" }}
       >
         <NextImage src={logoPwr as string} alt="logo Pwr" />
-        <NextImage src={logoSSPwr as string} alt="logo SSPwr" />
-        <NextImage src={logoDS as string} alt="logo SSPwr" />
+        <NextImage src={logoDS as string} alt="logo Działu Studenckiego" />
 
         <Stack direction={"row"} spacing={6}>
           <SocialButton
