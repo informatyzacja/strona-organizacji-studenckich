@@ -66,14 +66,13 @@ export const Footer = () => {
           src={logoPwr as string}
           alt="logo Politechniki Wrocławskiej"
         />
-        <Link href="https://samorzad.pwr.edu.pl">
+        <a href="https://samorzad.pwr.edu.pl" target="_blank" rel="noreferrer">
           <NextImage
             src={logoSSPwr as string}
             alt="logo Samorządu Studenckiego Politechniki Wrocławskiej"
           />
-        </Link>
+        </a>
         <NextImage src={logoDS as string} alt="logo Działu Studenckiego" />
-
         <Stack direction={"row"} spacing={6}>
           <SocialButton
             label={"WebsiteDS"}
