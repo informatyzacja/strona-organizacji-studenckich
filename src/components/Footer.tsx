@@ -4,7 +4,7 @@ import {
   Container,
   Stack,
   useColorModeValue,
-  VisuallyHidden
+  VisuallyHidden,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
 import Link from "next/link";
@@ -62,9 +62,15 @@ export const Footer = () => {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <NextImage src={logoPwr as string} alt="logo Politechniki Wrocławskiej" />
+        <NextImage
+          src={logoPwr as string}
+          alt="logo Politechniki Wrocławskiej"
+        />
         <Link href="https://samorzad.pwr.edu.pl">
-          <NextImage src={logoSSPwr as string} alt="logo Samorządu Studenckiego Politechniki Wrocławskiej" />
+          <NextImage
+            src={logoSSPwr as string}
+            alt="logo Samorządu Studenckiego Politechniki Wrocławskiej"
+          />
         </Link>
         <NextImage src={logoDS as string} alt="logo Działu Studenckiego" />
 
