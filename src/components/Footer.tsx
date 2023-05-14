@@ -3,15 +3,16 @@ import {
   chakra,
   Container,
   Stack,
-  Text,
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
-import { FaGlobeEurope, FaFacebook, FaGithub } from "react-icons/fa";
-import type { ReactNode } from "react";
 import NextImage from "next/image";
-import logoPwr from "../../public/logo-pwr.svg";
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { FaFacebook, FaGithub, FaGlobeEurope } from "react-icons/fa";
 import logoDS from "../../public/logo-dzial-studencki.svg";
+import logoPwr from "../../public/logo-pwr.svg";
+import logoSSPwr from "../../public/logo-sspwr.svg";
 
 const SocialButton = ({
   children,
@@ -61,9 +62,17 @@ export const Footer = () => {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <NextImage src={logoPwr as string} alt="logo Pwr" />
+        <NextImage
+          src={logoPwr as string}
+          alt="logo Politechniki Wrocławskiej"
+        />
+        <a href="https://samorzad.pwr.edu.pl" target="_blank" rel="noreferrer">
+          <NextImage
+            src={logoSSPwr as string}
+            alt="logo Samorządu Studenckiego Politechniki Wrocławskiej"
+          />
+        </a>
         <NextImage src={logoDS as string} alt="logo Działu Studenckiego" />
-
         <Stack direction={"row"} spacing={6}>
           <SocialButton
             label={"WebsiteDS"}
