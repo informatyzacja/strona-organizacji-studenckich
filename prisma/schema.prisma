@@ -40,21 +40,26 @@ model ContactMethods {
 }
 
 model Organization {
-    id              String           @id @default(cuid())
-    name            String
-    createdAt       DateTime         @default(now())
-    updatedAt       DateTime         @updatedAt
-    department      String?
-    description     String
-    logoUrl         String?
-    type            String           
-    slug            String           @unique
-    longDescription String?           @db.Text
-    foundationDate  DateTime?
-    ownerId         String           @unique
-    owner           User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-    ContactMethods  ContactMethods[]
-    Tags            Tag[]
+    id                     String           @id @default(cuid())
+    name                   String
+    createdAt              DateTime         @default(now())
+    updatedAt              DateTime         @updatedAt
+    department             String?
+    fieldOfStudy           String           @db.Text
+    description            String
+    logoUrl                String?
+    type                   String
+    slug                   String           @unique
+    longDescription        String?          @db.Text
+    skillsAndChallenges    String?          @db.Text
+    achievements           String?          @db.Text
+    distinguishingFeatures String?          @db.Text
+    areasOfInterest        String?          @db.Text
+    foundationDate         DateTime?
+    ownerId                String           @unique
+    owner                  User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    ContactMethods         ContactMethods[]
+    Tags                   Tag[]
 }
 
 // Necessary for Next auth

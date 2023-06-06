@@ -2,11 +2,10 @@ import slugify from "slugify";
 import { prisma } from "../src/server/db";
 import { organizationFactory } from "./models/organization.factory";
 import { userFactory } from "./models/user.factory";
-import seedData from "./seed.json";
+import seedData from "./seed_new.json";
 
 import fs from "fs";
 import path from "path";
-import { Organization } from "@prisma/client";
 
 const logosDir = path.join(__dirname, "./logos");
 const availableLogos = fs.readdirSync(logosDir);
@@ -34,8 +33,8 @@ const findLogo = (organization: (typeof seedData)[number]) => {
     const placesToCheck = [
       organization.name,
       organization.email,
-      organization.website,
-      organization.facebook,
+      organization.contact.website,
+      organization.contact.facebook,
     ];
 
     return placesToCheck.some((place) => {
@@ -68,13 +67,7 @@ async function main() {
     const organization = seedData.at(i);
 
     if (organization) {
-      const shortDescription =
-        organization.description.length > 200
-          ? organization.description.slice(0, 200).trim() + "..."
-          : organization.description;
-
       const logo = findLogo(organization);
-
       if (logo) {
         addedLogos.push(logo);
       }
@@ -83,10 +76,13 @@ async function main() {
         data: organizationFactory({
           name: organization.name,
           slug: slugify(organization.name),
-          type: organization.organisation,
-          department: organization.department,
-          description: shortDescription,
-          longDescription: organization.description,
+          type: organization.type,
+          fieldOfStudy: organization.field,
+          description: organization.shortDescription,
+          longDescription: organization.longDescription,
+          skillsAndChallenges: organization.skillsAndChallenges,
+          achievements: organization.achievements,
+          distinguishingFeatures: organization.distinguishingFeatures,
           owner: {
             connectOrCreate: {
               where: {
