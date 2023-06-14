@@ -57,6 +57,7 @@ model Organization {
     areasOfInterest        String?          @db.Text
     foundationDate         DateTime?
     ownerId                String           @unique
+    photos                 String[]
     owner                  User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)
     ContactMethods         ContactMethods[]
     Tags                   Tag[]

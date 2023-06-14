@@ -67,9 +67,21 @@ async function main() {
     const organization = seedData.at(i);
 
     if (organization) {
+      console.log(organization.name);
       const logo = findLogo(organization);
       if (logo) {
         addedLogos.push(logo);
+      }
+      const contactMethods = [];
+      if (organization.contact) {
+        for (const [contactType, contactLink] of Object.entries(
+          organization.contact
+        )) {
+          contactMethods.push({
+            contactType,
+            contactLink: contactLink as string,
+          });
+        }
       }
 
       await prisma.organization.create({
@@ -83,6 +95,7 @@ async function main() {
           skillsAndChallenges: organization.skillsAndChallenges,
           achievements: organization.achievements,
           distinguishingFeatures: organization.distinguishingFeatures,
+          areasOfInterest: organization.areasOfInterest,
           owner: {
             connectOrCreate: {
               where: {
@@ -96,7 +109,12 @@ async function main() {
             },
           },
           logoUrl: logo ? `/api/file/${logo}` : null,
-          ContactMethods: {},
+          photos: organization.photos,
+          ContactMethods: {
+            createMany: {
+              data: contactMethods,
+            },
+          },
         }),
       });
     }
