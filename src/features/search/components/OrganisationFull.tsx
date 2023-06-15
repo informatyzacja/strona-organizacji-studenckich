@@ -23,6 +23,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
+import EmailButton from "./emailObfuscation";
 
 export const OrganisationFull = ({
   data,
@@ -46,6 +47,17 @@ export const OrganisationFull = ({
         <Flex justify="flex-end" align="center" justifyContent="space-between">
           <Heading as="h1" mt={4}>
             {data.name}
+            <br />
+
+            <Wrap mt={2}>
+              <WrapItem key={data.type}>
+                <Tag tag={data.type} />
+              </WrapItem>
+
+              <WrapItem key={data.fieldOfStudy}>
+                <Tag tag={data.fieldOfStudy} />
+              </WrapItem>
+            </Wrap>
           </Heading>
           <Image
             src={data.logoUrl}
@@ -53,7 +65,6 @@ export const OrganisationFull = ({
             height={200}
             style={{
               margin: "0.6rem",
-              // height: "6.25rem",
               width: "8rem",
               objectFit: "contain",
             }}
@@ -69,7 +80,6 @@ export const OrganisationFull = ({
           </WrapItem>
         ))}
       </Wrap>
-      {/* <Text mt={8}>{data.description}</Text> */}
       <br />
       <HStack spacing={4}>
         <Wrap>
@@ -114,26 +124,6 @@ export const OrganisationFull = ({
           </Heading>
           {data.areasOfInterest}
 
-          {/* <List>
-            {data.ContactMethods.map((contactMethod) => (
-              <ListItem key={contactMethod.id}>
-                <HStack>
-                  <Text textTransform="capitalize">
-                    {contactMethod.contactType}:
-                  </Text>
-                  <Link
-                    href={contactMethod.contactLink}
-                    target="_blank"
-                    color="gray"
-                  >
-                    {contactMethod.contactLink}
-                  </Link>
-                </HStack>
-              </ListItem>
-            ))}
-          </List> */}
-
-          {/* {PhotoGrid(data.photos)} */}
           <Heading as="h2" size="md" mt={4} mb={2}>
             🌄 Galeria 🌄
           </Heading>
@@ -148,23 +138,14 @@ export const OrganisationFull = ({
               />
             ))}
           </SimpleGrid>
+
+          <br />
+          <EmailButton data={data} />
         </>
       ) : null}
     </Container>
   );
 };
-
-// const PhotoGrid = ({ photos }) => {
-//   return (
-//     <SimpleGrid columns={2} spacing={4}>
-//       {photos.map((photo: string) => (
-//         <Box>
-//           <Image src={photo} alt={`Photo`} />
-//         </Box>
-//       ))}
-//     </SimpleGrid>
-//   );
-// };
 
 const getIconForContactType = (contactType: string) => {
   switch (contactType) {
