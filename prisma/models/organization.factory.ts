@@ -49,6 +49,7 @@ export const organizationFactory = (
     createdAt: faker.date.past(),
     logoUrl: "/test_logo.png",
     type: faker.helpers.arrayElement(organisationTypes),
+    fieldOfStudy: faker.name.jobArea(),
     slug: slugify(name) + faker.random.numeric(4),
     foundationDate: faker.date.past(),
     department: faker.helpers.arrayElement(departments),
