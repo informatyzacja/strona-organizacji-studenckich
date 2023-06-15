@@ -163,7 +163,7 @@ const getIconForContactType = (contactType: string) => {
     case "youtube":
       return <FaYoutube />;
     default:
-      return null;
+      return <FaLink />;
   }
 };
 
