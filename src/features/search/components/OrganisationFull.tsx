@@ -59,17 +59,20 @@ export const OrganisationFull = ({
               </WrapItem>
             </Wrap>
           </Heading>
-          <Image
-            src={data.logoUrl}
-            width={200}
-            height={200}
-            style={{
-              margin: "0.6rem",
-              width: "8rem",
-              objectFit: "contain",
-            }}
-            alt={`Logo ${data.name}`}
-          />
+          {data.logoUrl ? (
+            <Image
+              src={data.logoUrl}
+              width={100}
+              height={100}
+              style={{
+                margin: "0.6rem",
+                height: "6.25rem",
+                width: "6.25rem",
+                objectFit: "contain",
+              }}
+              alt={`Logo ${data.logoUrl || data.name}`}
+            />
+          ) : null}
         </Flex>
       </Box>
 
