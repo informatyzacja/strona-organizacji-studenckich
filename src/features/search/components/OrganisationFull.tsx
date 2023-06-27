@@ -9,8 +9,9 @@ import {
   HStack,
   Box,
   Flex,
-  Button,
   SimpleGrid,
+  LinkBox,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import React from "react";
@@ -23,7 +24,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import EmailButton from "./emailObfuscation";
+import EmailButton from "./EmailObfuscation";
 
 export const OrganisationFull = ({
   data,
@@ -36,6 +37,40 @@ export const OrganisationFull = ({
     return null;
   }
 
+  const getIconForContactType = (contactType: string) => {
+    switch (contactType) {
+      case "website":
+        return <FaLink />;
+      case "facebook":
+        return <FaFacebook />;
+      case "twitter":
+        return <FaTwitter />;
+      case "instagram":
+        return <FaInstagram />;
+      case "youtube":
+        return <FaYoutube />;
+      default:
+        return <FaLink />;
+    }
+  };
+
+  const getContactFixedName = (contactType: string) => {
+    switch (contactType) {
+      case "website":
+        return "Strona Internetowa";
+      case "facebook":
+        return "Facebook";
+      case "twitter":
+        return "Twitter";
+      case "instagram":
+        return "Instagram";
+      case "youtube":
+        return "Youtube";
+      default:
+        return contactType;
+    }
+  };
+
   return (
     <Container maxW="container.md" mt={16} pb={16}>
       {!forAdminPage ? (
@@ -44,10 +79,9 @@ export const OrganisationFull = ({
         </Link>
       ) : null}
       <Box>
-        <Flex justify="flex-end" align="center" justifyContent="space-between">
+        <Flex align="center" justifyContent="space-between">
           <Heading as="h1" mt={4}>
             {data.name}
-            <br />
 
             <Wrap mt={2}>
               <WrapItem key={data.type}>
@@ -70,7 +104,8 @@ export const OrganisationFull = ({
                 width: "6.25rem",
                 objectFit: "contain",
               }}
-              alt={`Logo ${data.logoUrl || data.name}`}
+              priority={true}
+              alt={`Logo ${data.name}`}
             />
           ) : null}
         </Flex>
@@ -83,27 +118,27 @@ export const OrganisationFull = ({
           </WrapItem>
         ))}
       </Wrap>
-      <br />
-      <HStack spacing={4}>
+      <HStack spacing={4} mt={5}>
         <Wrap>
           {data.ContactMethods.map((contactMethod) => (
-            <Button
+            <LinkBox
+              p="2"
+              borderWidth="1px"
+              rounded="md"
               key={contactMethod.id}
-              leftIcon={getIconForContactType(contactMethod.contactType)}
-              colorScheme="gray"
-              variant="outline"
-              onClick={() =>
-                handleContactMethodClick(contactMethod.contactLink)
-              }
             >
-              {getContactFixedName(contactMethod.contactType)}
-            </Button>
+              <LinkOverlay href={contactMethod.contactLink} target="_blank">
+                <Wrap mt={1} padding={1}>
+                  {getIconForContactType(contactMethod.contactType)}
+                  {getContactFixedName(contactMethod.contactType)}
+                </Wrap>
+              </LinkOverlay>
+            </LinkBox>
           ))}
         </Wrap>
       </HStack>
 
-      <br />
-      <Heading as="h2" size="md" mt={4} mb={2}>
+      <Heading as="h2" size="md" mt={5} mb={2}>
         📰 Kim jesteśmy, co robimy 📰
       </Heading>
       <Text>{data.longDescription}</Text>
@@ -135,55 +170,16 @@ export const OrganisationFull = ({
               <Image
                 key={photo}
                 src={photo}
-                alt={photo}
+                alt={"Zdjęcie z galerii organizacji"}
                 width={300}
                 height={300}
               />
             ))}
           </SimpleGrid>
 
-          <br />
-          <EmailButton data={data} />
+          <EmailButton email={data.owner.email} />
         </>
       ) : null}
     </Container>
   );
-};
-
-const getIconForContactType = (contactType: string) => {
-  switch (contactType) {
-    case "website":
-      return <FaLink />;
-    case "facebook":
-      return <FaFacebook />;
-    case "twitter":
-      return <FaTwitter />;
-    case "instagram":
-      return <FaInstagram />;
-    case "youtube":
-      return <FaYoutube />;
-    default:
-      return <FaLink />;
-  }
-};
-
-const getContactFixedName = (contactType: string) => {
-  switch (contactType) {
-    case "website":
-      return "Strona Internetowa";
-    case "facebook":
-      return "Facebook";
-    case "twitter":
-      return "Twitter";
-    case "instagram":
-      return "Instagram";
-    case "youtube":
-      return "Youtube";
-    default:
-      return null;
-  }
-};
-
-const handleContactMethodClick = (contactLink: string) => {
-  window.open(contactLink, "_blank");
 };

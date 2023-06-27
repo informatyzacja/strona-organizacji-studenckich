@@ -14,6 +14,7 @@ export const organizations = createTRPCRouter({
         description: true,
         logoUrl: true,
         department: true,
+        fieldOfStudy: true,
       },
       orderBy: {
         logoUrl: "asc",
@@ -79,6 +80,7 @@ export const organizations = createTRPCRouter({
         logoUrl: z.string().max(100).optional(),
         department: z.string().min(1).max(100).optional(),
         tags: z.array(z.string().min(1).max(100)).optional(),
+        fieldOfStudy: z.string().min(1).max(100),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -91,6 +93,7 @@ export const organizations = createTRPCRouter({
           longDescription: input.longDescription,
           logoUrl: input.logoUrl,
           department: input.department,
+          fieldOfStudy: input.fieldOfStudy,
           owner: {
             connectOrCreate: {
               where: {

@@ -67,12 +67,11 @@ async function main() {
     const organization = seedData.at(i);
 
     if (organization) {
-      console.log(organization.name);
       const logo = findLogo(organization);
       if (logo) {
         addedLogos.push(logo);
       }
-      const contactMethods = [];
+      const contactMethods: { contactType: string; contactLink: string }[] = [];
       if (organization.contact) {
         for (const [contactType, contactLink] of Object.entries(
           organization.contact
