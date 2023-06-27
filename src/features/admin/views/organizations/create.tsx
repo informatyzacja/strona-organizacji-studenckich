@@ -70,6 +70,7 @@ const addManuallySchema = z.object({
   department: z.enum(departments).optional(),
   description: z.string().min(1, "Za krótki opis").max(200, "Za długi opis"),
   longDescription: z.string().max(6000, "Za długi opis").optional(),
+  fieldOfStudy: z.string(),
   logo: z
     .instanceof(typeof FileList !== "undefined" ? FileList : Array)
     .superRefine((value, ctx) => {
@@ -190,6 +191,7 @@ export const CreateOrganizationPage = () => {
                 slug: slugify(data.name),
                 description: data.description,
                 longDescription: data.longDescription,
+                fieldOfStudy: data.fieldOfStudy,
                 logoUrl,
               });
 

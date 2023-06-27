@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Box, Link } from "@chakra-ui/react";
 
-const EmailButton: React.FC<{ email: string }> = ({ email }) => {
+export const EmailButton = ({ email }: { email: string }) => {
   const [showEmail, setShowEmail] = useState(false);
 
   const handleButtonClick = () => {
@@ -10,12 +10,11 @@ const EmailButton: React.FC<{ email: string }> = ({ email }) => {
 
   return (
     <Box mt={5}>
-      {!showEmail ? (
+      {showEmail ? (
+        <Link href={`mailto:${email}`}>{email}</Link>
+      ) : (
         <Button onClick={handleButtonClick}>Wyświetl adres e-mail</Button>
-      ) : null}
-      {showEmail ? <Link href={`mailto:${email}`}>{email}</Link> : null}
+      )}
     </Box>
   );
 };
-
-export default EmailButton;

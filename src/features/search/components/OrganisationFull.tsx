@@ -24,7 +24,41 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import EmailButton from "./EmailObfuscation";
+import { EmailButton } from "./EmailObfuscation";
+
+const getIconForContactType = (contactType: string) => {
+  switch (contactType) {
+    case "website":
+      return <FaLink />;
+    case "facebook":
+      return <FaFacebook />;
+    case "twitter":
+      return <FaTwitter />;
+    case "instagram":
+      return <FaInstagram />;
+    case "youtube":
+      return <FaYoutube />;
+    default:
+      return <FaLink />;
+  }
+};
+
+const getContactFixedName = (contactType: string) => {
+  switch (contactType) {
+    case "website":
+      return "Strona Internetowa";
+    case "facebook":
+      return "Facebook";
+    case "twitter":
+      return "Twitter";
+    case "instagram":
+      return "Instagram";
+    case "youtube":
+      return "Youtube";
+    default:
+      return contactType;
+  }
+};
 
 export const OrganisationFull = ({
   data,
@@ -36,40 +70,6 @@ export const OrganisationFull = ({
   if (!data) {
     return null;
   }
-
-  const getIconForContactType = (contactType: string) => {
-    switch (contactType) {
-      case "website":
-        return <FaLink />;
-      case "facebook":
-        return <FaFacebook />;
-      case "twitter":
-        return <FaTwitter />;
-      case "instagram":
-        return <FaInstagram />;
-      case "youtube":
-        return <FaYoutube />;
-      default:
-        return <FaLink />;
-    }
-  };
-
-  const getContactFixedName = (contactType: string) => {
-    switch (contactType) {
-      case "website":
-        return "Strona Internetowa";
-      case "facebook":
-        return "Facebook";
-      case "twitter":
-        return "Twitter";
-      case "instagram":
-        return "Instagram";
-      case "youtube":
-        return "Youtube";
-      default:
-        return contactType;
-    }
-  };
 
   return (
     <Container maxW="container.md" mt={16} pb={16}>
@@ -147,20 +147,20 @@ export const OrganisationFull = ({
           <Heading as="h2" size="md" mt={4} mb={2}>
             🔥 Zdobywane umiejętności i wyzwania członków zespołu! 🔥
           </Heading>
-          {data.skillsAndChallenges}
+          <Text>{data.skillsAndChallenges}</Text>
           <Heading as="h2" size="md" mt={4} mb={2}>
             ✨ Wyróżniamy się tym, że... ✨
           </Heading>
-          {data.distinguishingFeatures}
+          <Text>{data.distinguishingFeatures}</Text>
           <Heading as="h2" size="md" mt={4} mb={2}>
             🏆 Największe sukcesy uczelnianej organizacji studenckiej! 🏆
           </Heading>
-          {data.achievements}
+          <Text>{data.achievements}</Text>
           <Heading as="h2" size="md" mt={4} mb={2}>
             🌟 Obszary zainteresowań studentów dołączających do naszej
             organizacji! 🌟
           </Heading>
-          {data.areasOfInterest}
+          <Text>{data.areasOfInterest}</Text>
 
           <Heading as="h2" size="md" mt={4} mb={2}>
             🌄 Galeria 🌄
