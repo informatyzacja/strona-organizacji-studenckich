@@ -1,47 +1,99 @@
-import { adminProcedure, createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { prisma } from "@/server/db";
 
 export const organizations = createTRPCRouter({
   list: publicProcedure.query(async ({ ctx }) => {
-    const organizations = await ctx.prisma.organization.findMany({
-      select: {
-        Tags: true,
-        name: true,
-        slug: true,
-        type: true,
-        description: true,
-        logoUrl: true,
-        department: true,
-      },
-      orderBy: {
-        logoUrl: "asc",
-      },
-    });
-
-    return organizations.map((organization) => ({
-      ...organization,
-      Tags: organization.Tags.map((tag) => tag.text),
+    return (
+      await ctx.query({
+        Organizacje: [
+          {},
+          {
+            id: true,
+            slug: true,
+            name: true,
+            shortDescription: true,
+            logo: true,
+            tags: [
+              {
+                filter: {
+                  Tagi_id: {
+                    tag: {
+                      _nnull: true,
+                    },
+                  },
+                },
+              },
+              {
+                Tagi_id: [
+                  {},
+                  {
+                    tag: true,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      })
+    ).Organizacje.map((org) => ({
+      ...org,
+      tags:
+        org.tags
+          ?.map((tag) => tag.Tagi_id?.tag)
+          .filter((x): x is string => Boolean(x)) ?? [],
     }));
   }),
   get: publicProcedure
     .input(
       z.object({
         slug: z.string().min(1).max(100),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
-      const organization = await ctx.prisma.organization.findUnique({
-        where: {
-          slug: input.slug,
-        },
-        include: {
-          ContactMethods: true,
-          Tags: true,
-          owner: true,
-        },
+      const { Organizacje } = await ctx.query({
+        Organizacje: [
+          { filter: { slug: { _eq: input.slug } } },
+          {
+            id: true,
+            slug: true,
+            name: true,
+            field: true,
+            achievements: true,
+            areasOfInterest: true,
+            email: true,
+            facebook: true,
+            distinguishingFeatures: true,
+            images: [
+              {},
+              {
+                directus_files_id: true,
+              },
+            ],
+            instagram: true,
+            linkedin: true,
+            logo: true,
+            longDescription: true,
+            shortDescription: true,
+            skillsAndChallenges: true,
+            website: true,
+            youtube: true,
+            tags: [
+              {},
+              {
+                Tagi_id: [
+                  {},
+                  {
+                    tag: true,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       });
+
+      const organization = Organizacje.at(0);
 
       if (!organization) {
         throw new TRPCError({
@@ -50,70 +102,14 @@ export const organizations = createTRPCRouter({
         });
       }
 
-      return organization;
-    }),
-
-  createByEmail: adminProcedure
-    .input(
-      z.object({
-        email: z.string().email(),
-      })
-    )
-    .mutation(async ({ input }) => {
-      return prisma.user.create({
-        data: {
-          email: input.email,
-          role: "OWNER",
-        },
-      });
-    }),
-  create: adminProcedure
-    .input(
-      z.object({
-        name: z.string().min(1).max(100),
-        email: z.string().email(),
-        slug: z.string().min(1).max(100),
-        type: z.string().min(1).max(100),
-        description: z.string().min(1).max(220),
-        longDescription: z.string().max(6000).optional(),
-        logoUrl: z.string().max(100).optional(),
-        department: z.string().min(1).max(100).optional(),
-        tags: z.array(z.string().min(1).max(100)).optional(),
-      })
-    )
-    .mutation(async ({ input, ctx }) => {
-      return ctx.prisma.organization.create({
-        data: {
-          name: input.name,
-          slug: input.slug,
-          type: input.type,
-          description: input.description,
-          longDescription: input.longDescription,
-          logoUrl: input.logoUrl,
-          department: input.department,
-          owner: {
-            connectOrCreate: {
-              where: {
-                email: input.email,
-              },
-              create: {
-                name: input.name,
-                email: input.email,
-                role: "OWNER",
-              },
-            },
-          },
-          Tags: {
-            connectOrCreate: input.tags?.map((tag) => ({
-              where: {
-                text: tag,
-              },
-              create: {
-                text: tag,
-              },
-            })),
-          },
-        },
-      });
+      return {
+        ...organization,
+        images:
+          organization.images?.map((image) => image.directus_files_id) ?? [],
+        tags:
+          organization.tags
+            ?.map((tag) => tag.Tagi_id?.tag)
+            .filter((x): x is string => Boolean(x)) ?? [],
+      };
     }),
 });

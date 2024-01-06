@@ -1,10 +1,11 @@
+import type { IFuseOptions } from "fuse.js";
 import Fuse from "fuse.js";
 import { useMemo } from "react";
 
 export const useFuse = <T>(
   list: T[],
   searchTerm: string,
-  fuseOptions?: Fuse.IFuseOptions<T>
+  fuseOptions?: IFuseOptions<T>,
 ) => {
   const fuse = useMemo(() => {
     return new Fuse(list, fuseOptions);

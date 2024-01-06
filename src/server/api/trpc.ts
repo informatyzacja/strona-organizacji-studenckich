@@ -1,32 +1,21 @@
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { type Session } from "next-auth";
-
-import { getServerAuthSession } from "../auth";
-import { prisma } from "../db";
-
-import { initTRPC, TRPCError } from "@trpc/server";
+import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
+import type { ApiCollections } from "@/utils/api-collection";
+import { createDirectus, rest } from "@directus/sdk";
+import { Chain } from "@/utils/zeus";
+import { env } from "@/env.mjs";
 
-type CreateContextOptions = {
-  session: Session | null;
+type NoUndefinedField<T> = {
+  [P in keyof T]-?: NoUndefinedField<Exclude<T[P], undefined>>;
 };
+export const createTRPCContext = () => {
+  const directusSdk = createDirectus<NoUndefinedField<ApiCollections>>(
+    env.DIRECTUS_URL,
+  ).with(rest());
 
-const createInnerTRPCContext = (opts: CreateContextOptions) => {
-  return {
-    session: opts.session,
-    prisma,
-  };
-};
+  const query = Chain(`${env.DIRECTUS_URL}/graphql`)("query");
 
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
-
-  // Get the session from the server using the getServerSession wrapper function
-  const session = await getServerAuthSession({ req, res });
-
-  return createInnerTRPCContext({
-    session,
-  });
+  return { directusSdk, query };
 };
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
@@ -39,32 +28,3 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
 export const createTRPCRouter = t.router;
 
 export const publicProcedure = t.procedure;
-
-const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
-  }
-  return next({
-    ctx: {
-      session: { ...ctx.session, user: ctx.session.user },
-    },
-  });
-});
-
-export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
-
-const enforceUserIsAdmin = t.middleware(({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
-  }
-  if (ctx.session.user.role !== "ADMIN") {
-    throw new TRPCError({ code: "FORBIDDEN" });
-  }
-  return next({
-    ctx: {
-      session: { ...ctx.session, user: ctx.session.user },
-    },
-  });
-});
-
-export const adminProcedure = t.procedure.use(enforceUserIsAdmin);

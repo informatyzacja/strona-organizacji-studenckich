@@ -49,8 +49,7 @@ export const useSearch = (data?: Organizations) => {
     }
 
     return result.filter((item) => {
-      const { Tags } = item;
-      return selectedTags.every((tag) => Tags.includes(tag));
+      return selectedTags.every((tag) => item.tags.includes(tag));
     });
   }, [result, selectedTags]);
 

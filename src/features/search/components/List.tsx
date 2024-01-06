@@ -8,6 +8,7 @@ import React from "react";
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { OrganisationCard } from "./OrganisationCard";
 import { useNumberOfOrganizationsToShow } from "../hooks/useNumberOfOrganizationsToShow";
+import { directusFileUrl } from "@/utils/directus";
 
 export const List = ({
   data,
@@ -59,7 +60,13 @@ export const List = ({
                 transition={{ type: "spring", duration: 0.4 }}
               >
                 <WrapItem p={2}>
-                  <OrganisationCard {...org} />
+                  <OrganisationCard
+                    name={org.name}
+                    description={org.shortDescription}
+                    logoUrl={directusFileUrl(org.logo)}
+                    slug={org.slug}
+                    tags={org.tags}
+                  />
                 </WrapItem>
               </motion.div>
             ))}

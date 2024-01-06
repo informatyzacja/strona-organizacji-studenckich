@@ -13,10 +13,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-      - uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
+          node-version: 20
+      - name: Install
+        run: npm ci
       - name: format
         run: npm run format:check
       - name: lint
@@ -28,23 +27,13 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
       - name: Setup env
         run: |
           touch .env
-          echo NEXTAUTH_URL=http://localhost:3000 >> .env
-          echo NEXTAUTH_SECRET=secret >> .env
-          echo GOOGLE_CLIENT_ID=123 >> .env
-          echo GOOGLE_CLIENT_SECRET=123 >> .env
-          echo DATABASE_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
-          echo SMTP_HOST="smtp.gmail.com" >> .env
-          echo SMTP_USERNAME="example@gmail.com" >> .env
-          echo SMTP_PASSWORD="example_password" >> .env
-          echo EMAIL_FROM="example name" >> .env
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
+          echo DIRECTUS_URL="https://directus.universe.nexus" > .env
+      - name: Install
+        run: npm ci
       - name: Cache build
         uses: actions/cache@v3
         with:

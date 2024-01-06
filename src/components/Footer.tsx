@@ -7,7 +7,6 @@ import {
   VisuallyHidden,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { FaFacebook, FaGithub, FaGlobeEurope } from "react-icons/fa";
 import logoDS from "../../public/logo-dzial-studencki.svg";

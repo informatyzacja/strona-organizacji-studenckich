@@ -2,19 +2,8 @@
 import { z } from "zod";
 
 const server = z.object({
-  DATABASE_URL: z.string().url(),
-  NODE_ENV: z.enum(["development", "test", "production"]).optional(),
-  NEXTAUTH_SECRET:
-    process.env.NODE_ENV === "production"
-      ? z.string().min(1)
-      : z.string().min(1).optional(),
-  NEXTAUTH_URL: z.string().min(1),
-  GOOGLE_CLIENT_ID: z.string().min(1),
-  GOOGLE_CLIENT_SECRET: z.string().min(1),
-  SMTP_HOST: z.string().min(1),
-  SMTP_USERNAME: z.string().min(1),
-  SMTP_PASSWORD: z.string().min(1),
-  EMAIL_FROM: z.string().min(1),
+  DIRECTUS_URL: z.string().min(1),
+  NODE_ENV: z.string().min(1),
 });
 
 const client = z.object({
@@ -27,17 +16,9 @@ const client = z.object({
  * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
  */
 const processEnv = {
-  DATABASE_URL: process.env.DATABASE_URL,
+  DIRECTUS_URL: process.env.DIRECTUS_URL,
   NODE_ENV: process.env.NODE_ENV,
-  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
-  SMTP_HOST: process.env.SMTP_HOST,
-  SMTP_USERNAME: process.env.SMTP_USERNAME,
-  SMTP_PASSWORD: process.env.SMTP_PASSWORD,
-  EMAIL_FROM: process.env.EMAIL_FROM,
 };
 
 // Don't touch the part below
@@ -58,7 +39,7 @@ if (!!process.env.SKIP_ENV_VALIDATION == false) {
   if (parsed.success === false) {
     console.error(
       "❌ Invalid environment variables:",
-      parsed.error.flatten().fieldErrors
+      parsed.error.flatten().fieldErrors,
     );
     throw new Error("Invalid environment variables");
   }
@@ -74,7 +55,7 @@ if (!!process.env.SKIP_ENV_VALIDATION == false) {
         throw new Error(
           process.env.NODE_ENV === "production"
             ? "❌ Attempted to access a server-side environment variable on the client"
-            : `❌ Attempted to access server-side environment variable '${prop}' on the client`
+            : `❌ Attempted to access server-side environment variable '${prop}' on the client`,
         );
       /*  @ts-ignore - can't type this properly in jsdoc */
       return target[prop];
