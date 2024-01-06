@@ -1,7 +1,7 @@
 import { chakra, Stack } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 import React from "react";
-import { Lato } from "@next/font/google";
+import { Lato } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { motion } from "framer-motion";

@@ -28,6 +28,12 @@ const config = {
         port: "",
         pathname: "/150/**",
       },
+      {
+        protocol: "https",
+        hostname: "directus.universe.nexus",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

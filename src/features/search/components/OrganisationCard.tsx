@@ -1,17 +1,7 @@
-import {
-  Button,
-  Text,
-  Wrap,
-  WrapItem,
-  VStack,
-  HStack,
-  IconButton,
-} from "@chakra-ui/react";
+import { Button, Text, Wrap, WrapItem, VStack, HStack } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FaHeart } from "react-icons/fa";
 import { Tag } from "./Tag";
-import { useSession } from "next-auth/react";
 
 export const OrganisationCard = ({
   name,
@@ -19,22 +9,22 @@ export const OrganisationCard = ({
   logoUrl,
   slug,
   residence,
-  Tags,
+  tags,
 }: {
   name: string;
   description: string;
   logoUrl: string | null;
   slug: string;
   residence?: string;
-  Tags: string[];
+  tags: string[];
 }) => {
   const router = useRouter();
-  const { status } = useSession();
+
   return (
     <VStack
       p={6}
       w="400px"
-      h="26rem"
+      h="28rem"
       shadow="md"
       justify="space-between"
       align="start"
@@ -47,7 +37,7 @@ export const OrganisationCard = ({
               {name}
             </Text>
             <Wrap pt={2} direction="row">
-              {Tags.map((tag) => (
+              {tags.map((tag) => (
                 <WrapItem key={tag}>
                   <Tag tag={tag} />
                 </WrapItem>
@@ -85,9 +75,6 @@ export const OrganisationCard = ({
         >
           Zobacz
         </Button>
-        {status === "authenticated" ? (
-          <IconButton icon={<FaHeart />} aria-label="Dodaj do ulubionych" />
-        ) : null}
       </HStack>
     </VStack>
   );

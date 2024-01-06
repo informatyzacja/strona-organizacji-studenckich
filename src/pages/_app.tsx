@@ -1,6 +1,4 @@
 import { type AppType } from "next/app";
-import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
 
 import { api } from "@/utils/api";
 import { theme } from "@/styles/theme";
@@ -9,10 +7,7 @@ import Head from "next/head";
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { usePreserveScroll } from "@/hooks/usePreserveScroll";
 
-const MyApp: AppType<{ session: Session | null }> = ({
-  Component,
-  pageProps: { session, ...pageProps },
-}) => {
+const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   usePreserveScroll();
 
   return (
@@ -26,11 +21,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ChakraProvider theme={theme}>
-        <SessionProvider session={session}>
-          <AnimatePresenceSSR mode="wait" initial={false}>
-            <Component {...pageProps} />
-          </AnimatePresenceSSR>
-        </SessionProvider>
+        <AnimatePresenceSSR mode="wait" initial={false}>
+          <Component {...pageProps} />
+        </AnimatePresenceSSR>
       </ChakraProvider>
     </>
   );

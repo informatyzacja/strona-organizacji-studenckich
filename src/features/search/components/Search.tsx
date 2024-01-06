@@ -13,7 +13,7 @@ import { useNumberOfOrganizationsToShow } from "../hooks/useNumberOfOrganization
 const SelectableTag = (
   props: ComponentProps<typeof Tag> & {
     onToggle: (tag: string) => void;
-  }
+  },
 ) => {
   return (
     <Tag

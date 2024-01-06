@@ -9,15 +9,14 @@ import { OrganisationFull } from "../components/OrganisationFull";
 
 const OrganisationPage = () => {
   const router = useRouter<"/organizacja/[slug]">();
-  const { slug } = router.query;
 
   const { data, isLoading } = api.organizations.get.useQuery(
     {
-      slug,
+      slug: router.isReady ? router.query.slug : "",
     },
     {
-      enabled: Boolean(slug),
-    }
+      enabled: Boolean(router.query.slug),
+    },
   );
 
   if (isLoading) {
