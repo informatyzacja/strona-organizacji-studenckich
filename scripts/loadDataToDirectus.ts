@@ -34,7 +34,7 @@ const findFilename = (filename: string, filenames: string[]) => {
 };
 
 const CONFIG = {
-  DIRECTUS_URL: "https://directus.universe.nexus",
+  NEXT_PUBLIC_DIRECTUS_URL: "https://directus.universe.nexus",
   ADMIN_EMAIL: "FILL_ME_IN",
   ADMIN_PASSWORD: "FILL_ME_IN",
   LOGO_FOLDER_ID: "79d440d6-07f6-47ed-8448-57587f27e706",
@@ -47,7 +47,7 @@ const main = async () => {
   );
 
   const client = createDirectus<NoUndefinedField<ApiCollections>>(
-    CONFIG.DIRECTUS_URL,
+    CONFIG.NEXT_PUBLIC_DIRECTUS_URL,
   )
     .with(rest())
     .with(authentication("json"));

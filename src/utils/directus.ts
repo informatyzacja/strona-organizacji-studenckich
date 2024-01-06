@@ -12,8 +12,8 @@ export const directusFileUrl = <
   }
 
   if (typeof fileId === "string") {
-    return `${env.DIRECTUS_URL}/assets/${fileId}` as R;
+    return `${env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${fileId}` as R;
   }
 
-  return `${env.DIRECTUS_URL}/assets/${fileId.id}` as R;
+  return `${env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${fileId.id}` as R;
 };

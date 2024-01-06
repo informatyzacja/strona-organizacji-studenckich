@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "generate": "npm run setupEnv -- npx zeus $DIRECTUS_URL ./src/utils/",
+    "generate": "npm run setupEnv -- npx zeus $NEXT_PUBLIC_DIRECTUS_URL ./src/utils/",
     "lint": "npm run setupEnv -- next lint",
     "format:check": "prettier --check src",
     "format:fix": "prettier --write src",

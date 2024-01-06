@@ -10,7 +10,7 @@ Pozwoli na wyszukiwanie organizacji studenckich i koł naukowych po słowach klu
 
 ### Zmienne środowiskowe
 
-- `DIRECTUS_URL` - adres do instancji Directusa
+- `NEXT_PUBLIC_DIRECTUS_URL` - adres do instancji Directusa
 
 ### Wymagania
 

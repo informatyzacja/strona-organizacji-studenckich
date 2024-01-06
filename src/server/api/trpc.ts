@@ -10,10 +10,10 @@ type NoUndefinedField<T> = {
 };
 export const createTRPCContext = () => {
   const directusSdk = createDirectus<NoUndefinedField<ApiCollections>>(
-    env.DIRECTUS_URL,
+    env.NEXT_PUBLIC_DIRECTUS_URL,
   ).with(rest());
 
-  const query = Chain(`${env.DIRECTUS_URL}/graphql`)("query");
+  const query = Chain(`${env.NEXT_PUBLIC_DIRECTUS_URL}/graphql`)("query");
 
   return { directusSdk, query };
 };

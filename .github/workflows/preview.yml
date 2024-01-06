@@ -140,7 +140,7 @@ jobs:
       - name: Build frontend
         run: |
           touch .env
-          echo DIRECTUS_URL="https://directus.universe.nexus" >> .env
+          echo NEXT_PUBLIC_DIRECTUS_URL="https://directus.universe.nexus" >> .env
           npm run build
 
       - name: Starting app

@@ -2,12 +2,11 @@
 import { z } from "zod";
 
 const server = z.object({
-  DIRECTUS_URL: z.string().min(1),
   NODE_ENV: z.string().min(1),
 });
 
 const client = z.object({
-  // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
+  NEXT_PUBLIC_DIRECTUS_URL: z.string().min(1),
 });
 
 /**
@@ -16,7 +15,7 @@ const client = z.object({
  * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
  */
 const processEnv = {
-  DIRECTUS_URL: process.env.DIRECTUS_URL,
+  NEXT_PUBLIC_DIRECTUS_URL: process.env.NEXT_PUBLIC_DIRECTUS_URL,
   NODE_ENV: process.env.NODE_ENV,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
