@@ -6,7 +6,6 @@
 .pnp.js
 
 # testing
-/scripts
 /coverage
 
 # database
@@ -41,8 +40,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-# uploaded files
-upload
+/scripts/sos_image_data
 
 /postgres-data/
