@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { ApiCollections } from "@/utils/api-collection";
 import {
   authentication,
@@ -10,7 +14,6 @@ import {
   uploadFiles,
 } from "@directus/sdk";
 import fs from "node:fs";
-import sosData from "./sos_image_data/updated_data.json";
 import path from "node:path";
 import slugify from "slugify";
 
@@ -39,6 +42,10 @@ const CONFIG = {
 };
 
 const main = async () => {
+  const sosData = JSON.parse(
+    fs.readFileSync("./scripts/sos_image_data/updated_data.json", "utf-8"),
+  );
+
   const client = createDirectus<NoUndefinedField<ApiCollections>>(
     CONFIG.DIRECTUS_URL,
   )
@@ -138,7 +145,7 @@ const main = async () => {
     createdOrgs.push(createdOrg);
 
     await Promise.all(
-      org.photos.map(async (photo) => {
+      org.photos.map(async (photo: string) => {
         const file = await uploadFile(
           `${photosDir}/${findFilename(photo, allPhotos)}`,
           "zdjecia",
