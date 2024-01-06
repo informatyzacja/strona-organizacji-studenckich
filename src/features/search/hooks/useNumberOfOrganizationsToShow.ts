@@ -4,7 +4,7 @@ import { numberOfOrganizationsToShowAtom } from "../atoms/numberOfOrganizationsT
 
 export const useNumberOfOrganizationsToShow = () => {
   const [numberOfOrganizations, setNumberOfOrganizations] = useAtom(
-    numberOfOrganizationsToShowAtom
+    numberOfOrganizationsToShowAtom,
   );
   const reset = useResetAtom(numberOfOrganizationsToShowAtom);
 
