@@ -10,29 +10,13 @@ Pozwoli na wyszukiwanie organizacji studenckich i koł naukowych po słowach klu
 
 ### Zmienne środowiskowe
 
-- `DATABASE_URL` - adres url do bazy danych
-- `DATABASE_NAME` - nazwa bazy danych
-- `DATABASE_USERNAME` - nazwa użytkownika bazy danych
-- `DATABASE_PASSWORD` - hasło użytkownika bazy danych
-- `GOOGLE_CLIENT_ID` - Google OAuth client id
-- `GOOGLE_CLIENT_SECRET` - Google OAuth secret token
-- `NEXTAUTH_SECRET` - sekret do nextauth
-- `NEXTAUTH_URL` - url do strony (domyślnie `http://localhost:3000`)
+- `DIRECTUS_URL` - adres do instancji Directusa
 
 ### Wymagania
 
-- [node.js@16](https://nodejs.org/en/download/)
-- [docker](https://docs.docker.com/get-docker/)
+- [node.js@20](https://nodejs.org/en/download/)
 
 ### Jak odpalić?
 
 1. `npm install`
 2. `npm run dev`
-
-Jeżeli chcemy wczytać przykładowe dane:
-
-- `npm run db:seed`
-
-Aby zmieniać dane w bazie danych, należy użyć Prisma studio:
-
-- `npm run db:studio`
