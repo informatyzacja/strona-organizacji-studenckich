@@ -14,9 +14,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
+      - name: Install
+        run: npm ci
       - name: format
         run: npm run format:check
       - name: lint
@@ -33,10 +32,8 @@ jobs:
         run: |
           touch .env
           echo DIRECTUS_URL="https://directus.universe.nexus" > .env
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          useRollingCache: true
+      - name: Install
+        run: npm ci
       - name: Cache build
         uses: actions/cache@v3
         with:

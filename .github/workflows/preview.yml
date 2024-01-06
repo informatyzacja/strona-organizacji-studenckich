@@ -119,8 +119,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
           message: |
             **🖼️ Preview Environment:** _Installing dependencies..._
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: Install
+        run: npm ci
       - name: Cache build
         uses: actions/cache@v3
         with:
