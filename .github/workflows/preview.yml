@@ -81,7 +81,7 @@ jobs:
 
       - name: Start frontend tunnel
         id: expose-tunnel
-        uses: codetalkio/expose-tunnel@v1.4.0
+        uses: codetalkio/expose-tunnel@v1.5.0
         with:
           service: localhost.run
           port: 3000
