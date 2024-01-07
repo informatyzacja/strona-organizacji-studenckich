@@ -60,7 +60,7 @@ jobs:
 
       - name: Extract current commit
         id: sha
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           result-encoding: string
           script: |
@@ -93,7 +93,7 @@ jobs:
           echo "tunnel-url=${fixedUrl}" >> $GITHUB_OUTPUT
 
       - name: Hide preview comment
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         if: ${{ needs.check.outputs.triggered_by_ci != 'true' }}
         with:
           result-encoding: string
