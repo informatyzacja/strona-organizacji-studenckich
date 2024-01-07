@@ -13,19 +13,15 @@ export const useSearch = (data?: Organizations) => {
     keys: [
       {
         name: "name",
-        weight: 3,
+        weight: 2,
       },
       {
-        name: "description",
+        name: "shortDescription",
         weight: 1,
       },
       {
         name: "tags",
-        weight: 4,
-      },
-      {
-        name: "department",
-        weight: 2,
+        weight: 3,
       },
     ],
     ignoreLocation: true,
