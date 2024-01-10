@@ -24,7 +24,7 @@
     "@trpc/next": "^10.45.0",
     "@trpc/react-query": "^10.45.0",
     "@trpc/server": "^10.45.0",
-    "framer-motion": "^10.17.12",
+    "framer-motion": "^10.18.0",
     "fuse.js": "^7.0.0",
     "jotai": "^2.6.1",
     "next": "14.0.4",
