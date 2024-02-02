@@ -53,7 +53,7 @@
     "graphql-zeus": "^5.3.3",
     "husky": "^9.0.10",
     "lint-staged": "^15.2.1",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.4",
     "semantic-release": "^23.0.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
