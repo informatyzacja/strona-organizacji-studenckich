@@ -5,12 +5,15 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { usePreserveScroll } from "@/hooks/usePreserveScroll";
+import { DefaultSeo } from "next-seo";
+import { siteConfig } from "@/config";
 
 const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   usePreserveScroll();
 
   return (
     <>
+      <DefaultSeo {...siteConfig} />
       <Head>
         <title>Aktywni na PWr</title>
         <meta

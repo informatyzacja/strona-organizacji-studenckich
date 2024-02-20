@@ -3,12 +3,30 @@ import { Layout } from "@/components/Layout";
 import { trpcClient } from "@/server/client";
 import type { GetStaticPaths, InferGetStaticPropsType } from "next";
 import { OrganisationFull } from "@/components/OrganisationFull";
+import { NextSeo } from "next-seo";
+import { siteConfig } from "@/config";
 
 const OrganisationPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Layout>
+      <NextSeo
+        title={data.name}
+        description={data.shortDescription}
+        openGraph={{
+          locale: "pl_PL",
+          type: "website",
+          images: [
+            {
+              url: `${siteConfig.canonical}/api/og?org=${data.slug}`,
+              width: 1200,
+              height: 630,
+              alt: data.name,
+            },
+          ],
+        }}
+      />
       <OrganisationFull data={data} />
     </Layout>
   );
