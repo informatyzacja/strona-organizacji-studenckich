@@ -18,6 +18,30 @@ const OrganisationPage = ({
             ? data.shortDescription.slice(0, 120) + "..."
             : data.shortDescription
         }
+        twitter={{
+          cardType: "summary_large_image",
+        }}
+        additionalMetaTags={[
+          {
+            name: "twitter:site",
+            content: siteConfig.title,
+          },
+          {
+            name: "twitter:image:src",
+            content: `${siteConfig.canonical}/api/og?org=${data.slug}`,
+          },
+          {
+            name: "twitter:title",
+            content: data.name,
+          },
+          {
+            name: "twitter:description",
+            content:
+              data.shortDescription && data.shortDescription?.length > 120
+                ? data.shortDescription.slice(0, 120) + "..."
+                : data.shortDescription ?? "Organizacja studencka",
+          },
+        ]}
         openGraph={{
           locale: "pl_PL",
           type: "website",
