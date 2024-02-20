@@ -20,4 +20,17 @@ export const siteConfig = {
       },
     ],
   },
+  twitter: {
+    cardType: "summary_large_image",
+  },
+  additionalMetaTags: [
+    {
+      name: "twitter:image:src",
+      content: "https://aktywni.pwr.edu.pl/api/og",
+    },
+    {
+      name: "twitter:title",
+      content: "Aktywni na PWr",
+    },
+  ],
 } satisfies DefaultSeoProps;
