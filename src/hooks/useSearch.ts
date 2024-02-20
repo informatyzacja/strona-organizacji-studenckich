@@ -1,15 +1,19 @@
 import type { RouterOutputs } from "@/utils/api";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useFuse } from "./useFuse";
 import { useSelectedTags } from "./useSelectedTags";
+import { parseAsString, useQueryState } from "nuqs";
 
 type Organizations = RouterOutputs["organizations"]["list"];
 
 export const useSearch = (data?: Organizations) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useQueryState(
+    "szukaj",
+    parseAsString.withOptions({ clearOnDefault: true }).withDefault(""),
+  );
   const { selectedTags } = useSelectedTags();
 
-  const fuseResult = useFuse(data ?? [], search, {
+  const fuseResult = useFuse(data ?? [], search ?? "", {
     keys: [
       {
         name: "name",

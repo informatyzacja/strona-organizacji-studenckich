@@ -20,12 +20,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import type { InferGetStaticPropsType } from "next";
+import type { InferGetServerSidePropsType } from "next";
 
 const SearchPage = ({
   organizations,
   tags,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { numberOfOrganizations, loadMore } = useNumberOfOrganizationsToShow();
   const { search, setSearch, results } = useSearch(organizations);
 
@@ -108,7 +108,7 @@ const SearchPage = ({
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const organizations = await trpcClient.organizations.list.fetch();
   const tags = await trpcClient.tags.list.fetch();
 
