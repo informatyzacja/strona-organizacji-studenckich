@@ -14,7 +14,7 @@ const OrganisationPage = ({
       <NextSeo
         title={data.name}
         description={
-          data.shortDescription.length > 120
+          data.shortDescription && data.shortDescription?.length > 120
             ? data.shortDescription.slice(0, 120) + "..."
             : data.shortDescription
         }
