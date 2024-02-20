@@ -1,0 +1,568 @@
+type Query {
+  Tagi(
+    filter: Tagi_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): [Tagi!]!
+  Tagi_by_id(id: ID!): Tagi
+  Tagi_aggregated(
+    groupBy: [String]
+    filter: Tagi_filter
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+    sort: [String]
+  ): [Tagi_aggregated!]!
+  Tagi_by_version(version: String!, id: ID!): version_Tagi
+  Organizacje_Tagi(
+    filter: Organizacje_Tagi_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): [Organizacje_Tagi!]!
+  Organizacje_Tagi_by_id(id: ID!): Organizacje_Tagi
+  Organizacje_Tagi_aggregated(
+    groupBy: [String]
+    filter: Organizacje_Tagi_filter
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+    sort: [String]
+  ): [Organizacje_Tagi_aggregated!]!
+  Organizacje_Tagi_by_version(
+    version: String!
+    id: ID!
+  ): version_Organizacje_Tagi
+  Organizacje(
+    filter: Organizacje_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): [Organizacje!]!
+  Organizacje_by_id(id: ID!): Organizacje
+  Organizacje_aggregated(
+    groupBy: [String]
+    filter: Organizacje_filter
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+    sort: [String]
+  ): [Organizacje_aggregated!]!
+  Organizacje_by_version(version: String!, id: ID!): version_Organizacje
+  Organizacje_files(
+    filter: Organizacje_files_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): [Organizacje_files!]!
+  Organizacje_files_by_id(id: ID!): Organizacje_files
+  Organizacje_files_aggregated(
+    groupBy: [String]
+    filter: Organizacje_files_filter
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+    sort: [String]
+  ): [Organizacje_files_aggregated!]!
+  Organizacje_files_by_version(
+    version: String!
+    id: ID!
+  ): version_Organizacje_files
+}
+
+type Subscription {
+  Tagi_mutated(event: EventEnum): Tagi_mutated
+  Organizacje_Tagi_mutated(event: EventEnum): Organizacje_Tagi_mutated
+  Organizacje_mutated(event: EventEnum): Organizacje_mutated
+  Organizacje_files_mutated(event: EventEnum): Organizacje_files_mutated
+}
+
+"""
+The `Boolean` scalar type represents `true` or `false`.
+"""
+scalar Boolean
+
+"""
+ISO8601 Date values
+"""
+scalar Date
+
+"""
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+"""
+scalar Float
+
+"""
+A Float or a String
+"""
+scalar GraphQLStringOrFloat
+
+"""
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+"""
+scalar ID
+
+"""
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+"""
+scalar Int
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+"""
+scalar String
+
+enum EventEnum {
+  create
+  update
+  delete
+}
+
+type count_functions {
+  count: Int
+}
+
+type datetime_functions {
+  year: Int
+  month: Int
+  week: Int
+  day: Int
+  weekday: Int
+  hour: Int
+  minute: Int
+  second: Int
+}
+
+type Organizacje {
+  id: ID!
+  status: String
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  email: String
+  field: String
+  longDescription: String
+  skillsAndChallenges: String
+  website: String
+  linkedin: String
+  facebook: String
+  instagram: String
+  youtube: String
+  slug: String!
+  name: String!
+  logo: String
+  shortDescription: String
+  achievements: String
+  distinguishingFeatures: String
+  areasOfInterest: String
+  tags(
+    filter: Organizacje_Tagi_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): [Organizacje_Tagi]
+  tags_func: count_functions
+  images(
+    filter: Organizacje_files_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): [Organizacje_files]
+  images_func: count_functions
+}
+
+type Organizacje_aggregated {
+  group: JSON
+  countAll: Int
+  count: Organizacje_aggregated_count
+  countDistinct: Organizacje_aggregated_count
+}
+
+type Organizacje_aggregated_count {
+  id: Int
+  status: Int
+  user_created: Int
+  date_created: Int
+  user_updated: Int
+  date_updated: Int
+  email: Int
+  field: Int
+  longDescription: Int
+  skillsAndChallenges: Int
+  website: Int
+  linkedin: Int
+  facebook: Int
+  instagram: Int
+  youtube: Int
+  slug: Int
+  name: Int
+  logo: Int
+  shortDescription: Int
+  achievements: Int
+  distinguishingFeatures: Int
+  areasOfInterest: Int
+  tags: Int
+  images: Int
+}
+
+type Organizacje_files {
+  id: ID!
+  Organizacje_id(
+    filter: Organizacje_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): Organizacje
+  directus_files_id: String
+}
+
+type Organizacje_files_aggregated {
+  group: JSON
+  countAll: Int
+  count: Organizacje_files_aggregated_count
+  countDistinct: Organizacje_files_aggregated_count
+  avg: Organizacje_files_aggregated_fields
+  sum: Organizacje_files_aggregated_fields
+  avgDistinct: Organizacje_files_aggregated_fields
+  sumDistinct: Organizacje_files_aggregated_fields
+  min: Organizacje_files_aggregated_fields
+  max: Organizacje_files_aggregated_fields
+}
+
+type Organizacje_files_aggregated_count {
+  id: Int
+  Organizacje_id: Int
+  directus_files_id: Int
+}
+
+type Organizacje_files_aggregated_fields {
+  id: Float
+}
+
+type Organizacje_files_mutated {
+  key: ID!
+  event: EventEnum
+  data: Organizacje_files
+}
+
+type Organizacje_mutated {
+  key: ID!
+  event: EventEnum
+  data: Organizacje
+}
+
+type Organizacje_Tagi {
+  id: ID!
+  Organizacje_id(
+    filter: Organizacje_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): Organizacje
+  Tagi_id(
+    filter: Tagi_filter
+    sort: [String]
+    limit: Int
+    offset: Int
+    page: Int
+    search: String
+  ): Tagi
+}
+
+type Organizacje_Tagi_aggregated {
+  group: JSON
+  countAll: Int
+  count: Organizacje_Tagi_aggregated_count
+  countDistinct: Organizacje_Tagi_aggregated_count
+  avg: Organizacje_Tagi_aggregated_fields
+  sum: Organizacje_Tagi_aggregated_fields
+  avgDistinct: Organizacje_Tagi_aggregated_fields
+  sumDistinct: Organizacje_Tagi_aggregated_fields
+  min: Organizacje_Tagi_aggregated_fields
+  max: Organizacje_Tagi_aggregated_fields
+}
+
+type Organizacje_Tagi_aggregated_count {
+  id: Int
+  Organizacje_id: Int
+  Tagi_id: Int
+}
+
+type Organizacje_Tagi_aggregated_fields {
+  id: Float
+  Tagi_id: Float
+}
+
+type Organizacje_Tagi_mutated {
+  key: ID!
+  event: EventEnum
+  data: Organizacje_Tagi
+}
+
+type Tagi {
+  id: ID!
+  sort: Int
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  tag: String!
+}
+
+type Tagi_aggregated {
+  group: JSON
+  countAll: Int
+  count: Tagi_aggregated_count
+  countDistinct: Tagi_aggregated_count
+  avg: Tagi_aggregated_fields
+  sum: Tagi_aggregated_fields
+  avgDistinct: Tagi_aggregated_fields
+  sumDistinct: Tagi_aggregated_fields
+  min: Tagi_aggregated_fields
+  max: Tagi_aggregated_fields
+}
+
+type Tagi_aggregated_count {
+  id: Int
+  sort: Int
+  user_created: Int
+  date_created: Int
+  user_updated: Int
+  date_updated: Int
+  tag: Int
+}
+
+type Tagi_aggregated_fields {
+  id: Float
+  sort: Float
+}
+
+type Tagi_mutated {
+  key: ID!
+  event: EventEnum
+  data: Tagi
+}
+
+"""
+"""
+type version_Organizacje {
+  id: ID!
+  status: String
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  email: String
+  field: String
+  longDescription: String
+  skillsAndChallenges: String
+  website: String
+  linkedin: String
+  facebook: String
+  instagram: String
+  youtube: String
+  slug: String!
+  name: String!
+  logo: String
+  shortDescription: String
+  achievements: String
+  distinguishingFeatures: String
+  areasOfInterest: String
+  tags: JSON
+  tags_func: count_functions
+  images: JSON
+  images_func: count_functions
+}
+
+"""
+"""
+type version_Organizacje_files {
+  id: ID!
+  Organizacje_id: String
+  directus_files_id: String
+}
+
+"""
+"""
+type version_Organizacje_Tagi {
+  id: ID!
+  Organizacje_id: String
+  Tagi_id: Int
+}
+
+"""
+"""
+type version_Tagi {
+  id: ID!
+  sort: Int
+  user_created: String
+  date_created: Date
+  date_created_func: datetime_functions
+  user_updated: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  tag: String!
+}
+
+input count_function_filter_operators {
+  count: number_filter_operators
+}
+
+input date_filter_operators {
+  _eq: String
+  _neq: String
+  _gt: String
+  _gte: String
+  _lt: String
+  _lte: String
+  _null: Boolean
+  _nnull: Boolean
+  _in: [String]
+  _nin: [String]
+  _between: [GraphQLStringOrFloat]
+  _nbetween: [GraphQLStringOrFloat]
+}
+
+input datetime_function_filter_operators {
+  year: number_filter_operators
+  month: number_filter_operators
+  week: number_filter_operators
+  day: number_filter_operators
+  weekday: number_filter_operators
+  hour: number_filter_operators
+  minute: number_filter_operators
+  second: number_filter_operators
+}
+
+input number_filter_operators {
+  _eq: GraphQLStringOrFloat
+  _neq: GraphQLStringOrFloat
+  _in: [GraphQLStringOrFloat]
+  _nin: [GraphQLStringOrFloat]
+  _gt: GraphQLStringOrFloat
+  _gte: GraphQLStringOrFloat
+  _lt: GraphQLStringOrFloat
+  _lte: GraphQLStringOrFloat
+  _null: Boolean
+  _nnull: Boolean
+  _between: [GraphQLStringOrFloat]
+  _nbetween: [GraphQLStringOrFloat]
+}
+
+input Organizacje_files_filter {
+  id: number_filter_operators
+  Organizacje_id: Organizacje_filter
+  directus_files_id: string_filter_operators
+  _and: [Organizacje_files_filter]
+  _or: [Organizacje_files_filter]
+}
+
+input Organizacje_filter {
+  id: string_filter_operators
+  status: string_filter_operators
+  user_created: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  user_updated: string_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  email: string_filter_operators
+  field: string_filter_operators
+  longDescription: string_filter_operators
+  skillsAndChallenges: string_filter_operators
+  website: string_filter_operators
+  linkedin: string_filter_operators
+  facebook: string_filter_operators
+  instagram: string_filter_operators
+  youtube: string_filter_operators
+  slug: string_filter_operators
+  name: string_filter_operators
+  logo: string_filter_operators
+  shortDescription: string_filter_operators
+  achievements: string_filter_operators
+  distinguishingFeatures: string_filter_operators
+  areasOfInterest: string_filter_operators
+  tags: Organizacje_Tagi_filter
+  tags_func: count_function_filter_operators
+  images: Organizacje_files_filter
+  images_func: count_function_filter_operators
+  _and: [Organizacje_filter]
+  _or: [Organizacje_filter]
+}
+
+input Organizacje_Tagi_filter {
+  id: number_filter_operators
+  Organizacje_id: Organizacje_filter
+  Tagi_id: Tagi_filter
+  _and: [Organizacje_Tagi_filter]
+  _or: [Organizacje_Tagi_filter]
+}
+
+input string_filter_operators {
+  _eq: String
+  _neq: String
+  _contains: String
+  _icontains: String
+  _ncontains: String
+  _starts_with: String
+  _nstarts_with: String
+  _istarts_with: String
+  _nistarts_with: String
+  _ends_with: String
+  _nends_with: String
+  _iends_with: String
+  _niends_with: String
+  _in: [String]
+  _nin: [String]
+  _null: Boolean
+  _nnull: Boolean
+  _empty: Boolean
+  _nempty: Boolean
+}
+
+input Tagi_filter {
+  id: number_filter_operators
+  sort: number_filter_operators
+  user_created: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  user_updated: string_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  tag: string_filter_operators
+  _and: [Tagi_filter]
+  _or: [Tagi_filter]
+}

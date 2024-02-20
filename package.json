@@ -5,12 +5,13 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "generate": "npm run setupEnv -- npx zeus $NEXT_PUBLIC_DIRECTUS_URL ./src/utils/",
-    "lint": "npm run setupEnv -- next lint",
+    "generate": "npm run generate:schema && npm run generate:client",
+    "generate:schema": "tsx ./scripts/generateSchema.ts && npx prettier --write ./schema.graphql",
+    "generate:client": "zeus schema.graphql src/utils && npx prettier --write ./src/utils/zeus",
+    "lint": "next lint",
     "format:check": "prettier --check src",
     "format:fix": "prettier --write src",
     "start": "next start",
-    "setupEnv": "dotenv -c development",
     "prepare": "husky install"
   },
   "dependencies": {

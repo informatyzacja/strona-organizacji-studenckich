@@ -1,7 +1,8 @@
 /* eslint-disable */
-// @ts-nocheck
+
 import { AllTypesProps, ReturnTypes, Ops } from "./const";
-export const HOST = "https://directus.universe.nexus/graphql";
+
+export const HOST = "Specify host";
 
 export const HEADERS = {};
 export const apiSubscription = (options: chainOptions) => (query: string) => {
@@ -141,7 +142,6 @@ export const InternalsBuildQuery = ({
             );
           }
           const operationName = Object.keys(objectUnderAlias)[0];
-
           const operation = objectUnderAlias[operationName];
           return ibb(`${alias}:${operationName}`, operation, p, false, vars);
         })
@@ -1019,9 +1019,14 @@ export const $ = <Type extends GraphQLVariableType, Name extends string>(
 };
 type ZEUS_INTERFACES = never;
 export type ScalarCoders = {
+  Boolean?: ScalarResolver;
   Date?: ScalarResolver;
+  Float?: ScalarResolver;
   GraphQLStringOrFloat?: ScalarResolver;
+  ID?: ScalarResolver;
+  Int?: ScalarResolver;
   JSON?: ScalarResolver;
+  String?: ScalarResolver;
 };
 type ZEUS_UNIONS = never;
 
@@ -1132,60 +1137,6 @@ export type ValueTypes = {
       },
       ValueTypes["version_Organizacje_Tagi"],
     ];
-    Organizacje_files?: [
-      {
-        filter?:
-          | ValueTypes["Organizacje_files_filter"]
-          | undefined
-          | null
-          | Variable<any, string>;
-        sort?:
-          | Array<string | undefined | null>
-          | undefined
-          | null
-          | Variable<any, string>;
-        limit?: number | undefined | null | Variable<any, string>;
-        offset?: number | undefined | null | Variable<any, string>;
-        page?: number | undefined | null | Variable<any, string>;
-        search?: string | undefined | null | Variable<any, string>;
-      },
-      ValueTypes["Organizacje_files"],
-    ];
-    Organizacje_files_by_id?: [
-      { id: string | Variable<any, string> },
-      ValueTypes["Organizacje_files"],
-    ];
-    Organizacje_files_aggregated?: [
-      {
-        groupBy?:
-          | Array<string | undefined | null>
-          | undefined
-          | null
-          | Variable<any, string>;
-        filter?:
-          | ValueTypes["Organizacje_files_filter"]
-          | undefined
-          | null
-          | Variable<any, string>;
-        limit?: number | undefined | null | Variable<any, string>;
-        offset?: number | undefined | null | Variable<any, string>;
-        page?: number | undefined | null | Variable<any, string>;
-        search?: string | undefined | null | Variable<any, string>;
-        sort?:
-          | Array<string | undefined | null>
-          | undefined
-          | null
-          | Variable<any, string>;
-      },
-      ValueTypes["Organizacje_files_aggregated"],
-    ];
-    Organizacje_files_by_version?: [
-      {
-        version: string | Variable<any, string>;
-        id: string | Variable<any, string>;
-      },
-      ValueTypes["version_Organizacje_files"],
-    ];
     Organizacje?: [
       {
         filter?:
@@ -1240,6 +1191,367 @@ export type ValueTypes = {
       },
       ValueTypes["version_Organizacje"],
     ];
+    Organizacje_files?: [
+      {
+        filter?:
+          | ValueTypes["Organizacje_files_filter"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        sort?:
+          | Array<string | undefined | null>
+          | undefined
+          | null
+          | Variable<any, string>;
+        limit?: number | undefined | null | Variable<any, string>;
+        offset?: number | undefined | null | Variable<any, string>;
+        page?: number | undefined | null | Variable<any, string>;
+        search?: string | undefined | null | Variable<any, string>;
+      },
+      ValueTypes["Organizacje_files"],
+    ];
+    Organizacje_files_by_id?: [
+      { id: string | Variable<any, string> },
+      ValueTypes["Organizacje_files"],
+    ];
+    Organizacje_files_aggregated?: [
+      {
+        groupBy?:
+          | Array<string | undefined | null>
+          | undefined
+          | null
+          | Variable<any, string>;
+        filter?:
+          | ValueTypes["Organizacje_files_filter"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        limit?: number | undefined | null | Variable<any, string>;
+        offset?: number | undefined | null | Variable<any, string>;
+        page?: number | undefined | null | Variable<any, string>;
+        search?: string | undefined | null | Variable<any, string>;
+        sort?:
+          | Array<string | undefined | null>
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["Organizacje_files_aggregated"],
+    ];
+    Organizacje_files_by_version?: [
+      {
+        version: string | Variable<any, string>;
+        id: string | Variable<any, string>;
+      },
+      ValueTypes["version_Organizacje_files"],
+    ];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Subscription"]: AliasType<{
+    Tagi_mutated?: [
+      {
+        event?:
+          | ValueTypes["EventEnum"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["Tagi_mutated"],
+    ];
+    Organizacje_Tagi_mutated?: [
+      {
+        event?:
+          | ValueTypes["EventEnum"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["Organizacje_Tagi_mutated"],
+    ];
+    Organizacje_mutated?: [
+      {
+        event?:
+          | ValueTypes["EventEnum"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["Organizacje_mutated"],
+    ];
+    Organizacje_files_mutated?: [
+      {
+        event?:
+          | ValueTypes["EventEnum"]
+          | undefined
+          | null
+          | Variable<any, string>;
+      },
+      ValueTypes["Organizacje_files_mutated"],
+    ];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** The `Boolean` scalar type represents `true` or `false`. */
+  ["Boolean"]: unknown;
+  /** ISO8601 Date values */
+  ["Date"]: unknown;
+  /** The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). */
+  ["Float"]: unknown;
+  /** A Float or a String */
+  ["GraphQLStringOrFloat"]: unknown;
+  /** The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID. */
+  ["ID"]: unknown;
+  /** The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. */
+  ["Int"]: unknown;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  ["JSON"]: unknown;
+  /** The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text. */
+  ["String"]: unknown;
+  ["EventEnum"]: EventEnum;
+  ["count_functions"]: AliasType<{
+    count?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["datetime_functions"]: AliasType<{
+    year?: boolean | `@${string}`;
+    month?: boolean | `@${string}`;
+    week?: boolean | `@${string}`;
+    day?: boolean | `@${string}`;
+    weekday?: boolean | `@${string}`;
+    hour?: boolean | `@${string}`;
+    minute?: boolean | `@${string}`;
+    second?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje"]: AliasType<{
+    id?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    date_created_func?: ValueTypes["datetime_functions"];
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    date_updated_func?: ValueTypes["datetime_functions"];
+    email?: boolean | `@${string}`;
+    field?: boolean | `@${string}`;
+    longDescription?: boolean | `@${string}`;
+    skillsAndChallenges?: boolean | `@${string}`;
+    website?: boolean | `@${string}`;
+    linkedin?: boolean | `@${string}`;
+    facebook?: boolean | `@${string}`;
+    instagram?: boolean | `@${string}`;
+    youtube?: boolean | `@${string}`;
+    slug?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    logo?: boolean | `@${string}`;
+    shortDescription?: boolean | `@${string}`;
+    achievements?: boolean | `@${string}`;
+    distinguishingFeatures?: boolean | `@${string}`;
+    areasOfInterest?: boolean | `@${string}`;
+    tags?: [
+      {
+        filter?:
+          | ValueTypes["Organizacje_Tagi_filter"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        sort?:
+          | Array<string | undefined | null>
+          | undefined
+          | null
+          | Variable<any, string>;
+        limit?: number | undefined | null | Variable<any, string>;
+        offset?: number | undefined | null | Variable<any, string>;
+        page?: number | undefined | null | Variable<any, string>;
+        search?: string | undefined | null | Variable<any, string>;
+      },
+      ValueTypes["Organizacje_Tagi"],
+    ];
+    tags_func?: ValueTypes["count_functions"];
+    images?: [
+      {
+        filter?:
+          | ValueTypes["Organizacje_files_filter"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        sort?:
+          | Array<string | undefined | null>
+          | undefined
+          | null
+          | Variable<any, string>;
+        limit?: number | undefined | null | Variable<any, string>;
+        offset?: number | undefined | null | Variable<any, string>;
+        page?: number | undefined | null | Variable<any, string>;
+        search?: string | undefined | null | Variable<any, string>;
+      },
+      ValueTypes["Organizacje_files"],
+    ];
+    images_func?: ValueTypes["count_functions"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_aggregated"]: AliasType<{
+    group?: boolean | `@${string}`;
+    countAll?: boolean | `@${string}`;
+    count?: ValueTypes["Organizacje_aggregated_count"];
+    countDistinct?: ValueTypes["Organizacje_aggregated_count"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_aggregated_count"]: AliasType<{
+    id?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    email?: boolean | `@${string}`;
+    field?: boolean | `@${string}`;
+    longDescription?: boolean | `@${string}`;
+    skillsAndChallenges?: boolean | `@${string}`;
+    website?: boolean | `@${string}`;
+    linkedin?: boolean | `@${string}`;
+    facebook?: boolean | `@${string}`;
+    instagram?: boolean | `@${string}`;
+    youtube?: boolean | `@${string}`;
+    slug?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    logo?: boolean | `@${string}`;
+    shortDescription?: boolean | `@${string}`;
+    achievements?: boolean | `@${string}`;
+    distinguishingFeatures?: boolean | `@${string}`;
+    areasOfInterest?: boolean | `@${string}`;
+    tags?: boolean | `@${string}`;
+    images?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: [
+      {
+        filter?:
+          | ValueTypes["Organizacje_filter"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        sort?:
+          | Array<string | undefined | null>
+          | undefined
+          | null
+          | Variable<any, string>;
+        limit?: number | undefined | null | Variable<any, string>;
+        offset?: number | undefined | null | Variable<any, string>;
+        page?: number | undefined | null | Variable<any, string>;
+        search?: string | undefined | null | Variable<any, string>;
+      },
+      ValueTypes["Organizacje"],
+    ];
+    directus_files_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files_aggregated"]: AliasType<{
+    group?: boolean | `@${string}`;
+    countAll?: boolean | `@${string}`;
+    count?: ValueTypes["Organizacje_files_aggregated_count"];
+    countDistinct?: ValueTypes["Organizacje_files_aggregated_count"];
+    avg?: ValueTypes["Organizacje_files_aggregated_fields"];
+    sum?: ValueTypes["Organizacje_files_aggregated_fields"];
+    avgDistinct?: ValueTypes["Organizacje_files_aggregated_fields"];
+    sumDistinct?: ValueTypes["Organizacje_files_aggregated_fields"];
+    min?: ValueTypes["Organizacje_files_aggregated_fields"];
+    max?: ValueTypes["Organizacje_files_aggregated_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files_aggregated_count"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: boolean | `@${string}`;
+    directus_files_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files_aggregated_fields"]: AliasType<{
+    id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files_mutated"]: AliasType<{
+    key?: boolean | `@${string}`;
+    event?: boolean | `@${string}`;
+    data?: ValueTypes["Organizacje_files"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_mutated"]: AliasType<{
+    key?: boolean | `@${string}`;
+    event?: boolean | `@${string}`;
+    data?: ValueTypes["Organizacje"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: [
+      {
+        filter?:
+          | ValueTypes["Organizacje_filter"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        sort?:
+          | Array<string | undefined | null>
+          | undefined
+          | null
+          | Variable<any, string>;
+        limit?: number | undefined | null | Variable<any, string>;
+        offset?: number | undefined | null | Variable<any, string>;
+        page?: number | undefined | null | Variable<any, string>;
+        search?: string | undefined | null | Variable<any, string>;
+      },
+      ValueTypes["Organizacje"],
+    ];
+    Tagi_id?: [
+      {
+        filter?:
+          | ValueTypes["Tagi_filter"]
+          | undefined
+          | null
+          | Variable<any, string>;
+        sort?:
+          | Array<string | undefined | null>
+          | undefined
+          | null
+          | Variable<any, string>;
+        limit?: number | undefined | null | Variable<any, string>;
+        offset?: number | undefined | null | Variable<any, string>;
+        page?: number | undefined | null | Variable<any, string>;
+        search?: string | undefined | null | Variable<any, string>;
+      },
+      ValueTypes["Tagi"],
+    ];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi_aggregated"]: AliasType<{
+    group?: boolean | `@${string}`;
+    countAll?: boolean | `@${string}`;
+    count?: ValueTypes["Organizacje_Tagi_aggregated_count"];
+    countDistinct?: ValueTypes["Organizacje_Tagi_aggregated_count"];
+    avg?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
+    sum?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
+    avgDistinct?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
+    sumDistinct?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
+    min?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
+    max?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi_aggregated_count"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: boolean | `@${string}`;
+    Tagi_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi_aggregated_fields"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Tagi_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi_mutated"]: AliasType<{
+    key?: boolean | `@${string}`;
+    event?: boolean | `@${string}`;
+    data?: ValueTypes["Organizacje_Tagi"];
     __typename?: boolean | `@${string}`;
   }>;
   ["Tagi"]: AliasType<{
@@ -1254,160 +1566,101 @@ export type ValueTypes = {
     tag?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
-  /** ISO8601 Date values */
-  ["Date"]: unknown;
-  ["datetime_functions"]: AliasType<{
-    year?: boolean | `@${string}`;
-    month?: boolean | `@${string}`;
-    week?: boolean | `@${string}`;
-    day?: boolean | `@${string}`;
-    weekday?: boolean | `@${string}`;
-    hour?: boolean | `@${string}`;
-    minute?: boolean | `@${string}`;
-    second?: boolean | `@${string}`;
+  ["Tagi_aggregated"]: AliasType<{
+    group?: boolean | `@${string}`;
+    countAll?: boolean | `@${string}`;
+    count?: ValueTypes["Tagi_aggregated_count"];
+    countDistinct?: ValueTypes["Tagi_aggregated_count"];
+    avg?: ValueTypes["Tagi_aggregated_fields"];
+    sum?: ValueTypes["Tagi_aggregated_fields"];
+    avgDistinct?: ValueTypes["Tagi_aggregated_fields"];
+    sumDistinct?: ValueTypes["Tagi_aggregated_fields"];
+    min?: ValueTypes["Tagi_aggregated_fields"];
+    max?: ValueTypes["Tagi_aggregated_fields"];
     __typename?: boolean | `@${string}`;
   }>;
-  ["Tagi_filter"]: {
-    id?:
+  ["Tagi_aggregated_count"]: AliasType<{
+    id?: boolean | `@${string}`;
+    sort?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    tag?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Tagi_aggregated_fields"]: AliasType<{
+    id?: boolean | `@${string}`;
+    sort?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Tagi_mutated"]: AliasType<{
+    key?: boolean | `@${string}`;
+    event?: boolean | `@${string}`;
+    data?: ValueTypes["Tagi"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["version_Organizacje"]: AliasType<{
+    id?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    date_created_func?: ValueTypes["datetime_functions"];
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    date_updated_func?: ValueTypes["datetime_functions"];
+    email?: boolean | `@${string}`;
+    field?: boolean | `@${string}`;
+    longDescription?: boolean | `@${string}`;
+    skillsAndChallenges?: boolean | `@${string}`;
+    website?: boolean | `@${string}`;
+    linkedin?: boolean | `@${string}`;
+    facebook?: boolean | `@${string}`;
+    instagram?: boolean | `@${string}`;
+    youtube?: boolean | `@${string}`;
+    slug?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    logo?: boolean | `@${string}`;
+    shortDescription?: boolean | `@${string}`;
+    achievements?: boolean | `@${string}`;
+    distinguishingFeatures?: boolean | `@${string}`;
+    areasOfInterest?: boolean | `@${string}`;
+    tags?: boolean | `@${string}`;
+    tags_func?: ValueTypes["count_functions"];
+    images?: boolean | `@${string}`;
+    images_func?: ValueTypes["count_functions"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["version_Organizacje_files"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: boolean | `@${string}`;
+    directus_files_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["version_Organizacje_Tagi"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: boolean | `@${string}`;
+    Tagi_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["version_Tagi"]: AliasType<{
+    id?: boolean | `@${string}`;
+    sort?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    date_created_func?: ValueTypes["datetime_functions"];
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    date_updated_func?: ValueTypes["datetime_functions"];
+    tag?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["count_function_filter_operators"]: {
+    count?:
       | ValueTypes["number_filter_operators"]
       | undefined
       | null
       | Variable<any, string>;
-    sort?:
-      | ValueTypes["number_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    user_created?:
-      | ValueTypes["string_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    date_created?:
-      | ValueTypes["date_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    date_created_func?:
-      | ValueTypes["datetime_function_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    user_updated?:
-      | ValueTypes["string_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    date_updated?:
-      | ValueTypes["date_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    date_updated_func?:
-      | ValueTypes["datetime_function_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    tag?:
-      | ValueTypes["string_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    _and?:
-      | Array<ValueTypes["Tagi_filter"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-    _or?:
-      | Array<ValueTypes["Tagi_filter"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-  };
-  ["number_filter_operators"]: {
-    _eq?:
-      | ValueTypes["GraphQLStringOrFloat"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    _neq?:
-      | ValueTypes["GraphQLStringOrFloat"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    _in?:
-      | Array<ValueTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-    _nin?:
-      | Array<ValueTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-    _gt?:
-      | ValueTypes["GraphQLStringOrFloat"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    _gte?:
-      | ValueTypes["GraphQLStringOrFloat"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    _lt?:
-      | ValueTypes["GraphQLStringOrFloat"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    _lte?:
-      | ValueTypes["GraphQLStringOrFloat"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    _null?: boolean | undefined | null | Variable<any, string>;
-    _nnull?: boolean | undefined | null | Variable<any, string>;
-    _between?:
-      | Array<ValueTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-    _nbetween?:
-      | Array<ValueTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-  };
-  /** A Float or a String */
-  ["GraphQLStringOrFloat"]: unknown;
-  ["string_filter_operators"]: {
-    _eq?: string | undefined | null | Variable<any, string>;
-    _neq?: string | undefined | null | Variable<any, string>;
-    _contains?: string | undefined | null | Variable<any, string>;
-    _icontains?: string | undefined | null | Variable<any, string>;
-    _ncontains?: string | undefined | null | Variable<any, string>;
-    _starts_with?: string | undefined | null | Variable<any, string>;
-    _nstarts_with?: string | undefined | null | Variable<any, string>;
-    _istarts_with?: string | undefined | null | Variable<any, string>;
-    _nistarts_with?: string | undefined | null | Variable<any, string>;
-    _ends_with?: string | undefined | null | Variable<any, string>;
-    _nends_with?: string | undefined | null | Variable<any, string>;
-    _iends_with?: string | undefined | null | Variable<any, string>;
-    _niends_with?: string | undefined | null | Variable<any, string>;
-    _in?:
-      | Array<string | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-    _nin?:
-      | Array<string | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-    _null?: boolean | undefined | null | Variable<any, string>;
-    _nnull?: boolean | undefined | null | Variable<any, string>;
-    _empty?: boolean | undefined | null | Variable<any, string>;
-    _nempty?: boolean | undefined | null | Variable<any, string>;
   };
   ["date_filter_operators"]: {
     _eq?: string | undefined | null | Variable<any, string>;
@@ -1481,181 +1734,87 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
   };
-  ["Tagi_aggregated"]: AliasType<{
-    group?: boolean | `@${string}`;
-    countAll?: boolean | `@${string}`;
-    count?: ValueTypes["Tagi_aggregated_count"];
-    countDistinct?: ValueTypes["Tagi_aggregated_count"];
-    avg?: ValueTypes["Tagi_aggregated_fields"];
-    sum?: ValueTypes["Tagi_aggregated_fields"];
-    avgDistinct?: ValueTypes["Tagi_aggregated_fields"];
-    sumDistinct?: ValueTypes["Tagi_aggregated_fields"];
-    min?: ValueTypes["Tagi_aggregated_fields"];
-    max?: ValueTypes["Tagi_aggregated_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  ["JSON"]: unknown;
-  ["Tagi_aggregated_count"]: AliasType<{
-    id?: boolean | `@${string}`;
-    sort?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    tag?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Tagi_aggregated_fields"]: AliasType<{
-    id?: boolean | `@${string}`;
-    sort?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["version_Tagi"]: AliasType<{
-    id?: boolean | `@${string}`;
-    sort?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    date_created_func?: ValueTypes["datetime_functions"];
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    date_updated_func?: ValueTypes["datetime_functions"];
-    tag?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_Tagi"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: [
-      {
-        filter?:
-          | ValueTypes["Organizacje_filter"]
-          | undefined
-          | null
-          | Variable<any, string>;
-        sort?:
-          | Array<string | undefined | null>
-          | undefined
-          | null
-          | Variable<any, string>;
-        limit?: number | undefined | null | Variable<any, string>;
-        offset?: number | undefined | null | Variable<any, string>;
-        page?: number | undefined | null | Variable<any, string>;
-        search?: string | undefined | null | Variable<any, string>;
-      },
-      ValueTypes["Organizacje"],
-    ];
-    Tagi_id?: [
-      {
-        filter?:
-          | ValueTypes["Tagi_filter"]
-          | undefined
-          | null
-          | Variable<any, string>;
-        sort?:
-          | Array<string | undefined | null>
-          | undefined
-          | null
-          | Variable<any, string>;
-        limit?: number | undefined | null | Variable<any, string>;
-        offset?: number | undefined | null | Variable<any, string>;
-        page?: number | undefined | null | Variable<any, string>;
-        search?: string | undefined | null | Variable<any, string>;
-      },
-      ValueTypes["Tagi"],
-    ];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje"]: AliasType<{
-    id?: boolean | `@${string}`;
-    status?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    date_created_func?: ValueTypes["datetime_functions"];
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    date_updated_func?: ValueTypes["datetime_functions"];
-    email?: boolean | `@${string}`;
-    field?: boolean | `@${string}`;
-    shortDescription?: boolean | `@${string}`;
-    longDescription?: boolean | `@${string}`;
-    skillsAndChallenges?: boolean | `@${string}`;
-    achievements?: boolean | `@${string}`;
-    distinguishingFeatures?: boolean | `@${string}`;
-    areasOfInterest?: boolean | `@${string}`;
-    website?: boolean | `@${string}`;
-    linkedin?: boolean | `@${string}`;
-    facebook?: boolean | `@${string}`;
-    instagram?: boolean | `@${string}`;
-    youtube?: boolean | `@${string}`;
-    slug?: boolean | `@${string}`;
-    name?: boolean | `@${string}`;
-    logo?: boolean | `@${string}`;
-    images?: [
-      {
-        filter?:
-          | ValueTypes["Organizacje_files_filter"]
-          | undefined
-          | null
-          | Variable<any, string>;
-        sort?:
-          | Array<string | undefined | null>
-          | undefined
-          | null
-          | Variable<any, string>;
-        limit?: number | undefined | null | Variable<any, string>;
-        offset?: number | undefined | null | Variable<any, string>;
-        page?: number | undefined | null | Variable<any, string>;
-        search?: string | undefined | null | Variable<any, string>;
-      },
-      ValueTypes["Organizacje_files"],
-    ];
-    images_func?: ValueTypes["count_functions"];
-    tags?: [
-      {
-        filter?:
-          | ValueTypes["Organizacje_Tagi_filter"]
-          | undefined
-          | null
-          | Variable<any, string>;
-        sort?:
-          | Array<string | undefined | null>
-          | undefined
-          | null
-          | Variable<any, string>;
-        limit?: number | undefined | null | Variable<any, string>;
-        offset?: number | undefined | null | Variable<any, string>;
-        page?: number | undefined | null | Variable<any, string>;
-        search?: string | undefined | null | Variable<any, string>;
-      },
-      ValueTypes["Organizacje_Tagi"],
-    ];
-    tags_func?: ValueTypes["count_functions"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: [
-      {
-        filter?:
-          | ValueTypes["Organizacje_filter"]
-          | undefined
-          | null
-          | Variable<any, string>;
-        sort?:
-          | Array<string | undefined | null>
-          | undefined
-          | null
-          | Variable<any, string>;
-        limit?: number | undefined | null | Variable<any, string>;
-        offset?: number | undefined | null | Variable<any, string>;
-        page?: number | undefined | null | Variable<any, string>;
-        search?: string | undefined | null | Variable<any, string>;
-      },
-      ValueTypes["Organizacje"],
-    ];
-    directus_files_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
+  ["number_filter_operators"]: {
+    _eq?:
+      | ValueTypes["GraphQLStringOrFloat"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _neq?:
+      | ValueTypes["GraphQLStringOrFloat"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _in?:
+      | Array<ValueTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _nin?:
+      | Array<ValueTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _gt?:
+      | ValueTypes["GraphQLStringOrFloat"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _gte?:
+      | ValueTypes["GraphQLStringOrFloat"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _lt?:
+      | ValueTypes["GraphQLStringOrFloat"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _lte?:
+      | ValueTypes["GraphQLStringOrFloat"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _null?: boolean | undefined | null | Variable<any, string>;
+    _nnull?: boolean | undefined | null | Variable<any, string>;
+    _between?:
+      | Array<ValueTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _nbetween?:
+      | Array<ValueTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
+  ["Organizacje_files_filter"]: {
+    id?:
+      | ValueTypes["number_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    Organizacje_id?:
+      | ValueTypes["Organizacje_filter"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    directus_files_id?:
+      | ValueTypes["string_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _and?:
+      | Array<ValueTypes["Organizacje_files_filter"] | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["Organizacje_files_filter"] | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
   ["Organizacje_filter"]: {
     id?:
       | ValueTypes["string_filter_operators"]
@@ -1707,32 +1866,12 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    shortDescription?:
-      | ValueTypes["string_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
     longDescription?:
       | ValueTypes["string_filter_operators"]
       | undefined
       | null
       | Variable<any, string>;
     skillsAndChallenges?:
-      | ValueTypes["string_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    achievements?:
-      | ValueTypes["string_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    distinguishingFeatures?:
-      | ValueTypes["string_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    areasOfInterest?:
       | ValueTypes["string_filter_operators"]
       | undefined
       | null
@@ -1777,13 +1916,23 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
-    images?:
-      | ValueTypes["Organizacje_files_filter"]
+    shortDescription?:
+      | ValueTypes["string_filter_operators"]
       | undefined
       | null
       | Variable<any, string>;
-    images_func?:
-      | ValueTypes["count_function_filter_operators"]
+    achievements?:
+      | ValueTypes["string_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    distinguishingFeatures?:
+      | ValueTypes["string_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    areasOfInterest?:
+      | ValueTypes["string_filter_operators"]
       | undefined
       | null
       | Variable<any, string>;
@@ -1797,6 +1946,16 @@ export type ValueTypes = {
       | undefined
       | null
       | Variable<any, string>;
+    images?:
+      | ValueTypes["Organizacje_files_filter"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    images_func?:
+      | ValueTypes["count_function_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
     _and?:
       | Array<ValueTypes["Organizacje_filter"] | undefined | null>
       | undefined
@@ -1804,40 +1963,6 @@ export type ValueTypes = {
       | Variable<any, string>;
     _or?:
       | Array<ValueTypes["Organizacje_filter"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-  };
-  ["Organizacje_files_filter"]: {
-    id?:
-      | ValueTypes["number_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    Organizacje_id?:
-      | ValueTypes["Organizacje_filter"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    directus_files_id?:
-      | ValueTypes["string_filter_operators"]
-      | undefined
-      | null
-      | Variable<any, string>;
-    _and?:
-      | Array<ValueTypes["Organizacje_files_filter"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-    _or?:
-      | Array<ValueTypes["Organizacje_files_filter"] | undefined | null>
-      | undefined
-      | null
-      | Variable<any, string>;
-  };
-  ["count_function_filter_operators"]: {
-    count?:
-      | ValueTypes["number_filter_operators"]
       | undefined
       | null
       | Variable<any, string>;
@@ -1869,202 +1994,92 @@ export type ValueTypes = {
       | null
       | Variable<any, string>;
   };
-  ["count_functions"]: AliasType<{
-    count?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_Tagi_aggregated"]: AliasType<{
-    group?: boolean | `@${string}`;
-    countAll?: boolean | `@${string}`;
-    count?: ValueTypes["Organizacje_Tagi_aggregated_count"];
-    countDistinct?: ValueTypes["Organizacje_Tagi_aggregated_count"];
-    avg?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
-    sum?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
-    avgDistinct?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
-    sumDistinct?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
-    min?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
-    max?: ValueTypes["Organizacje_Tagi_aggregated_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_Tagi_aggregated_count"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: boolean | `@${string}`;
-    Tagi_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_Tagi_aggregated_fields"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Tagi_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["version_Organizacje_Tagi"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: boolean | `@${string}`;
-    Tagi_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files_aggregated"]: AliasType<{
-    group?: boolean | `@${string}`;
-    countAll?: boolean | `@${string}`;
-    count?: ValueTypes["Organizacje_files_aggregated_count"];
-    countDistinct?: ValueTypes["Organizacje_files_aggregated_count"];
-    avg?: ValueTypes["Organizacje_files_aggregated_fields"];
-    sum?: ValueTypes["Organizacje_files_aggregated_fields"];
-    avgDistinct?: ValueTypes["Organizacje_files_aggregated_fields"];
-    sumDistinct?: ValueTypes["Organizacje_files_aggregated_fields"];
-    min?: ValueTypes["Organizacje_files_aggregated_fields"];
-    max?: ValueTypes["Organizacje_files_aggregated_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files_aggregated_count"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: boolean | `@${string}`;
-    directus_files_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files_aggregated_fields"]: AliasType<{
-    id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["version_Organizacje_files"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: boolean | `@${string}`;
-    directus_files_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_aggregated"]: AliasType<{
-    group?: boolean | `@${string}`;
-    countAll?: boolean | `@${string}`;
-    count?: ValueTypes["Organizacje_aggregated_count"];
-    countDistinct?: ValueTypes["Organizacje_aggregated_count"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_aggregated_count"]: AliasType<{
-    id?: boolean | `@${string}`;
-    status?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    email?: boolean | `@${string}`;
-    field?: boolean | `@${string}`;
-    shortDescription?: boolean | `@${string}`;
-    longDescription?: boolean | `@${string}`;
-    skillsAndChallenges?: boolean | `@${string}`;
-    achievements?: boolean | `@${string}`;
-    distinguishingFeatures?: boolean | `@${string}`;
-    areasOfInterest?: boolean | `@${string}`;
-    website?: boolean | `@${string}`;
-    linkedin?: boolean | `@${string}`;
-    facebook?: boolean | `@${string}`;
-    instagram?: boolean | `@${string}`;
-    youtube?: boolean | `@${string}`;
-    slug?: boolean | `@${string}`;
-    name?: boolean | `@${string}`;
-    logo?: boolean | `@${string}`;
-    images?: boolean | `@${string}`;
-    tags?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["version_Organizacje"]: AliasType<{
-    id?: boolean | `@${string}`;
-    status?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    date_created_func?: ValueTypes["datetime_functions"];
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    date_updated_func?: ValueTypes["datetime_functions"];
-    email?: boolean | `@${string}`;
-    field?: boolean | `@${string}`;
-    shortDescription?: boolean | `@${string}`;
-    longDescription?: boolean | `@${string}`;
-    skillsAndChallenges?: boolean | `@${string}`;
-    achievements?: boolean | `@${string}`;
-    distinguishingFeatures?: boolean | `@${string}`;
-    areasOfInterest?: boolean | `@${string}`;
-    website?: boolean | `@${string}`;
-    linkedin?: boolean | `@${string}`;
-    facebook?: boolean | `@${string}`;
-    instagram?: boolean | `@${string}`;
-    youtube?: boolean | `@${string}`;
-    slug?: boolean | `@${string}`;
-    name?: boolean | `@${string}`;
-    logo?: boolean | `@${string}`;
-    images?: boolean | `@${string}`;
-    images_func?: ValueTypes["count_functions"];
-    tags?: boolean | `@${string}`;
-    tags_func?: ValueTypes["count_functions"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Subscription"]: AliasType<{
-    Tagi_mutated?: [
-      {
-        event?:
-          | ValueTypes["EventEnum"]
-          | undefined
-          | null
-          | Variable<any, string>;
-      },
-      ValueTypes["Tagi_mutated"],
-    ];
-    Organizacje_Tagi_mutated?: [
-      {
-        event?:
-          | ValueTypes["EventEnum"]
-          | undefined
-          | null
-          | Variable<any, string>;
-      },
-      ValueTypes["Organizacje_Tagi_mutated"],
-    ];
-    Organizacje_files_mutated?: [
-      {
-        event?:
-          | ValueTypes["EventEnum"]
-          | undefined
-          | null
-          | Variable<any, string>;
-      },
-      ValueTypes["Organizacje_files_mutated"],
-    ];
-    Organizacje_mutated?: [
-      {
-        event?:
-          | ValueTypes["EventEnum"]
-          | undefined
-          | null
-          | Variable<any, string>;
-      },
-      ValueTypes["Organizacje_mutated"],
-    ];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Tagi_mutated"]: AliasType<{
-    key?: boolean | `@${string}`;
-    event?: boolean | `@${string}`;
-    data?: ValueTypes["Tagi"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["EventEnum"]: EventEnum;
-  ["Organizacje_Tagi_mutated"]: AliasType<{
-    key?: boolean | `@${string}`;
-    event?: boolean | `@${string}`;
-    data?: ValueTypes["Organizacje_Tagi"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files_mutated"]: AliasType<{
-    key?: boolean | `@${string}`;
-    event?: boolean | `@${string}`;
-    data?: ValueTypes["Organizacje_files"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_mutated"]: AliasType<{
-    key?: boolean | `@${string}`;
-    event?: boolean | `@${string}`;
-    data?: ValueTypes["Organizacje"];
-    __typename?: boolean | `@${string}`;
-  }>;
+  ["string_filter_operators"]: {
+    _eq?: string | undefined | null | Variable<any, string>;
+    _neq?: string | undefined | null | Variable<any, string>;
+    _contains?: string | undefined | null | Variable<any, string>;
+    _icontains?: string | undefined | null | Variable<any, string>;
+    _ncontains?: string | undefined | null | Variable<any, string>;
+    _starts_with?: string | undefined | null | Variable<any, string>;
+    _nstarts_with?: string | undefined | null | Variable<any, string>;
+    _istarts_with?: string | undefined | null | Variable<any, string>;
+    _nistarts_with?: string | undefined | null | Variable<any, string>;
+    _ends_with?: string | undefined | null | Variable<any, string>;
+    _nends_with?: string | undefined | null | Variable<any, string>;
+    _iends_with?: string | undefined | null | Variable<any, string>;
+    _niends_with?: string | undefined | null | Variable<any, string>;
+    _in?:
+      | Array<string | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _nin?:
+      | Array<string | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _null?: boolean | undefined | null | Variable<any, string>;
+    _nnull?: boolean | undefined | null | Variable<any, string>;
+    _empty?: boolean | undefined | null | Variable<any, string>;
+    _nempty?: boolean | undefined | null | Variable<any, string>;
+  };
+  ["Tagi_filter"]: {
+    id?:
+      | ValueTypes["number_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    sort?:
+      | ValueTypes["number_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    user_created?:
+      | ValueTypes["string_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    date_created?:
+      | ValueTypes["date_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    date_created_func?:
+      | ValueTypes["datetime_function_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    user_updated?:
+      | ValueTypes["string_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    date_updated?:
+      | ValueTypes["date_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    date_updated_func?:
+      | ValueTypes["datetime_function_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    tag?:
+      | ValueTypes["string_filter_operators"]
+      | undefined
+      | null
+      | Variable<any, string>;
+    _and?:
+      | Array<ValueTypes["Tagi_filter"] | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+    _or?:
+      | Array<ValueTypes["Tagi_filter"] | undefined | null>
+      | undefined
+      | null
+      | Variable<any, string>;
+  };
 };
 
 export type ResolverInputTypes = {
@@ -2134,6 +2149,34 @@ export type ResolverInputTypes = {
       { version: string; id: string },
       ResolverInputTypes["version_Organizacje_Tagi"],
     ];
+    Organizacje?: [
+      {
+        filter?: ResolverInputTypes["Organizacje_filter"] | undefined | null;
+        sort?: Array<string | undefined | null> | undefined | null;
+        limit?: number | undefined | null;
+        offset?: number | undefined | null;
+        page?: number | undefined | null;
+        search?: string | undefined | null;
+      },
+      ResolverInputTypes["Organizacje"],
+    ];
+    Organizacje_by_id?: [{ id: string }, ResolverInputTypes["Organizacje"]];
+    Organizacje_aggregated?: [
+      {
+        groupBy?: Array<string | undefined | null> | undefined | null;
+        filter?: ResolverInputTypes["Organizacje_filter"] | undefined | null;
+        limit?: number | undefined | null;
+        offset?: number | undefined | null;
+        page?: number | undefined | null;
+        search?: string | undefined | null;
+        sort?: Array<string | undefined | null> | undefined | null;
+      },
+      ResolverInputTypes["Organizacje_aggregated"],
+    ];
+    Organizacje_by_version?: [
+      { version: string; id: string },
+      ResolverInputTypes["version_Organizacje"],
+    ];
     Organizacje_files?: [
       {
         filter?:
@@ -2171,7 +2214,153 @@ export type ResolverInputTypes = {
       { version: string; id: string },
       ResolverInputTypes["version_Organizacje_files"],
     ];
-    Organizacje?: [
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Subscription"]: AliasType<{
+    Tagi_mutated?: [
+      { event?: ResolverInputTypes["EventEnum"] | undefined | null },
+      ResolverInputTypes["Tagi_mutated"],
+    ];
+    Organizacje_Tagi_mutated?: [
+      { event?: ResolverInputTypes["EventEnum"] | undefined | null },
+      ResolverInputTypes["Organizacje_Tagi_mutated"],
+    ];
+    Organizacje_mutated?: [
+      { event?: ResolverInputTypes["EventEnum"] | undefined | null },
+      ResolverInputTypes["Organizacje_mutated"],
+    ];
+    Organizacje_files_mutated?: [
+      { event?: ResolverInputTypes["EventEnum"] | undefined | null },
+      ResolverInputTypes["Organizacje_files_mutated"],
+    ];
+    __typename?: boolean | `@${string}`;
+  }>;
+  /** The `Boolean` scalar type represents `true` or `false`. */
+  ["Boolean"]: unknown;
+  /** ISO8601 Date values */
+  ["Date"]: unknown;
+  /** The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). */
+  ["Float"]: unknown;
+  /** A Float or a String */
+  ["GraphQLStringOrFloat"]: unknown;
+  /** The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID. */
+  ["ID"]: unknown;
+  /** The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. */
+  ["Int"]: unknown;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  ["JSON"]: unknown;
+  /** The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text. */
+  ["String"]: unknown;
+  ["EventEnum"]: EventEnum;
+  ["count_functions"]: AliasType<{
+    count?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["datetime_functions"]: AliasType<{
+    year?: boolean | `@${string}`;
+    month?: boolean | `@${string}`;
+    week?: boolean | `@${string}`;
+    day?: boolean | `@${string}`;
+    weekday?: boolean | `@${string}`;
+    hour?: boolean | `@${string}`;
+    minute?: boolean | `@${string}`;
+    second?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje"]: AliasType<{
+    id?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    date_created_func?: ResolverInputTypes["datetime_functions"];
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    date_updated_func?: ResolverInputTypes["datetime_functions"];
+    email?: boolean | `@${string}`;
+    field?: boolean | `@${string}`;
+    longDescription?: boolean | `@${string}`;
+    skillsAndChallenges?: boolean | `@${string}`;
+    website?: boolean | `@${string}`;
+    linkedin?: boolean | `@${string}`;
+    facebook?: boolean | `@${string}`;
+    instagram?: boolean | `@${string}`;
+    youtube?: boolean | `@${string}`;
+    slug?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    logo?: boolean | `@${string}`;
+    shortDescription?: boolean | `@${string}`;
+    achievements?: boolean | `@${string}`;
+    distinguishingFeatures?: boolean | `@${string}`;
+    areasOfInterest?: boolean | `@${string}`;
+    tags?: [
+      {
+        filter?:
+          | ResolverInputTypes["Organizacje_Tagi_filter"]
+          | undefined
+          | null;
+        sort?: Array<string | undefined | null> | undefined | null;
+        limit?: number | undefined | null;
+        offset?: number | undefined | null;
+        page?: number | undefined | null;
+        search?: string | undefined | null;
+      },
+      ResolverInputTypes["Organizacje_Tagi"],
+    ];
+    tags_func?: ResolverInputTypes["count_functions"];
+    images?: [
+      {
+        filter?:
+          | ResolverInputTypes["Organizacje_files_filter"]
+          | undefined
+          | null;
+        sort?: Array<string | undefined | null> | undefined | null;
+        limit?: number | undefined | null;
+        offset?: number | undefined | null;
+        page?: number | undefined | null;
+        search?: string | undefined | null;
+      },
+      ResolverInputTypes["Organizacje_files"],
+    ];
+    images_func?: ResolverInputTypes["count_functions"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_aggregated"]: AliasType<{
+    group?: boolean | `@${string}`;
+    countAll?: boolean | `@${string}`;
+    count?: ResolverInputTypes["Organizacje_aggregated_count"];
+    countDistinct?: ResolverInputTypes["Organizacje_aggregated_count"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_aggregated_count"]: AliasType<{
+    id?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    email?: boolean | `@${string}`;
+    field?: boolean | `@${string}`;
+    longDescription?: boolean | `@${string}`;
+    skillsAndChallenges?: boolean | `@${string}`;
+    website?: boolean | `@${string}`;
+    linkedin?: boolean | `@${string}`;
+    facebook?: boolean | `@${string}`;
+    instagram?: boolean | `@${string}`;
+    youtube?: boolean | `@${string}`;
+    slug?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    logo?: boolean | `@${string}`;
+    shortDescription?: boolean | `@${string}`;
+    achievements?: boolean | `@${string}`;
+    distinguishingFeatures?: boolean | `@${string}`;
+    areasOfInterest?: boolean | `@${string}`;
+    tags?: boolean | `@${string}`;
+    images?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: [
       {
         filter?: ResolverInputTypes["Organizacje_filter"] | undefined | null;
         sort?: Array<string | undefined | null> | undefined | null;
@@ -2182,23 +2371,98 @@ export type ResolverInputTypes = {
       },
       ResolverInputTypes["Organizacje"],
     ];
-    Organizacje_by_id?: [{ id: string }, ResolverInputTypes["Organizacje"]];
-    Organizacje_aggregated?: [
+    directus_files_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files_aggregated"]: AliasType<{
+    group?: boolean | `@${string}`;
+    countAll?: boolean | `@${string}`;
+    count?: ResolverInputTypes["Organizacje_files_aggregated_count"];
+    countDistinct?: ResolverInputTypes["Organizacje_files_aggregated_count"];
+    avg?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
+    sum?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
+    avgDistinct?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
+    sumDistinct?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
+    min?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
+    max?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files_aggregated_count"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: boolean | `@${string}`;
+    directus_files_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files_aggregated_fields"]: AliasType<{
+    id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_files_mutated"]: AliasType<{
+    key?: boolean | `@${string}`;
+    event?: boolean | `@${string}`;
+    data?: ResolverInputTypes["Organizacje_files"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_mutated"]: AliasType<{
+    key?: boolean | `@${string}`;
+    event?: boolean | `@${string}`;
+    data?: ResolverInputTypes["Organizacje"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: [
       {
-        groupBy?: Array<string | undefined | null> | undefined | null;
         filter?: ResolverInputTypes["Organizacje_filter"] | undefined | null;
+        sort?: Array<string | undefined | null> | undefined | null;
         limit?: number | undefined | null;
         offset?: number | undefined | null;
         page?: number | undefined | null;
         search?: string | undefined | null;
-        sort?: Array<string | undefined | null> | undefined | null;
       },
-      ResolverInputTypes["Organizacje_aggregated"],
+      ResolverInputTypes["Organizacje"],
     ];
-    Organizacje_by_version?: [
-      { version: string; id: string },
-      ResolverInputTypes["version_Organizacje"],
+    Tagi_id?: [
+      {
+        filter?: ResolverInputTypes["Tagi_filter"] | undefined | null;
+        sort?: Array<string | undefined | null> | undefined | null;
+        limit?: number | undefined | null;
+        offset?: number | undefined | null;
+        page?: number | undefined | null;
+        search?: string | undefined | null;
+      },
+      ResolverInputTypes["Tagi"],
     ];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi_aggregated"]: AliasType<{
+    group?: boolean | `@${string}`;
+    countAll?: boolean | `@${string}`;
+    count?: ResolverInputTypes["Organizacje_Tagi_aggregated_count"];
+    countDistinct?: ResolverInputTypes["Organizacje_Tagi_aggregated_count"];
+    avg?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
+    sum?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
+    avgDistinct?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
+    sumDistinct?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
+    min?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
+    max?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi_aggregated_count"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: boolean | `@${string}`;
+    Tagi_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi_aggregated_fields"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Tagi_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Organizacje_Tagi_mutated"]: AliasType<{
+    key?: boolean | `@${string}`;
+    event?: boolean | `@${string}`;
+    data?: ResolverInputTypes["Organizacje_Tagi"];
     __typename?: boolean | `@${string}`;
   }>;
   ["Tagi"]: AliasType<{
@@ -2213,19 +2477,293 @@ export type ResolverInputTypes = {
     tag?: boolean | `@${string}`;
     __typename?: boolean | `@${string}`;
   }>;
-  /** ISO8601 Date values */
-  ["Date"]: unknown;
-  ["datetime_functions"]: AliasType<{
-    year?: boolean | `@${string}`;
-    month?: boolean | `@${string}`;
-    week?: boolean | `@${string}`;
-    day?: boolean | `@${string}`;
-    weekday?: boolean | `@${string}`;
-    hour?: boolean | `@${string}`;
-    minute?: boolean | `@${string}`;
-    second?: boolean | `@${string}`;
+  ["Tagi_aggregated"]: AliasType<{
+    group?: boolean | `@${string}`;
+    countAll?: boolean | `@${string}`;
+    count?: ResolverInputTypes["Tagi_aggregated_count"];
+    countDistinct?: ResolverInputTypes["Tagi_aggregated_count"];
+    avg?: ResolverInputTypes["Tagi_aggregated_fields"];
+    sum?: ResolverInputTypes["Tagi_aggregated_fields"];
+    avgDistinct?: ResolverInputTypes["Tagi_aggregated_fields"];
+    sumDistinct?: ResolverInputTypes["Tagi_aggregated_fields"];
+    min?: ResolverInputTypes["Tagi_aggregated_fields"];
+    max?: ResolverInputTypes["Tagi_aggregated_fields"];
     __typename?: boolean | `@${string}`;
   }>;
+  ["Tagi_aggregated_count"]: AliasType<{
+    id?: boolean | `@${string}`;
+    sort?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    tag?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Tagi_aggregated_fields"]: AliasType<{
+    id?: boolean | `@${string}`;
+    sort?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["Tagi_mutated"]: AliasType<{
+    key?: boolean | `@${string}`;
+    event?: boolean | `@${string}`;
+    data?: ResolverInputTypes["Tagi"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["version_Organizacje"]: AliasType<{
+    id?: boolean | `@${string}`;
+    status?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    date_created_func?: ResolverInputTypes["datetime_functions"];
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    date_updated_func?: ResolverInputTypes["datetime_functions"];
+    email?: boolean | `@${string}`;
+    field?: boolean | `@${string}`;
+    longDescription?: boolean | `@${string}`;
+    skillsAndChallenges?: boolean | `@${string}`;
+    website?: boolean | `@${string}`;
+    linkedin?: boolean | `@${string}`;
+    facebook?: boolean | `@${string}`;
+    instagram?: boolean | `@${string}`;
+    youtube?: boolean | `@${string}`;
+    slug?: boolean | `@${string}`;
+    name?: boolean | `@${string}`;
+    logo?: boolean | `@${string}`;
+    shortDescription?: boolean | `@${string}`;
+    achievements?: boolean | `@${string}`;
+    distinguishingFeatures?: boolean | `@${string}`;
+    areasOfInterest?: boolean | `@${string}`;
+    tags?: boolean | `@${string}`;
+    tags_func?: ResolverInputTypes["count_functions"];
+    images?: boolean | `@${string}`;
+    images_func?: ResolverInputTypes["count_functions"];
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["version_Organizacje_files"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: boolean | `@${string}`;
+    directus_files_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["version_Organizacje_Tagi"]: AliasType<{
+    id?: boolean | `@${string}`;
+    Organizacje_id?: boolean | `@${string}`;
+    Tagi_id?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["version_Tagi"]: AliasType<{
+    id?: boolean | `@${string}`;
+    sort?: boolean | `@${string}`;
+    user_created?: boolean | `@${string}`;
+    date_created?: boolean | `@${string}`;
+    date_created_func?: ResolverInputTypes["datetime_functions"];
+    user_updated?: boolean | `@${string}`;
+    date_updated?: boolean | `@${string}`;
+    date_updated_func?: ResolverInputTypes["datetime_functions"];
+    tag?: boolean | `@${string}`;
+    __typename?: boolean | `@${string}`;
+  }>;
+  ["count_function_filter_operators"]: {
+    count?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+  };
+  ["date_filter_operators"]: {
+    _eq?: string | undefined | null;
+    _neq?: string | undefined | null;
+    _gt?: string | undefined | null;
+    _gte?: string | undefined | null;
+    _lt?: string | undefined | null;
+    _lte?: string | undefined | null;
+    _null?: boolean | undefined | null;
+    _nnull?: boolean | undefined | null;
+    _in?: Array<string | undefined | null> | undefined | null;
+    _nin?: Array<string | undefined | null> | undefined | null;
+    _between?:
+      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null;
+    _nbetween?:
+      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null;
+  };
+  ["datetime_function_filter_operators"]: {
+    year?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    month?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    week?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    day?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    weekday?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    hour?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    minute?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    second?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+  };
+  ["number_filter_operators"]: {
+    _eq?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
+    _neq?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
+    _in?:
+      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null;
+    _nin?:
+      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null;
+    _gt?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
+    _gte?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
+    _lt?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
+    _lte?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
+    _null?: boolean | undefined | null;
+    _nnull?: boolean | undefined | null;
+    _between?:
+      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null;
+    _nbetween?:
+      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
+      | undefined
+      | null;
+  };
+  ["Organizacje_files_filter"]: {
+    id?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    Organizacje_id?:
+      | ResolverInputTypes["Organizacje_filter"]
+      | undefined
+      | null;
+    directus_files_id?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    _and?:
+      | Array<ResolverInputTypes["Organizacje_files_filter"] | undefined | null>
+      | undefined
+      | null;
+    _or?:
+      | Array<ResolverInputTypes["Organizacje_files_filter"] | undefined | null>
+      | undefined
+      | null;
+  };
+  ["Organizacje_filter"]: {
+    id?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    status?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    user_created?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    date_created?:
+      | ResolverInputTypes["date_filter_operators"]
+      | undefined
+      | null;
+    date_created_func?:
+      | ResolverInputTypes["datetime_function_filter_operators"]
+      | undefined
+      | null;
+    user_updated?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    date_updated?:
+      | ResolverInputTypes["date_filter_operators"]
+      | undefined
+      | null;
+    date_updated_func?:
+      | ResolverInputTypes["datetime_function_filter_operators"]
+      | undefined
+      | null;
+    email?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    field?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    longDescription?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    skillsAndChallenges?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    website?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    linkedin?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    facebook?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    instagram?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    youtube?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    slug?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    name?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    logo?: ResolverInputTypes["string_filter_operators"] | undefined | null;
+    shortDescription?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    achievements?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    distinguishingFeatures?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    areasOfInterest?:
+      | ResolverInputTypes["string_filter_operators"]
+      | undefined
+      | null;
+    tags?: ResolverInputTypes["Organizacje_Tagi_filter"] | undefined | null;
+    tags_func?:
+      | ResolverInputTypes["count_function_filter_operators"]
+      | undefined
+      | null;
+    images?: ResolverInputTypes["Organizacje_files_filter"] | undefined | null;
+    images_func?:
+      | ResolverInputTypes["count_function_filter_operators"]
+      | undefined
+      | null;
+    _and?:
+      | Array<ResolverInputTypes["Organizacje_filter"] | undefined | null>
+      | undefined
+      | null;
+    _or?:
+      | Array<ResolverInputTypes["Organizacje_filter"] | undefined | null>
+      | undefined
+      | null;
+  };
+  ["Organizacje_Tagi_filter"]: {
+    id?: ResolverInputTypes["number_filter_operators"] | undefined | null;
+    Organizacje_id?:
+      | ResolverInputTypes["Organizacje_filter"]
+      | undefined
+      | null;
+    Tagi_id?: ResolverInputTypes["Tagi_filter"] | undefined | null;
+    _and?:
+      | Array<ResolverInputTypes["Organizacje_Tagi_filter"] | undefined | null>
+      | undefined
+      | null;
+    _or?:
+      | Array<ResolverInputTypes["Organizacje_Tagi_filter"] | undefined | null>
+      | undefined
+      | null;
+  };
+  ["string_filter_operators"]: {
+    _eq?: string | undefined | null;
+    _neq?: string | undefined | null;
+    _contains?: string | undefined | null;
+    _icontains?: string | undefined | null;
+    _ncontains?: string | undefined | null;
+    _starts_with?: string | undefined | null;
+    _nstarts_with?: string | undefined | null;
+    _istarts_with?: string | undefined | null;
+    _nistarts_with?: string | undefined | null;
+    _ends_with?: string | undefined | null;
+    _nends_with?: string | undefined | null;
+    _iends_with?: string | undefined | null;
+    _niends_with?: string | undefined | null;
+    _in?: Array<string | undefined | null> | undefined | null;
+    _nin?: Array<string | undefined | null> | undefined | null;
+    _null?: boolean | undefined | null;
+    _nnull?: boolean | undefined | null;
+    _empty?: boolean | undefined | null;
+    _nempty?: boolean | undefined | null;
+  };
   ["Tagi_filter"]: {
     id?: ResolverInputTypes["number_filter_operators"] | undefined | null;
     sort?: ResolverInputTypes["number_filter_operators"] | undefined | null;
@@ -2263,519 +2801,6 @@ export type ResolverInputTypes = {
       | undefined
       | null;
   };
-  ["number_filter_operators"]: {
-    _eq?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
-    _neq?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
-    _in?:
-      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null;
-    _nin?:
-      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null;
-    _gt?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
-    _gte?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
-    _lt?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
-    _lte?: ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null;
-    _null?: boolean | undefined | null;
-    _nnull?: boolean | undefined | null;
-    _between?:
-      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null;
-    _nbetween?:
-      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null;
-  };
-  /** A Float or a String */
-  ["GraphQLStringOrFloat"]: unknown;
-  ["string_filter_operators"]: {
-    _eq?: string | undefined | null;
-    _neq?: string | undefined | null;
-    _contains?: string | undefined | null;
-    _icontains?: string | undefined | null;
-    _ncontains?: string | undefined | null;
-    _starts_with?: string | undefined | null;
-    _nstarts_with?: string | undefined | null;
-    _istarts_with?: string | undefined | null;
-    _nistarts_with?: string | undefined | null;
-    _ends_with?: string | undefined | null;
-    _nends_with?: string | undefined | null;
-    _iends_with?: string | undefined | null;
-    _niends_with?: string | undefined | null;
-    _in?: Array<string | undefined | null> | undefined | null;
-    _nin?: Array<string | undefined | null> | undefined | null;
-    _null?: boolean | undefined | null;
-    _nnull?: boolean | undefined | null;
-    _empty?: boolean | undefined | null;
-    _nempty?: boolean | undefined | null;
-  };
-  ["date_filter_operators"]: {
-    _eq?: string | undefined | null;
-    _neq?: string | undefined | null;
-    _gt?: string | undefined | null;
-    _gte?: string | undefined | null;
-    _lt?: string | undefined | null;
-    _lte?: string | undefined | null;
-    _null?: boolean | undefined | null;
-    _nnull?: boolean | undefined | null;
-    _in?: Array<string | undefined | null> | undefined | null;
-    _nin?: Array<string | undefined | null> | undefined | null;
-    _between?:
-      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null;
-    _nbetween?:
-      | Array<ResolverInputTypes["GraphQLStringOrFloat"] | undefined | null>
-      | undefined
-      | null;
-  };
-  ["datetime_function_filter_operators"]: {
-    year?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    month?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    week?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    day?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    weekday?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    hour?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    minute?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    second?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-  };
-  ["Tagi_aggregated"]: AliasType<{
-    group?: boolean | `@${string}`;
-    countAll?: boolean | `@${string}`;
-    count?: ResolverInputTypes["Tagi_aggregated_count"];
-    countDistinct?: ResolverInputTypes["Tagi_aggregated_count"];
-    avg?: ResolverInputTypes["Tagi_aggregated_fields"];
-    sum?: ResolverInputTypes["Tagi_aggregated_fields"];
-    avgDistinct?: ResolverInputTypes["Tagi_aggregated_fields"];
-    sumDistinct?: ResolverInputTypes["Tagi_aggregated_fields"];
-    min?: ResolverInputTypes["Tagi_aggregated_fields"];
-    max?: ResolverInputTypes["Tagi_aggregated_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  ["JSON"]: unknown;
-  ["Tagi_aggregated_count"]: AliasType<{
-    id?: boolean | `@${string}`;
-    sort?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    tag?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Tagi_aggregated_fields"]: AliasType<{
-    id?: boolean | `@${string}`;
-    sort?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["version_Tagi"]: AliasType<{
-    id?: boolean | `@${string}`;
-    sort?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    date_created_func?: ResolverInputTypes["datetime_functions"];
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    date_updated_func?: ResolverInputTypes["datetime_functions"];
-    tag?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_Tagi"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: [
-      {
-        filter?: ResolverInputTypes["Organizacje_filter"] | undefined | null;
-        sort?: Array<string | undefined | null> | undefined | null;
-        limit?: number | undefined | null;
-        offset?: number | undefined | null;
-        page?: number | undefined | null;
-        search?: string | undefined | null;
-      },
-      ResolverInputTypes["Organizacje"],
-    ];
-    Tagi_id?: [
-      {
-        filter?: ResolverInputTypes["Tagi_filter"] | undefined | null;
-        sort?: Array<string | undefined | null> | undefined | null;
-        limit?: number | undefined | null;
-        offset?: number | undefined | null;
-        page?: number | undefined | null;
-        search?: string | undefined | null;
-      },
-      ResolverInputTypes["Tagi"],
-    ];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje"]: AliasType<{
-    id?: boolean | `@${string}`;
-    status?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    date_created_func?: ResolverInputTypes["datetime_functions"];
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    date_updated_func?: ResolverInputTypes["datetime_functions"];
-    email?: boolean | `@${string}`;
-    field?: boolean | `@${string}`;
-    shortDescription?: boolean | `@${string}`;
-    longDescription?: boolean | `@${string}`;
-    skillsAndChallenges?: boolean | `@${string}`;
-    achievements?: boolean | `@${string}`;
-    distinguishingFeatures?: boolean | `@${string}`;
-    areasOfInterest?: boolean | `@${string}`;
-    website?: boolean | `@${string}`;
-    linkedin?: boolean | `@${string}`;
-    facebook?: boolean | `@${string}`;
-    instagram?: boolean | `@${string}`;
-    youtube?: boolean | `@${string}`;
-    slug?: boolean | `@${string}`;
-    name?: boolean | `@${string}`;
-    logo?: boolean | `@${string}`;
-    images?: [
-      {
-        filter?:
-          | ResolverInputTypes["Organizacje_files_filter"]
-          | undefined
-          | null;
-        sort?: Array<string | undefined | null> | undefined | null;
-        limit?: number | undefined | null;
-        offset?: number | undefined | null;
-        page?: number | undefined | null;
-        search?: string | undefined | null;
-      },
-      ResolverInputTypes["Organizacje_files"],
-    ];
-    images_func?: ResolverInputTypes["count_functions"];
-    tags?: [
-      {
-        filter?:
-          | ResolverInputTypes["Organizacje_Tagi_filter"]
-          | undefined
-          | null;
-        sort?: Array<string | undefined | null> | undefined | null;
-        limit?: number | undefined | null;
-        offset?: number | undefined | null;
-        page?: number | undefined | null;
-        search?: string | undefined | null;
-      },
-      ResolverInputTypes["Organizacje_Tagi"],
-    ];
-    tags_func?: ResolverInputTypes["count_functions"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: [
-      {
-        filter?: ResolverInputTypes["Organizacje_filter"] | undefined | null;
-        sort?: Array<string | undefined | null> | undefined | null;
-        limit?: number | undefined | null;
-        offset?: number | undefined | null;
-        page?: number | undefined | null;
-        search?: string | undefined | null;
-      },
-      ResolverInputTypes["Organizacje"],
-    ];
-    directus_files_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_filter"]: {
-    id?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    status?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    user_created?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    date_created?:
-      | ResolverInputTypes["date_filter_operators"]
-      | undefined
-      | null;
-    date_created_func?:
-      | ResolverInputTypes["datetime_function_filter_operators"]
-      | undefined
-      | null;
-    user_updated?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    date_updated?:
-      | ResolverInputTypes["date_filter_operators"]
-      | undefined
-      | null;
-    date_updated_func?:
-      | ResolverInputTypes["datetime_function_filter_operators"]
-      | undefined
-      | null;
-    email?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    field?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    shortDescription?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    longDescription?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    skillsAndChallenges?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    achievements?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    distinguishingFeatures?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    areasOfInterest?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    website?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    linkedin?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    facebook?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    instagram?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    youtube?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    slug?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    name?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    logo?: ResolverInputTypes["string_filter_operators"] | undefined | null;
-    images?: ResolverInputTypes["Organizacje_files_filter"] | undefined | null;
-    images_func?:
-      | ResolverInputTypes["count_function_filter_operators"]
-      | undefined
-      | null;
-    tags?: ResolverInputTypes["Organizacje_Tagi_filter"] | undefined | null;
-    tags_func?:
-      | ResolverInputTypes["count_function_filter_operators"]
-      | undefined
-      | null;
-    _and?:
-      | Array<ResolverInputTypes["Organizacje_filter"] | undefined | null>
-      | undefined
-      | null;
-    _or?:
-      | Array<ResolverInputTypes["Organizacje_filter"] | undefined | null>
-      | undefined
-      | null;
-  };
-  ["Organizacje_files_filter"]: {
-    id?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    Organizacje_id?:
-      | ResolverInputTypes["Organizacje_filter"]
-      | undefined
-      | null;
-    directus_files_id?:
-      | ResolverInputTypes["string_filter_operators"]
-      | undefined
-      | null;
-    _and?:
-      | Array<ResolverInputTypes["Organizacje_files_filter"] | undefined | null>
-      | undefined
-      | null;
-    _or?:
-      | Array<ResolverInputTypes["Organizacje_files_filter"] | undefined | null>
-      | undefined
-      | null;
-  };
-  ["count_function_filter_operators"]: {
-    count?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-  };
-  ["Organizacje_Tagi_filter"]: {
-    id?: ResolverInputTypes["number_filter_operators"] | undefined | null;
-    Organizacje_id?:
-      | ResolverInputTypes["Organizacje_filter"]
-      | undefined
-      | null;
-    Tagi_id?: ResolverInputTypes["Tagi_filter"] | undefined | null;
-    _and?:
-      | Array<ResolverInputTypes["Organizacje_Tagi_filter"] | undefined | null>
-      | undefined
-      | null;
-    _or?:
-      | Array<ResolverInputTypes["Organizacje_Tagi_filter"] | undefined | null>
-      | undefined
-      | null;
-  };
-  ["count_functions"]: AliasType<{
-    count?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_Tagi_aggregated"]: AliasType<{
-    group?: boolean | `@${string}`;
-    countAll?: boolean | `@${string}`;
-    count?: ResolverInputTypes["Organizacje_Tagi_aggregated_count"];
-    countDistinct?: ResolverInputTypes["Organizacje_Tagi_aggregated_count"];
-    avg?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
-    sum?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
-    avgDistinct?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
-    sumDistinct?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
-    min?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
-    max?: ResolverInputTypes["Organizacje_Tagi_aggregated_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_Tagi_aggregated_count"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: boolean | `@${string}`;
-    Tagi_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_Tagi_aggregated_fields"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Tagi_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["version_Organizacje_Tagi"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: boolean | `@${string}`;
-    Tagi_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files_aggregated"]: AliasType<{
-    group?: boolean | `@${string}`;
-    countAll?: boolean | `@${string}`;
-    count?: ResolverInputTypes["Organizacje_files_aggregated_count"];
-    countDistinct?: ResolverInputTypes["Organizacje_files_aggregated_count"];
-    avg?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
-    sum?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
-    avgDistinct?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
-    sumDistinct?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
-    min?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
-    max?: ResolverInputTypes["Organizacje_files_aggregated_fields"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files_aggregated_count"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: boolean | `@${string}`;
-    directus_files_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files_aggregated_fields"]: AliasType<{
-    id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["version_Organizacje_files"]: AliasType<{
-    id?: boolean | `@${string}`;
-    Organizacje_id?: boolean | `@${string}`;
-    directus_files_id?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_aggregated"]: AliasType<{
-    group?: boolean | `@${string}`;
-    countAll?: boolean | `@${string}`;
-    count?: ResolverInputTypes["Organizacje_aggregated_count"];
-    countDistinct?: ResolverInputTypes["Organizacje_aggregated_count"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_aggregated_count"]: AliasType<{
-    id?: boolean | `@${string}`;
-    status?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    email?: boolean | `@${string}`;
-    field?: boolean | `@${string}`;
-    shortDescription?: boolean | `@${string}`;
-    longDescription?: boolean | `@${string}`;
-    skillsAndChallenges?: boolean | `@${string}`;
-    achievements?: boolean | `@${string}`;
-    distinguishingFeatures?: boolean | `@${string}`;
-    areasOfInterest?: boolean | `@${string}`;
-    website?: boolean | `@${string}`;
-    linkedin?: boolean | `@${string}`;
-    facebook?: boolean | `@${string}`;
-    instagram?: boolean | `@${string}`;
-    youtube?: boolean | `@${string}`;
-    slug?: boolean | `@${string}`;
-    name?: boolean | `@${string}`;
-    logo?: boolean | `@${string}`;
-    images?: boolean | `@${string}`;
-    tags?: boolean | `@${string}`;
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["version_Organizacje"]: AliasType<{
-    id?: boolean | `@${string}`;
-    status?: boolean | `@${string}`;
-    user_created?: boolean | `@${string}`;
-    date_created?: boolean | `@${string}`;
-    date_created_func?: ResolverInputTypes["datetime_functions"];
-    user_updated?: boolean | `@${string}`;
-    date_updated?: boolean | `@${string}`;
-    date_updated_func?: ResolverInputTypes["datetime_functions"];
-    email?: boolean | `@${string}`;
-    field?: boolean | `@${string}`;
-    shortDescription?: boolean | `@${string}`;
-    longDescription?: boolean | `@${string}`;
-    skillsAndChallenges?: boolean | `@${string}`;
-    achievements?: boolean | `@${string}`;
-    distinguishingFeatures?: boolean | `@${string}`;
-    areasOfInterest?: boolean | `@${string}`;
-    website?: boolean | `@${string}`;
-    linkedin?: boolean | `@${string}`;
-    facebook?: boolean | `@${string}`;
-    instagram?: boolean | `@${string}`;
-    youtube?: boolean | `@${string}`;
-    slug?: boolean | `@${string}`;
-    name?: boolean | `@${string}`;
-    logo?: boolean | `@${string}`;
-    images?: boolean | `@${string}`;
-    images_func?: ResolverInputTypes["count_functions"];
-    tags?: boolean | `@${string}`;
-    tags_func?: ResolverInputTypes["count_functions"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Subscription"]: AliasType<{
-    Tagi_mutated?: [
-      { event?: ResolverInputTypes["EventEnum"] | undefined | null },
-      ResolverInputTypes["Tagi_mutated"],
-    ];
-    Organizacje_Tagi_mutated?: [
-      { event?: ResolverInputTypes["EventEnum"] | undefined | null },
-      ResolverInputTypes["Organizacje_Tagi_mutated"],
-    ];
-    Organizacje_files_mutated?: [
-      { event?: ResolverInputTypes["EventEnum"] | undefined | null },
-      ResolverInputTypes["Organizacje_files_mutated"],
-    ];
-    Organizacje_mutated?: [
-      { event?: ResolverInputTypes["EventEnum"] | undefined | null },
-      ResolverInputTypes["Organizacje_mutated"],
-    ];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Tagi_mutated"]: AliasType<{
-    key?: boolean | `@${string}`;
-    event?: boolean | `@${string}`;
-    data?: ResolverInputTypes["Tagi"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["EventEnum"]: EventEnum;
-  ["Organizacje_Tagi_mutated"]: AliasType<{
-    key?: boolean | `@${string}`;
-    event?: boolean | `@${string}`;
-    data?: ResolverInputTypes["Organizacje_Tagi"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_files_mutated"]: AliasType<{
-    key?: boolean | `@${string}`;
-    event?: boolean | `@${string}`;
-    data?: ResolverInputTypes["Organizacje_files"];
-    __typename?: boolean | `@${string}`;
-  }>;
-  ["Organizacje_mutated"]: AliasType<{
-    key?: boolean | `@${string}`;
-    event?: boolean | `@${string}`;
-    data?: ResolverInputTypes["Organizacje"];
-    __typename?: boolean | `@${string}`;
-  }>;
   ["schema"]: AliasType<{
     query?: ResolverInputTypes["Query"];
     subscription?: ResolverInputTypes["Subscription"];
@@ -2797,6 +2822,10 @@ export type ModelTypes = {
     Organizacje_Tagi_by_version?:
       | ModelTypes["version_Organizacje_Tagi"]
       | undefined;
+    Organizacje: Array<ModelTypes["Organizacje"]>;
+    Organizacje_by_id?: ModelTypes["Organizacje"] | undefined;
+    Organizacje_aggregated: Array<ModelTypes["Organizacje_aggregated"]>;
+    Organizacje_by_version?: ModelTypes["version_Organizacje"] | undefined;
     Organizacje_files: Array<ModelTypes["Organizacje_files"]>;
     Organizacje_files_by_id?: ModelTypes["Organizacje_files"] | undefined;
     Organizacje_files_aggregated: Array<
@@ -2805,10 +2834,176 @@ export type ModelTypes = {
     Organizacje_files_by_version?:
       | ModelTypes["version_Organizacje_files"]
       | undefined;
-    Organizacje: Array<ModelTypes["Organizacje"]>;
-    Organizacje_by_id?: ModelTypes["Organizacje"] | undefined;
-    Organizacje_aggregated: Array<ModelTypes["Organizacje_aggregated"]>;
-    Organizacje_by_version?: ModelTypes["version_Organizacje"] | undefined;
+  };
+  ["Subscription"]: {
+    Tagi_mutated?: ModelTypes["Tagi_mutated"] | undefined;
+    Organizacje_Tagi_mutated?:
+      | ModelTypes["Organizacje_Tagi_mutated"]
+      | undefined;
+    Organizacje_mutated?: ModelTypes["Organizacje_mutated"] | undefined;
+    Organizacje_files_mutated?:
+      | ModelTypes["Organizacje_files_mutated"]
+      | undefined;
+  };
+  /** The `Boolean` scalar type represents `true` or `false`. */
+  ["Boolean"]: any;
+  /** ISO8601 Date values */
+  ["Date"]: any;
+  /** The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). */
+  ["Float"]: any;
+  /** A Float or a String */
+  ["GraphQLStringOrFloat"]: any;
+  /** The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID. */
+  ["ID"]: any;
+  /** The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. */
+  ["Int"]: any;
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  ["JSON"]: any;
+  /** The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text. */
+  ["String"]: any;
+  ["EventEnum"]: EventEnum;
+  ["count_functions"]: {
+    count?: number | undefined;
+  };
+  ["datetime_functions"]: {
+    year?: number | undefined;
+    month?: number | undefined;
+    week?: number | undefined;
+    day?: number | undefined;
+    weekday?: number | undefined;
+    hour?: number | undefined;
+    minute?: number | undefined;
+    second?: number | undefined;
+  };
+  ["Organizacje"]: {
+    id: string;
+    status?: string | undefined;
+    user_created?: string | undefined;
+    date_created?: ModelTypes["Date"] | undefined;
+    date_created_func?: ModelTypes["datetime_functions"] | undefined;
+    user_updated?: string | undefined;
+    date_updated?: ModelTypes["Date"] | undefined;
+    date_updated_func?: ModelTypes["datetime_functions"] | undefined;
+    email?: string | undefined;
+    field?: string | undefined;
+    longDescription?: string | undefined;
+    skillsAndChallenges?: string | undefined;
+    website?: string | undefined;
+    linkedin?: string | undefined;
+    facebook?: string | undefined;
+    instagram?: string | undefined;
+    youtube?: string | undefined;
+    slug: string;
+    name: string;
+    logo?: string | undefined;
+    shortDescription?: string | undefined;
+    achievements?: string | undefined;
+    distinguishingFeatures?: string | undefined;
+    areasOfInterest?: string | undefined;
+    tags?: Array<ModelTypes["Organizacje_Tagi"] | undefined> | undefined;
+    tags_func?: ModelTypes["count_functions"] | undefined;
+    images?: Array<ModelTypes["Organizacje_files"] | undefined> | undefined;
+    images_func?: ModelTypes["count_functions"] | undefined;
+  };
+  ["Organizacje_aggregated"]: {
+    group?: ModelTypes["JSON"] | undefined;
+    countAll?: number | undefined;
+    count?: ModelTypes["Organizacje_aggregated_count"] | undefined;
+    countDistinct?: ModelTypes["Organizacje_aggregated_count"] | undefined;
+  };
+  ["Organizacje_aggregated_count"]: {
+    id?: number | undefined;
+    status?: number | undefined;
+    user_created?: number | undefined;
+    date_created?: number | undefined;
+    user_updated?: number | undefined;
+    date_updated?: number | undefined;
+    email?: number | undefined;
+    field?: number | undefined;
+    longDescription?: number | undefined;
+    skillsAndChallenges?: number | undefined;
+    website?: number | undefined;
+    linkedin?: number | undefined;
+    facebook?: number | undefined;
+    instagram?: number | undefined;
+    youtube?: number | undefined;
+    slug?: number | undefined;
+    name?: number | undefined;
+    logo?: number | undefined;
+    shortDescription?: number | undefined;
+    achievements?: number | undefined;
+    distinguishingFeatures?: number | undefined;
+    areasOfInterest?: number | undefined;
+    tags?: number | undefined;
+    images?: number | undefined;
+  };
+  ["Organizacje_files"]: {
+    id: string;
+    Organizacje_id?: ModelTypes["Organizacje"] | undefined;
+    directus_files_id?: string | undefined;
+  };
+  ["Organizacje_files_aggregated"]: {
+    group?: ModelTypes["JSON"] | undefined;
+    countAll?: number | undefined;
+    count?: ModelTypes["Organizacje_files_aggregated_count"] | undefined;
+    countDistinct?:
+      | ModelTypes["Organizacje_files_aggregated_count"]
+      | undefined;
+    avg?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
+    sum?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
+    avgDistinct?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
+    sumDistinct?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
+    min?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
+    max?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
+  };
+  ["Organizacje_files_aggregated_count"]: {
+    id?: number | undefined;
+    Organizacje_id?: number | undefined;
+    directus_files_id?: number | undefined;
+  };
+  ["Organizacje_files_aggregated_fields"]: {
+    id?: number | undefined;
+  };
+  ["Organizacje_files_mutated"]: {
+    key: string;
+    event?: ModelTypes["EventEnum"] | undefined;
+    data?: ModelTypes["Organizacje_files"] | undefined;
+  };
+  ["Organizacje_mutated"]: {
+    key: string;
+    event?: ModelTypes["EventEnum"] | undefined;
+    data?: ModelTypes["Organizacje"] | undefined;
+  };
+  ["Organizacje_Tagi"]: {
+    id: string;
+    Organizacje_id?: ModelTypes["Organizacje"] | undefined;
+    Tagi_id?: ModelTypes["Tagi"] | undefined;
+  };
+  ["Organizacje_Tagi_aggregated"]: {
+    group?: ModelTypes["JSON"] | undefined;
+    countAll?: number | undefined;
+    count?: ModelTypes["Organizacje_Tagi_aggregated_count"] | undefined;
+    countDistinct?: ModelTypes["Organizacje_Tagi_aggregated_count"] | undefined;
+    avg?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
+    sum?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
+    avgDistinct?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
+    sumDistinct?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
+    min?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
+    max?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
+  };
+  ["Organizacje_Tagi_aggregated_count"]: {
+    id?: number | undefined;
+    Organizacje_id?: number | undefined;
+    Tagi_id?: number | undefined;
+  };
+  ["Organizacje_Tagi_aggregated_fields"]: {
+    id?: number | undefined;
+    Tagi_id?: number | undefined;
+  };
+  ["Organizacje_Tagi_mutated"]: {
+    key: string;
+    event?: ModelTypes["EventEnum"] | undefined;
+    data?: ModelTypes["Organizacje_Tagi"] | undefined;
   };
   ["Tagi"]: {
     id: string;
@@ -2821,75 +3016,89 @@ export type ModelTypes = {
     date_updated_func?: ModelTypes["datetime_functions"] | undefined;
     tag: string;
   };
-  /** ISO8601 Date values */
-  ["Date"]: any;
-  ["datetime_functions"]: {
-    year?: number | undefined;
-    month?: number | undefined;
-    week?: number | undefined;
-    day?: number | undefined;
-    weekday?: number | undefined;
-    hour?: number | undefined;
-    minute?: number | undefined;
-    second?: number | undefined;
+  ["Tagi_aggregated"]: {
+    group?: ModelTypes["JSON"] | undefined;
+    countAll?: number | undefined;
+    count?: ModelTypes["Tagi_aggregated_count"] | undefined;
+    countDistinct?: ModelTypes["Tagi_aggregated_count"] | undefined;
+    avg?: ModelTypes["Tagi_aggregated_fields"] | undefined;
+    sum?: ModelTypes["Tagi_aggregated_fields"] | undefined;
+    avgDistinct?: ModelTypes["Tagi_aggregated_fields"] | undefined;
+    sumDistinct?: ModelTypes["Tagi_aggregated_fields"] | undefined;
+    min?: ModelTypes["Tagi_aggregated_fields"] | undefined;
+    max?: ModelTypes["Tagi_aggregated_fields"] | undefined;
   };
-  ["Tagi_filter"]: {
-    id?: ModelTypes["number_filter_operators"] | undefined;
-    sort?: ModelTypes["number_filter_operators"] | undefined;
-    user_created?: ModelTypes["string_filter_operators"] | undefined;
-    date_created?: ModelTypes["date_filter_operators"] | undefined;
-    date_created_func?:
-      | ModelTypes["datetime_function_filter_operators"]
-      | undefined;
-    user_updated?: ModelTypes["string_filter_operators"] | undefined;
-    date_updated?: ModelTypes["date_filter_operators"] | undefined;
-    date_updated_func?:
-      | ModelTypes["datetime_function_filter_operators"]
-      | undefined;
-    tag?: ModelTypes["string_filter_operators"] | undefined;
-    _and?: Array<ModelTypes["Tagi_filter"] | undefined> | undefined;
-    _or?: Array<ModelTypes["Tagi_filter"] | undefined> | undefined;
+  ["Tagi_aggregated_count"]: {
+    id?: number | undefined;
+    sort?: number | undefined;
+    user_created?: number | undefined;
+    date_created?: number | undefined;
+    user_updated?: number | undefined;
+    date_updated?: number | undefined;
+    tag?: number | undefined;
   };
-  ["number_filter_operators"]: {
-    _eq?: ModelTypes["GraphQLStringOrFloat"] | undefined;
-    _neq?: ModelTypes["GraphQLStringOrFloat"] | undefined;
-    _in?: Array<ModelTypes["GraphQLStringOrFloat"] | undefined> | undefined;
-    _nin?: Array<ModelTypes["GraphQLStringOrFloat"] | undefined> | undefined;
-    _gt?: ModelTypes["GraphQLStringOrFloat"] | undefined;
-    _gte?: ModelTypes["GraphQLStringOrFloat"] | undefined;
-    _lt?: ModelTypes["GraphQLStringOrFloat"] | undefined;
-    _lte?: ModelTypes["GraphQLStringOrFloat"] | undefined;
-    _null?: boolean | undefined;
-    _nnull?: boolean | undefined;
-    _between?:
-      | Array<ModelTypes["GraphQLStringOrFloat"] | undefined>
-      | undefined;
-    _nbetween?:
-      | Array<ModelTypes["GraphQLStringOrFloat"] | undefined>
-      | undefined;
+  ["Tagi_aggregated_fields"]: {
+    id?: number | undefined;
+    sort?: number | undefined;
   };
-  /** A Float or a String */
-  ["GraphQLStringOrFloat"]: any;
-  ["string_filter_operators"]: {
-    _eq?: string | undefined;
-    _neq?: string | undefined;
-    _contains?: string | undefined;
-    _icontains?: string | undefined;
-    _ncontains?: string | undefined;
-    _starts_with?: string | undefined;
-    _nstarts_with?: string | undefined;
-    _istarts_with?: string | undefined;
-    _nistarts_with?: string | undefined;
-    _ends_with?: string | undefined;
-    _nends_with?: string | undefined;
-    _iends_with?: string | undefined;
-    _niends_with?: string | undefined;
-    _in?: Array<string | undefined> | undefined;
-    _nin?: Array<string | undefined> | undefined;
-    _null?: boolean | undefined;
-    _nnull?: boolean | undefined;
-    _empty?: boolean | undefined;
-    _nempty?: boolean | undefined;
+  ["Tagi_mutated"]: {
+    key: string;
+    event?: ModelTypes["EventEnum"] | undefined;
+    data?: ModelTypes["Tagi"] | undefined;
+  };
+  ["version_Organizacje"]: {
+    id: string;
+    status?: string | undefined;
+    user_created?: string | undefined;
+    date_created?: ModelTypes["Date"] | undefined;
+    date_created_func?: ModelTypes["datetime_functions"] | undefined;
+    user_updated?: string | undefined;
+    date_updated?: ModelTypes["Date"] | undefined;
+    date_updated_func?: ModelTypes["datetime_functions"] | undefined;
+    email?: string | undefined;
+    field?: string | undefined;
+    longDescription?: string | undefined;
+    skillsAndChallenges?: string | undefined;
+    website?: string | undefined;
+    linkedin?: string | undefined;
+    facebook?: string | undefined;
+    instagram?: string | undefined;
+    youtube?: string | undefined;
+    slug: string;
+    name: string;
+    logo?: string | undefined;
+    shortDescription?: string | undefined;
+    achievements?: string | undefined;
+    distinguishingFeatures?: string | undefined;
+    areasOfInterest?: string | undefined;
+    tags?: ModelTypes["JSON"] | undefined;
+    tags_func?: ModelTypes["count_functions"] | undefined;
+    images?: ModelTypes["JSON"] | undefined;
+    images_func?: ModelTypes["count_functions"] | undefined;
+  };
+  ["version_Organizacje_files"]: {
+    id: string;
+    Organizacje_id?: string | undefined;
+    directus_files_id?: string | undefined;
+  };
+  ["version_Organizacje_Tagi"]: {
+    id: string;
+    Organizacje_id?: string | undefined;
+    Tagi_id?: number | undefined;
+  };
+  ["version_Tagi"]: {
+    id: string;
+    sort?: number | undefined;
+    user_created?: string | undefined;
+    date_created?: ModelTypes["Date"] | undefined;
+    date_created_func?: ModelTypes["datetime_functions"] | undefined;
+    user_updated?: string | undefined;
+    date_updated?: ModelTypes["Date"] | undefined;
+    date_updated_func?: ModelTypes["datetime_functions"] | undefined;
+    tag: string;
+  };
+  ["count_function_filter_operators"]: {
+    count?: ModelTypes["number_filter_operators"] | undefined;
   };
   ["date_filter_operators"]: {
     _eq?: string | undefined;
@@ -2919,83 +3128,32 @@ export type ModelTypes = {
     minute?: ModelTypes["number_filter_operators"] | undefined;
     second?: ModelTypes["number_filter_operators"] | undefined;
   };
-  ["Tagi_aggregated"]: {
-    group?: ModelTypes["JSON"] | undefined;
-    countAll?: number | undefined;
-    count?: ModelTypes["Tagi_aggregated_count"] | undefined;
-    countDistinct?: ModelTypes["Tagi_aggregated_count"] | undefined;
-    avg?: ModelTypes["Tagi_aggregated_fields"] | undefined;
-    sum?: ModelTypes["Tagi_aggregated_fields"] | undefined;
-    avgDistinct?: ModelTypes["Tagi_aggregated_fields"] | undefined;
-    sumDistinct?: ModelTypes["Tagi_aggregated_fields"] | undefined;
-    min?: ModelTypes["Tagi_aggregated_fields"] | undefined;
-    max?: ModelTypes["Tagi_aggregated_fields"] | undefined;
+  ["number_filter_operators"]: {
+    _eq?: ModelTypes["GraphQLStringOrFloat"] | undefined;
+    _neq?: ModelTypes["GraphQLStringOrFloat"] | undefined;
+    _in?: Array<ModelTypes["GraphQLStringOrFloat"] | undefined> | undefined;
+    _nin?: Array<ModelTypes["GraphQLStringOrFloat"] | undefined> | undefined;
+    _gt?: ModelTypes["GraphQLStringOrFloat"] | undefined;
+    _gte?: ModelTypes["GraphQLStringOrFloat"] | undefined;
+    _lt?: ModelTypes["GraphQLStringOrFloat"] | undefined;
+    _lte?: ModelTypes["GraphQLStringOrFloat"] | undefined;
+    _null?: boolean | undefined;
+    _nnull?: boolean | undefined;
+    _between?:
+      | Array<ModelTypes["GraphQLStringOrFloat"] | undefined>
+      | undefined;
+    _nbetween?:
+      | Array<ModelTypes["GraphQLStringOrFloat"] | undefined>
+      | undefined;
   };
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  ["JSON"]: any;
-  ["Tagi_aggregated_count"]: {
-    id?: number | undefined;
-    sort?: number | undefined;
-    user_created?: number | undefined;
-    date_created?: number | undefined;
-    user_updated?: number | undefined;
-    date_updated?: number | undefined;
-    tag?: number | undefined;
-  };
-  ["Tagi_aggregated_fields"]: {
-    id?: number | undefined;
-    sort?: number | undefined;
-  };
-  ["version_Tagi"]: {
-    id: string;
-    sort?: number | undefined;
-    user_created?: string | undefined;
-    date_created?: ModelTypes["Date"] | undefined;
-    date_created_func?: ModelTypes["datetime_functions"] | undefined;
-    user_updated?: string | undefined;
-    date_updated?: ModelTypes["Date"] | undefined;
-    date_updated_func?: ModelTypes["datetime_functions"] | undefined;
-    tag: string;
-  };
-  ["Organizacje_Tagi"]: {
-    id: string;
-    Organizacje_id?: ModelTypes["Organizacje"] | undefined;
-    Tagi_id?: ModelTypes["Tagi"] | undefined;
-  };
-  ["Organizacje"]: {
-    id: string;
-    status?: string | undefined;
-    user_created?: string | undefined;
-    date_created?: ModelTypes["Date"] | undefined;
-    date_created_func?: ModelTypes["datetime_functions"] | undefined;
-    user_updated?: string | undefined;
-    date_updated?: ModelTypes["Date"] | undefined;
-    date_updated_func?: ModelTypes["datetime_functions"] | undefined;
-    email?: string | undefined;
-    field?: string | undefined;
-    shortDescription: string;
-    longDescription?: string | undefined;
-    skillsAndChallenges?: string | undefined;
-    achievements?: string | undefined;
-    distinguishingFeatures?: string | undefined;
-    areasOfInterest?: string | undefined;
-    website?: string | undefined;
-    linkedin?: string | undefined;
-    facebook?: string | undefined;
-    instagram?: string | undefined;
-    youtube?: string | undefined;
-    slug: string;
-    name: string;
-    logo: string;
-    images?: Array<ModelTypes["Organizacje_files"] | undefined> | undefined;
-    images_func?: ModelTypes["count_functions"] | undefined;
-    tags?: Array<ModelTypes["Organizacje_Tagi"] | undefined> | undefined;
-    tags_func?: ModelTypes["count_functions"] | undefined;
-  };
-  ["Organizacje_files"]: {
-    id: string;
-    Organizacje_id?: ModelTypes["Organizacje"] | undefined;
-    directus_files_id?: string | undefined;
+  ["Organizacje_files_filter"]: {
+    id?: ModelTypes["number_filter_operators"] | undefined;
+    Organizacje_id?: ModelTypes["Organizacje_filter"] | undefined;
+    directus_files_id?: ModelTypes["string_filter_operators"] | undefined;
+    _and?:
+      | Array<ModelTypes["Organizacje_files_filter"] | undefined>
+      | undefined;
+    _or?: Array<ModelTypes["Organizacje_files_filter"] | undefined> | undefined;
   };
   ["Organizacje_filter"]: {
     id?: ModelTypes["string_filter_operators"] | undefined;
@@ -3012,12 +3170,8 @@ export type ModelTypes = {
       | undefined;
     email?: ModelTypes["string_filter_operators"] | undefined;
     field?: ModelTypes["string_filter_operators"] | undefined;
-    shortDescription?: ModelTypes["string_filter_operators"] | undefined;
     longDescription?: ModelTypes["string_filter_operators"] | undefined;
     skillsAndChallenges?: ModelTypes["string_filter_operators"] | undefined;
-    achievements?: ModelTypes["string_filter_operators"] | undefined;
-    distinguishingFeatures?: ModelTypes["string_filter_operators"] | undefined;
-    areasOfInterest?: ModelTypes["string_filter_operators"] | undefined;
     website?: ModelTypes["string_filter_operators"] | undefined;
     linkedin?: ModelTypes["string_filter_operators"] | undefined;
     facebook?: ModelTypes["string_filter_operators"] | undefined;
@@ -3026,24 +3180,16 @@ export type ModelTypes = {
     slug?: ModelTypes["string_filter_operators"] | undefined;
     name?: ModelTypes["string_filter_operators"] | undefined;
     logo?: ModelTypes["string_filter_operators"] | undefined;
-    images?: ModelTypes["Organizacje_files_filter"] | undefined;
-    images_func?: ModelTypes["count_function_filter_operators"] | undefined;
+    shortDescription?: ModelTypes["string_filter_operators"] | undefined;
+    achievements?: ModelTypes["string_filter_operators"] | undefined;
+    distinguishingFeatures?: ModelTypes["string_filter_operators"] | undefined;
+    areasOfInterest?: ModelTypes["string_filter_operators"] | undefined;
     tags?: ModelTypes["Organizacje_Tagi_filter"] | undefined;
     tags_func?: ModelTypes["count_function_filter_operators"] | undefined;
+    images?: ModelTypes["Organizacje_files_filter"] | undefined;
+    images_func?: ModelTypes["count_function_filter_operators"] | undefined;
     _and?: Array<ModelTypes["Organizacje_filter"] | undefined> | undefined;
     _or?: Array<ModelTypes["Organizacje_filter"] | undefined> | undefined;
-  };
-  ["Organizacje_files_filter"]: {
-    id?: ModelTypes["number_filter_operators"] | undefined;
-    Organizacje_id?: ModelTypes["Organizacje_filter"] | undefined;
-    directus_files_id?: ModelTypes["string_filter_operators"] | undefined;
-    _and?:
-      | Array<ModelTypes["Organizacje_files_filter"] | undefined>
-      | undefined;
-    _or?: Array<ModelTypes["Organizacje_files_filter"] | undefined> | undefined;
-  };
-  ["count_function_filter_operators"]: {
-    count?: ModelTypes["number_filter_operators"] | undefined;
   };
   ["Organizacje_Tagi_filter"]: {
     id?: ModelTypes["number_filter_operators"] | undefined;
@@ -3052,154 +3198,43 @@ export type ModelTypes = {
     _and?: Array<ModelTypes["Organizacje_Tagi_filter"] | undefined> | undefined;
     _or?: Array<ModelTypes["Organizacje_Tagi_filter"] | undefined> | undefined;
   };
-  ["count_functions"]: {
-    count?: number | undefined;
+  ["string_filter_operators"]: {
+    _eq?: string | undefined;
+    _neq?: string | undefined;
+    _contains?: string | undefined;
+    _icontains?: string | undefined;
+    _ncontains?: string | undefined;
+    _starts_with?: string | undefined;
+    _nstarts_with?: string | undefined;
+    _istarts_with?: string | undefined;
+    _nistarts_with?: string | undefined;
+    _ends_with?: string | undefined;
+    _nends_with?: string | undefined;
+    _iends_with?: string | undefined;
+    _niends_with?: string | undefined;
+    _in?: Array<string | undefined> | undefined;
+    _nin?: Array<string | undefined> | undefined;
+    _null?: boolean | undefined;
+    _nnull?: boolean | undefined;
+    _empty?: boolean | undefined;
+    _nempty?: boolean | undefined;
   };
-  ["Organizacje_Tagi_aggregated"]: {
-    group?: ModelTypes["JSON"] | undefined;
-    countAll?: number | undefined;
-    count?: ModelTypes["Organizacje_Tagi_aggregated_count"] | undefined;
-    countDistinct?: ModelTypes["Organizacje_Tagi_aggregated_count"] | undefined;
-    avg?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
-    sum?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
-    avgDistinct?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
-    sumDistinct?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
-    min?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
-    max?: ModelTypes["Organizacje_Tagi_aggregated_fields"] | undefined;
-  };
-  ["Organizacje_Tagi_aggregated_count"]: {
-    id?: number | undefined;
-    Organizacje_id?: number | undefined;
-    Tagi_id?: number | undefined;
-  };
-  ["Organizacje_Tagi_aggregated_fields"]: {
-    id?: number | undefined;
-    Tagi_id?: number | undefined;
-  };
-  ["version_Organizacje_Tagi"]: {
-    id: string;
-    Organizacje_id?: string | undefined;
-    Tagi_id?: number | undefined;
-  };
-  ["Organizacje_files_aggregated"]: {
-    group?: ModelTypes["JSON"] | undefined;
-    countAll?: number | undefined;
-    count?: ModelTypes["Organizacje_files_aggregated_count"] | undefined;
-    countDistinct?:
-      | ModelTypes["Organizacje_files_aggregated_count"]
+  ["Tagi_filter"]: {
+    id?: ModelTypes["number_filter_operators"] | undefined;
+    sort?: ModelTypes["number_filter_operators"] | undefined;
+    user_created?: ModelTypes["string_filter_operators"] | undefined;
+    date_created?: ModelTypes["date_filter_operators"] | undefined;
+    date_created_func?:
+      | ModelTypes["datetime_function_filter_operators"]
       | undefined;
-    avg?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
-    sum?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
-    avgDistinct?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
-    sumDistinct?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
-    min?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
-    max?: ModelTypes["Organizacje_files_aggregated_fields"] | undefined;
-  };
-  ["Organizacje_files_aggregated_count"]: {
-    id?: number | undefined;
-    Organizacje_id?: number | undefined;
-    directus_files_id?: number | undefined;
-  };
-  ["Organizacje_files_aggregated_fields"]: {
-    id?: number | undefined;
-  };
-  ["version_Organizacje_files"]: {
-    id: string;
-    Organizacje_id?: string | undefined;
-    directus_files_id?: string | undefined;
-  };
-  ["Organizacje_aggregated"]: {
-    group?: ModelTypes["JSON"] | undefined;
-    countAll?: number | undefined;
-    count?: ModelTypes["Organizacje_aggregated_count"] | undefined;
-    countDistinct?: ModelTypes["Organizacje_aggregated_count"] | undefined;
-  };
-  ["Organizacje_aggregated_count"]: {
-    id?: number | undefined;
-    status?: number | undefined;
-    user_created?: number | undefined;
-    date_created?: number | undefined;
-    user_updated?: number | undefined;
-    date_updated?: number | undefined;
-    email?: number | undefined;
-    field?: number | undefined;
-    shortDescription?: number | undefined;
-    longDescription?: number | undefined;
-    skillsAndChallenges?: number | undefined;
-    achievements?: number | undefined;
-    distinguishingFeatures?: number | undefined;
-    areasOfInterest?: number | undefined;
-    website?: number | undefined;
-    linkedin?: number | undefined;
-    facebook?: number | undefined;
-    instagram?: number | undefined;
-    youtube?: number | undefined;
-    slug?: number | undefined;
-    name?: number | undefined;
-    logo?: number | undefined;
-    images?: number | undefined;
-    tags?: number | undefined;
-  };
-  ["version_Organizacje"]: {
-    id: string;
-    status?: string | undefined;
-    user_created?: string | undefined;
-    date_created?: ModelTypes["Date"] | undefined;
-    date_created_func?: ModelTypes["datetime_functions"] | undefined;
-    user_updated?: string | undefined;
-    date_updated?: ModelTypes["Date"] | undefined;
-    date_updated_func?: ModelTypes["datetime_functions"] | undefined;
-    email?: string | undefined;
-    field?: string | undefined;
-    shortDescription: string;
-    longDescription?: string | undefined;
-    skillsAndChallenges?: string | undefined;
-    achievements?: string | undefined;
-    distinguishingFeatures?: string | undefined;
-    areasOfInterest?: string | undefined;
-    website?: string | undefined;
-    linkedin?: string | undefined;
-    facebook?: string | undefined;
-    instagram?: string | undefined;
-    youtube?: string | undefined;
-    slug: string;
-    name: string;
-    logo: string;
-    images?: ModelTypes["JSON"] | undefined;
-    images_func?: ModelTypes["count_functions"] | undefined;
-    tags?: ModelTypes["JSON"] | undefined;
-    tags_func?: ModelTypes["count_functions"] | undefined;
-  };
-  ["Subscription"]: {
-    Tagi_mutated?: ModelTypes["Tagi_mutated"] | undefined;
-    Organizacje_Tagi_mutated?:
-      | ModelTypes["Organizacje_Tagi_mutated"]
+    user_updated?: ModelTypes["string_filter_operators"] | undefined;
+    date_updated?: ModelTypes["date_filter_operators"] | undefined;
+    date_updated_func?:
+      | ModelTypes["datetime_function_filter_operators"]
       | undefined;
-    Organizacje_files_mutated?:
-      | ModelTypes["Organizacje_files_mutated"]
-      | undefined;
-    Organizacje_mutated?: ModelTypes["Organizacje_mutated"] | undefined;
-  };
-  ["Tagi_mutated"]: {
-    key: string;
-    event?: ModelTypes["EventEnum"] | undefined;
-    data?: ModelTypes["Tagi"] | undefined;
-  };
-  ["EventEnum"]: EventEnum;
-  ["Organizacje_Tagi_mutated"]: {
-    key: string;
-    event?: ModelTypes["EventEnum"] | undefined;
-    data?: ModelTypes["Organizacje_Tagi"] | undefined;
-  };
-  ["Organizacje_files_mutated"]: {
-    key: string;
-    event?: ModelTypes["EventEnum"] | undefined;
-    data?: ModelTypes["Organizacje_files"] | undefined;
-  };
-  ["Organizacje_mutated"]: {
-    key: string;
-    event?: ModelTypes["EventEnum"] | undefined;
-    data?: ModelTypes["Organizacje"] | undefined;
+    tag?: ModelTypes["string_filter_operators"] | undefined;
+    _and?: Array<ModelTypes["Tagi_filter"] | undefined> | undefined;
+    _or?: Array<ModelTypes["Tagi_filter"] | undefined> | undefined;
   };
   ["schema"]: {
     query?: ModelTypes["Query"] | undefined;
@@ -3222,6 +3257,10 @@ export type GraphQLTypes = {
     Organizacje_Tagi_by_version?:
       | GraphQLTypes["version_Organizacje_Tagi"]
       | undefined;
+    Organizacje: Array<GraphQLTypes["Organizacje"]>;
+    Organizacje_by_id?: GraphQLTypes["Organizacje"] | undefined;
+    Organizacje_aggregated: Array<GraphQLTypes["Organizacje_aggregated"]>;
+    Organizacje_by_version?: GraphQLTypes["version_Organizacje"] | undefined;
     Organizacje_files: Array<GraphQLTypes["Organizacje_files"]>;
     Organizacje_files_by_id?: GraphQLTypes["Organizacje_files"] | undefined;
     Organizacje_files_aggregated: Array<
@@ -3230,25 +3269,39 @@ export type GraphQLTypes = {
     Organizacje_files_by_version?:
       | GraphQLTypes["version_Organizacje_files"]
       | undefined;
-    Organizacje: Array<GraphQLTypes["Organizacje"]>;
-    Organizacje_by_id?: GraphQLTypes["Organizacje"] | undefined;
-    Organizacje_aggregated: Array<GraphQLTypes["Organizacje_aggregated"]>;
-    Organizacje_by_version?: GraphQLTypes["version_Organizacje"] | undefined;
   };
-  ["Tagi"]: {
-    __typename: "Tagi";
-    id: string;
-    sort?: number | undefined;
-    user_created?: string | undefined;
-    date_created?: GraphQLTypes["Date"] | undefined;
-    date_created_func?: GraphQLTypes["datetime_functions"] | undefined;
-    user_updated?: string | undefined;
-    date_updated?: GraphQLTypes["Date"] | undefined;
-    date_updated_func?: GraphQLTypes["datetime_functions"] | undefined;
-    tag: string;
+  ["Subscription"]: {
+    __typename: "Subscription";
+    Tagi_mutated?: GraphQLTypes["Tagi_mutated"] | undefined;
+    Organizacje_Tagi_mutated?:
+      | GraphQLTypes["Organizacje_Tagi_mutated"]
+      | undefined;
+    Organizacje_mutated?: GraphQLTypes["Organizacje_mutated"] | undefined;
+    Organizacje_files_mutated?:
+      | GraphQLTypes["Organizacje_files_mutated"]
+      | undefined;
   };
+  /** The `Boolean` scalar type represents `true` or `false`. */
+  ["Boolean"]: "scalar" & { name: "Boolean" };
   /** ISO8601 Date values */
   ["Date"]: "scalar" & { name: "Date" };
+  /** The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). */
+  ["Float"]: "scalar" & { name: "Float" };
+  /** A Float or a String */
+  ["GraphQLStringOrFloat"]: "scalar" & { name: "GraphQLStringOrFloat" };
+  /** The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID. */
+  ["ID"]: "scalar" & { name: "ID" };
+  /** The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. */
+  ["Int"]: "scalar" & { name: "Int" };
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  ["JSON"]: "scalar" & { name: "JSON" };
+  /** The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text. */
+  ["String"]: "scalar" & { name: "String" };
+  ["EventEnum"]: EventEnum;
+  ["count_functions"]: {
+    __typename: "count_functions";
+    count?: number | undefined;
+  };
   ["datetime_functions"]: {
     __typename: "datetime_functions";
     year?: number | undefined;
@@ -3259,140 +3312,6 @@ export type GraphQLTypes = {
     hour?: number | undefined;
     minute?: number | undefined;
     second?: number | undefined;
-  };
-  ["Tagi_filter"]: {
-    id?: GraphQLTypes["number_filter_operators"] | undefined;
-    sort?: GraphQLTypes["number_filter_operators"] | undefined;
-    user_created?: GraphQLTypes["string_filter_operators"] | undefined;
-    date_created?: GraphQLTypes["date_filter_operators"] | undefined;
-    date_created_func?:
-      | GraphQLTypes["datetime_function_filter_operators"]
-      | undefined;
-    user_updated?: GraphQLTypes["string_filter_operators"] | undefined;
-    date_updated?: GraphQLTypes["date_filter_operators"] | undefined;
-    date_updated_func?:
-      | GraphQLTypes["datetime_function_filter_operators"]
-      | undefined;
-    tag?: GraphQLTypes["string_filter_operators"] | undefined;
-    _and?: Array<GraphQLTypes["Tagi_filter"] | undefined> | undefined;
-    _or?: Array<GraphQLTypes["Tagi_filter"] | undefined> | undefined;
-  };
-  ["number_filter_operators"]: {
-    _eq?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
-    _neq?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
-    _in?: Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined> | undefined;
-    _nin?: Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined> | undefined;
-    _gt?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
-    _gte?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
-    _lt?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
-    _lte?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
-    _null?: boolean | undefined;
-    _nnull?: boolean | undefined;
-    _between?:
-      | Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined>
-      | undefined;
-    _nbetween?:
-      | Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined>
-      | undefined;
-  };
-  /** A Float or a String */
-  ["GraphQLStringOrFloat"]: "scalar" & { name: "GraphQLStringOrFloat" };
-  ["string_filter_operators"]: {
-    _eq?: string | undefined;
-    _neq?: string | undefined;
-    _contains?: string | undefined;
-    _icontains?: string | undefined;
-    _ncontains?: string | undefined;
-    _starts_with?: string | undefined;
-    _nstarts_with?: string | undefined;
-    _istarts_with?: string | undefined;
-    _nistarts_with?: string | undefined;
-    _ends_with?: string | undefined;
-    _nends_with?: string | undefined;
-    _iends_with?: string | undefined;
-    _niends_with?: string | undefined;
-    _in?: Array<string | undefined> | undefined;
-    _nin?: Array<string | undefined> | undefined;
-    _null?: boolean | undefined;
-    _nnull?: boolean | undefined;
-    _empty?: boolean | undefined;
-    _nempty?: boolean | undefined;
-  };
-  ["date_filter_operators"]: {
-    _eq?: string | undefined;
-    _neq?: string | undefined;
-    _gt?: string | undefined;
-    _gte?: string | undefined;
-    _lt?: string | undefined;
-    _lte?: string | undefined;
-    _null?: boolean | undefined;
-    _nnull?: boolean | undefined;
-    _in?: Array<string | undefined> | undefined;
-    _nin?: Array<string | undefined> | undefined;
-    _between?:
-      | Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined>
-      | undefined;
-    _nbetween?:
-      | Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined>
-      | undefined;
-  };
-  ["datetime_function_filter_operators"]: {
-    year?: GraphQLTypes["number_filter_operators"] | undefined;
-    month?: GraphQLTypes["number_filter_operators"] | undefined;
-    week?: GraphQLTypes["number_filter_operators"] | undefined;
-    day?: GraphQLTypes["number_filter_operators"] | undefined;
-    weekday?: GraphQLTypes["number_filter_operators"] | undefined;
-    hour?: GraphQLTypes["number_filter_operators"] | undefined;
-    minute?: GraphQLTypes["number_filter_operators"] | undefined;
-    second?: GraphQLTypes["number_filter_operators"] | undefined;
-  };
-  ["Tagi_aggregated"]: {
-    __typename: "Tagi_aggregated";
-    group?: GraphQLTypes["JSON"] | undefined;
-    countAll?: number | undefined;
-    count?: GraphQLTypes["Tagi_aggregated_count"] | undefined;
-    countDistinct?: GraphQLTypes["Tagi_aggregated_count"] | undefined;
-    avg?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
-    sum?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
-    avgDistinct?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
-    sumDistinct?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
-    min?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
-    max?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
-  };
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  ["JSON"]: "scalar" & { name: "JSON" };
-  ["Tagi_aggregated_count"]: {
-    __typename: "Tagi_aggregated_count";
-    id?: number | undefined;
-    sort?: number | undefined;
-    user_created?: number | undefined;
-    date_created?: number | undefined;
-    user_updated?: number | undefined;
-    date_updated?: number | undefined;
-    tag?: number | undefined;
-  };
-  ["Tagi_aggregated_fields"]: {
-    __typename: "Tagi_aggregated_fields";
-    id?: number | undefined;
-    sort?: number | undefined;
-  };
-  ["version_Tagi"]: {
-    __typename: "version_Tagi";
-    id: string;
-    sort?: number | undefined;
-    user_created?: string | undefined;
-    date_created?: GraphQLTypes["Date"] | undefined;
-    date_created_func?: GraphQLTypes["datetime_functions"] | undefined;
-    user_updated?: string | undefined;
-    date_updated?: GraphQLTypes["Date"] | undefined;
-    date_updated_func?: GraphQLTypes["datetime_functions"] | undefined;
-    tag: string;
-  };
-  ["Organizacje_Tagi"]: {
-    __typename: "Organizacje_Tagi";
-    id: string;
-    Organizacje_id?: GraphQLTypes["Organizacje"] | undefined;
-    Tagi_id?: GraphQLTypes["Tagi"] | undefined;
   };
   ["Organizacje"]: {
     __typename: "Organizacje";
@@ -3406,12 +3325,8 @@ export type GraphQLTypes = {
     date_updated_func?: GraphQLTypes["datetime_functions"] | undefined;
     email?: string | undefined;
     field?: string | undefined;
-    shortDescription: string;
     longDescription?: string | undefined;
     skillsAndChallenges?: string | undefined;
-    achievements?: string | undefined;
-    distinguishingFeatures?: string | undefined;
-    areasOfInterest?: string | undefined;
     website?: string | undefined;
     linkedin?: string | undefined;
     facebook?: string | undefined;
@@ -3419,11 +3334,49 @@ export type GraphQLTypes = {
     youtube?: string | undefined;
     slug: string;
     name: string;
-    logo: string;
-    images?: Array<GraphQLTypes["Organizacje_files"] | undefined> | undefined;
-    images_func?: GraphQLTypes["count_functions"] | undefined;
+    logo?: string | undefined;
+    shortDescription?: string | undefined;
+    achievements?: string | undefined;
+    distinguishingFeatures?: string | undefined;
+    areasOfInterest?: string | undefined;
     tags?: Array<GraphQLTypes["Organizacje_Tagi"] | undefined> | undefined;
     tags_func?: GraphQLTypes["count_functions"] | undefined;
+    images?: Array<GraphQLTypes["Organizacje_files"] | undefined> | undefined;
+    images_func?: GraphQLTypes["count_functions"] | undefined;
+  };
+  ["Organizacje_aggregated"]: {
+    __typename: "Organizacje_aggregated";
+    group?: GraphQLTypes["JSON"] | undefined;
+    countAll?: number | undefined;
+    count?: GraphQLTypes["Organizacje_aggregated_count"] | undefined;
+    countDistinct?: GraphQLTypes["Organizacje_aggregated_count"] | undefined;
+  };
+  ["Organizacje_aggregated_count"]: {
+    __typename: "Organizacje_aggregated_count";
+    id?: number | undefined;
+    status?: number | undefined;
+    user_created?: number | undefined;
+    date_created?: number | undefined;
+    user_updated?: number | undefined;
+    date_updated?: number | undefined;
+    email?: number | undefined;
+    field?: number | undefined;
+    longDescription?: number | undefined;
+    skillsAndChallenges?: number | undefined;
+    website?: number | undefined;
+    linkedin?: number | undefined;
+    facebook?: number | undefined;
+    instagram?: number | undefined;
+    youtube?: number | undefined;
+    slug?: number | undefined;
+    name?: number | undefined;
+    logo?: number | undefined;
+    shortDescription?: number | undefined;
+    achievements?: number | undefined;
+    distinguishingFeatures?: number | undefined;
+    areasOfInterest?: number | undefined;
+    tags?: number | undefined;
+    images?: number | undefined;
   };
   ["Organizacje_files"]: {
     __typename: "Organizacje_files";
@@ -3431,72 +3384,52 @@ export type GraphQLTypes = {
     Organizacje_id?: GraphQLTypes["Organizacje"] | undefined;
     directus_files_id?: string | undefined;
   };
-  ["Organizacje_filter"]: {
-    id?: GraphQLTypes["string_filter_operators"] | undefined;
-    status?: GraphQLTypes["string_filter_operators"] | undefined;
-    user_created?: GraphQLTypes["string_filter_operators"] | undefined;
-    date_created?: GraphQLTypes["date_filter_operators"] | undefined;
-    date_created_func?:
-      | GraphQLTypes["datetime_function_filter_operators"]
+  ["Organizacje_files_aggregated"]: {
+    __typename: "Organizacje_files_aggregated";
+    group?: GraphQLTypes["JSON"] | undefined;
+    countAll?: number | undefined;
+    count?: GraphQLTypes["Organizacje_files_aggregated_count"] | undefined;
+    countDistinct?:
+      | GraphQLTypes["Organizacje_files_aggregated_count"]
       | undefined;
-    user_updated?: GraphQLTypes["string_filter_operators"] | undefined;
-    date_updated?: GraphQLTypes["date_filter_operators"] | undefined;
-    date_updated_func?:
-      | GraphQLTypes["datetime_function_filter_operators"]
+    avg?: GraphQLTypes["Organizacje_files_aggregated_fields"] | undefined;
+    sum?: GraphQLTypes["Organizacje_files_aggregated_fields"] | undefined;
+    avgDistinct?:
+      | GraphQLTypes["Organizacje_files_aggregated_fields"]
       | undefined;
-    email?: GraphQLTypes["string_filter_operators"] | undefined;
-    field?: GraphQLTypes["string_filter_operators"] | undefined;
-    shortDescription?: GraphQLTypes["string_filter_operators"] | undefined;
-    longDescription?: GraphQLTypes["string_filter_operators"] | undefined;
-    skillsAndChallenges?: GraphQLTypes["string_filter_operators"] | undefined;
-    achievements?: GraphQLTypes["string_filter_operators"] | undefined;
-    distinguishingFeatures?:
-      | GraphQLTypes["string_filter_operators"]
+    sumDistinct?:
+      | GraphQLTypes["Organizacje_files_aggregated_fields"]
       | undefined;
-    areasOfInterest?: GraphQLTypes["string_filter_operators"] | undefined;
-    website?: GraphQLTypes["string_filter_operators"] | undefined;
-    linkedin?: GraphQLTypes["string_filter_operators"] | undefined;
-    facebook?: GraphQLTypes["string_filter_operators"] | undefined;
-    instagram?: GraphQLTypes["string_filter_operators"] | undefined;
-    youtube?: GraphQLTypes["string_filter_operators"] | undefined;
-    slug?: GraphQLTypes["string_filter_operators"] | undefined;
-    name?: GraphQLTypes["string_filter_operators"] | undefined;
-    logo?: GraphQLTypes["string_filter_operators"] | undefined;
-    images?: GraphQLTypes["Organizacje_files_filter"] | undefined;
-    images_func?: GraphQLTypes["count_function_filter_operators"] | undefined;
-    tags?: GraphQLTypes["Organizacje_Tagi_filter"] | undefined;
-    tags_func?: GraphQLTypes["count_function_filter_operators"] | undefined;
-    _and?: Array<GraphQLTypes["Organizacje_filter"] | undefined> | undefined;
-    _or?: Array<GraphQLTypes["Organizacje_filter"] | undefined> | undefined;
+    min?: GraphQLTypes["Organizacje_files_aggregated_fields"] | undefined;
+    max?: GraphQLTypes["Organizacje_files_aggregated_fields"] | undefined;
   };
-  ["Organizacje_files_filter"]: {
-    id?: GraphQLTypes["number_filter_operators"] | undefined;
-    Organizacje_id?: GraphQLTypes["Organizacje_filter"] | undefined;
-    directus_files_id?: GraphQLTypes["string_filter_operators"] | undefined;
-    _and?:
-      | Array<GraphQLTypes["Organizacje_files_filter"] | undefined>
-      | undefined;
-    _or?:
-      | Array<GraphQLTypes["Organizacje_files_filter"] | undefined>
-      | undefined;
+  ["Organizacje_files_aggregated_count"]: {
+    __typename: "Organizacje_files_aggregated_count";
+    id?: number | undefined;
+    Organizacje_id?: number | undefined;
+    directus_files_id?: number | undefined;
   };
-  ["count_function_filter_operators"]: {
-    count?: GraphQLTypes["number_filter_operators"] | undefined;
+  ["Organizacje_files_aggregated_fields"]: {
+    __typename: "Organizacje_files_aggregated_fields";
+    id?: number | undefined;
   };
-  ["Organizacje_Tagi_filter"]: {
-    id?: GraphQLTypes["number_filter_operators"] | undefined;
-    Organizacje_id?: GraphQLTypes["Organizacje_filter"] | undefined;
-    Tagi_id?: GraphQLTypes["Tagi_filter"] | undefined;
-    _and?:
-      | Array<GraphQLTypes["Organizacje_Tagi_filter"] | undefined>
-      | undefined;
-    _or?:
-      | Array<GraphQLTypes["Organizacje_Tagi_filter"] | undefined>
-      | undefined;
+  ["Organizacje_files_mutated"]: {
+    __typename: "Organizacje_files_mutated";
+    key: string;
+    event?: GraphQLTypes["EventEnum"] | undefined;
+    data?: GraphQLTypes["Organizacje_files"] | undefined;
   };
-  ["count_functions"]: {
-    __typename: "count_functions";
-    count?: number | undefined;
+  ["Organizacje_mutated"]: {
+    __typename: "Organizacje_mutated";
+    key: string;
+    event?: GraphQLTypes["EventEnum"] | undefined;
+    data?: GraphQLTypes["Organizacje"] | undefined;
+  };
+  ["Organizacje_Tagi"]: {
+    __typename: "Organizacje_Tagi";
+    id: string;
+    Organizacje_id?: GraphQLTypes["Organizacje"] | undefined;
+    Tagi_id?: GraphQLTypes["Tagi"] | undefined;
   };
   ["Organizacje_Tagi_aggregated"]: {
     __typename: "Organizacje_Tagi_aggregated";
@@ -3528,80 +3461,57 @@ export type GraphQLTypes = {
     id?: number | undefined;
     Tagi_id?: number | undefined;
   };
-  ["version_Organizacje_Tagi"]: {
-    __typename: "version_Organizacje_Tagi";
-    id: string;
-    Organizacje_id?: string | undefined;
-    Tagi_id?: number | undefined;
+  ["Organizacje_Tagi_mutated"]: {
+    __typename: "Organizacje_Tagi_mutated";
+    key: string;
+    event?: GraphQLTypes["EventEnum"] | undefined;
+    data?: GraphQLTypes["Organizacje_Tagi"] | undefined;
   };
-  ["Organizacje_files_aggregated"]: {
-    __typename: "Organizacje_files_aggregated";
+  ["Tagi"]: {
+    __typename: "Tagi";
+    id: string;
+    sort?: number | undefined;
+    user_created?: string | undefined;
+    date_created?: GraphQLTypes["Date"] | undefined;
+    date_created_func?: GraphQLTypes["datetime_functions"] | undefined;
+    user_updated?: string | undefined;
+    date_updated?: GraphQLTypes["Date"] | undefined;
+    date_updated_func?: GraphQLTypes["datetime_functions"] | undefined;
+    tag: string;
+  };
+  ["Tagi_aggregated"]: {
+    __typename: "Tagi_aggregated";
     group?: GraphQLTypes["JSON"] | undefined;
     countAll?: number | undefined;
-    count?: GraphQLTypes["Organizacje_files_aggregated_count"] | undefined;
-    countDistinct?:
-      | GraphQLTypes["Organizacje_files_aggregated_count"]
-      | undefined;
-    avg?: GraphQLTypes["Organizacje_files_aggregated_fields"] | undefined;
-    sum?: GraphQLTypes["Organizacje_files_aggregated_fields"] | undefined;
-    avgDistinct?:
-      | GraphQLTypes["Organizacje_files_aggregated_fields"]
-      | undefined;
-    sumDistinct?:
-      | GraphQLTypes["Organizacje_files_aggregated_fields"]
-      | undefined;
-    min?: GraphQLTypes["Organizacje_files_aggregated_fields"] | undefined;
-    max?: GraphQLTypes["Organizacje_files_aggregated_fields"] | undefined;
+    count?: GraphQLTypes["Tagi_aggregated_count"] | undefined;
+    countDistinct?: GraphQLTypes["Tagi_aggregated_count"] | undefined;
+    avg?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
+    sum?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
+    avgDistinct?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
+    sumDistinct?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
+    min?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
+    max?: GraphQLTypes["Tagi_aggregated_fields"] | undefined;
   };
-  ["Organizacje_files_aggregated_count"]: {
-    __typename: "Organizacje_files_aggregated_count";
+  ["Tagi_aggregated_count"]: {
+    __typename: "Tagi_aggregated_count";
     id?: number | undefined;
-    Organizacje_id?: number | undefined;
-    directus_files_id?: number | undefined;
-  };
-  ["Organizacje_files_aggregated_fields"]: {
-    __typename: "Organizacje_files_aggregated_fields";
-    id?: number | undefined;
-  };
-  ["version_Organizacje_files"]: {
-    __typename: "version_Organizacje_files";
-    id: string;
-    Organizacje_id?: string | undefined;
-    directus_files_id?: string | undefined;
-  };
-  ["Organizacje_aggregated"]: {
-    __typename: "Organizacje_aggregated";
-    group?: GraphQLTypes["JSON"] | undefined;
-    countAll?: number | undefined;
-    count?: GraphQLTypes["Organizacje_aggregated_count"] | undefined;
-    countDistinct?: GraphQLTypes["Organizacje_aggregated_count"] | undefined;
-  };
-  ["Organizacje_aggregated_count"]: {
-    __typename: "Organizacje_aggregated_count";
-    id?: number | undefined;
-    status?: number | undefined;
+    sort?: number | undefined;
     user_created?: number | undefined;
     date_created?: number | undefined;
     user_updated?: number | undefined;
     date_updated?: number | undefined;
-    email?: number | undefined;
-    field?: number | undefined;
-    shortDescription?: number | undefined;
-    longDescription?: number | undefined;
-    skillsAndChallenges?: number | undefined;
-    achievements?: number | undefined;
-    distinguishingFeatures?: number | undefined;
-    areasOfInterest?: number | undefined;
-    website?: number | undefined;
-    linkedin?: number | undefined;
-    facebook?: number | undefined;
-    instagram?: number | undefined;
-    youtube?: number | undefined;
-    slug?: number | undefined;
-    name?: number | undefined;
-    logo?: number | undefined;
-    images?: number | undefined;
-    tags?: number | undefined;
+    tag?: number | undefined;
+  };
+  ["Tagi_aggregated_fields"]: {
+    __typename: "Tagi_aggregated_fields";
+    id?: number | undefined;
+    sort?: number | undefined;
+  };
+  ["Tagi_mutated"]: {
+    __typename: "Tagi_mutated";
+    key: string;
+    event?: GraphQLTypes["EventEnum"] | undefined;
+    data?: GraphQLTypes["Tagi"] | undefined;
   };
   ["version_Organizacje"]: {
     __typename: "version_Organizacje";
@@ -3615,12 +3525,8 @@ export type GraphQLTypes = {
     date_updated_func?: GraphQLTypes["datetime_functions"] | undefined;
     email?: string | undefined;
     field?: string | undefined;
-    shortDescription: string;
     longDescription?: string | undefined;
     skillsAndChallenges?: string | undefined;
-    achievements?: string | undefined;
-    distinguishingFeatures?: string | undefined;
-    areasOfInterest?: string | undefined;
     website?: string | undefined;
     linkedin?: string | undefined;
     facebook?: string | undefined;
@@ -3628,47 +3534,186 @@ export type GraphQLTypes = {
     youtube?: string | undefined;
     slug: string;
     name: string;
-    logo: string;
-    images?: GraphQLTypes["JSON"] | undefined;
-    images_func?: GraphQLTypes["count_functions"] | undefined;
+    logo?: string | undefined;
+    shortDescription?: string | undefined;
+    achievements?: string | undefined;
+    distinguishingFeatures?: string | undefined;
+    areasOfInterest?: string | undefined;
     tags?: GraphQLTypes["JSON"] | undefined;
     tags_func?: GraphQLTypes["count_functions"] | undefined;
+    images?: GraphQLTypes["JSON"] | undefined;
+    images_func?: GraphQLTypes["count_functions"] | undefined;
   };
-  ["Subscription"]: {
-    __typename: "Subscription";
-    Tagi_mutated?: GraphQLTypes["Tagi_mutated"] | undefined;
-    Organizacje_Tagi_mutated?:
-      | GraphQLTypes["Organizacje_Tagi_mutated"]
+  ["version_Organizacje_files"]: {
+    __typename: "version_Organizacje_files";
+    id: string;
+    Organizacje_id?: string | undefined;
+    directus_files_id?: string | undefined;
+  };
+  ["version_Organizacje_Tagi"]: {
+    __typename: "version_Organizacje_Tagi";
+    id: string;
+    Organizacje_id?: string | undefined;
+    Tagi_id?: number | undefined;
+  };
+  ["version_Tagi"]: {
+    __typename: "version_Tagi";
+    id: string;
+    sort?: number | undefined;
+    user_created?: string | undefined;
+    date_created?: GraphQLTypes["Date"] | undefined;
+    date_created_func?: GraphQLTypes["datetime_functions"] | undefined;
+    user_updated?: string | undefined;
+    date_updated?: GraphQLTypes["Date"] | undefined;
+    date_updated_func?: GraphQLTypes["datetime_functions"] | undefined;
+    tag: string;
+  };
+  ["count_function_filter_operators"]: {
+    count?: GraphQLTypes["number_filter_operators"] | undefined;
+  };
+  ["date_filter_operators"]: {
+    _eq?: string | undefined;
+    _neq?: string | undefined;
+    _gt?: string | undefined;
+    _gte?: string | undefined;
+    _lt?: string | undefined;
+    _lte?: string | undefined;
+    _null?: boolean | undefined;
+    _nnull?: boolean | undefined;
+    _in?: Array<string | undefined> | undefined;
+    _nin?: Array<string | undefined> | undefined;
+    _between?:
+      | Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined>
       | undefined;
-    Organizacje_files_mutated?:
-      | GraphQLTypes["Organizacje_files_mutated"]
+    _nbetween?:
+      | Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined>
       | undefined;
-    Organizacje_mutated?: GraphQLTypes["Organizacje_mutated"] | undefined;
   };
-  ["Tagi_mutated"]: {
-    __typename: "Tagi_mutated";
-    key: string;
-    event?: GraphQLTypes["EventEnum"] | undefined;
-    data?: GraphQLTypes["Tagi"] | undefined;
+  ["datetime_function_filter_operators"]: {
+    year?: GraphQLTypes["number_filter_operators"] | undefined;
+    month?: GraphQLTypes["number_filter_operators"] | undefined;
+    week?: GraphQLTypes["number_filter_operators"] | undefined;
+    day?: GraphQLTypes["number_filter_operators"] | undefined;
+    weekday?: GraphQLTypes["number_filter_operators"] | undefined;
+    hour?: GraphQLTypes["number_filter_operators"] | undefined;
+    minute?: GraphQLTypes["number_filter_operators"] | undefined;
+    second?: GraphQLTypes["number_filter_operators"] | undefined;
   };
-  ["EventEnum"]: EventEnum;
-  ["Organizacje_Tagi_mutated"]: {
-    __typename: "Organizacje_Tagi_mutated";
-    key: string;
-    event?: GraphQLTypes["EventEnum"] | undefined;
-    data?: GraphQLTypes["Organizacje_Tagi"] | undefined;
+  ["number_filter_operators"]: {
+    _eq?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
+    _neq?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
+    _in?: Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined> | undefined;
+    _nin?: Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined> | undefined;
+    _gt?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
+    _gte?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
+    _lt?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
+    _lte?: GraphQLTypes["GraphQLStringOrFloat"] | undefined;
+    _null?: boolean | undefined;
+    _nnull?: boolean | undefined;
+    _between?:
+      | Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined>
+      | undefined;
+    _nbetween?:
+      | Array<GraphQLTypes["GraphQLStringOrFloat"] | undefined>
+      | undefined;
   };
-  ["Organizacje_files_mutated"]: {
-    __typename: "Organizacje_files_mutated";
-    key: string;
-    event?: GraphQLTypes["EventEnum"] | undefined;
-    data?: GraphQLTypes["Organizacje_files"] | undefined;
+  ["Organizacje_files_filter"]: {
+    id?: GraphQLTypes["number_filter_operators"] | undefined;
+    Organizacje_id?: GraphQLTypes["Organizacje_filter"] | undefined;
+    directus_files_id?: GraphQLTypes["string_filter_operators"] | undefined;
+    _and?:
+      | Array<GraphQLTypes["Organizacje_files_filter"] | undefined>
+      | undefined;
+    _or?:
+      | Array<GraphQLTypes["Organizacje_files_filter"] | undefined>
+      | undefined;
   };
-  ["Organizacje_mutated"]: {
-    __typename: "Organizacje_mutated";
-    key: string;
-    event?: GraphQLTypes["EventEnum"] | undefined;
-    data?: GraphQLTypes["Organizacje"] | undefined;
+  ["Organizacje_filter"]: {
+    id?: GraphQLTypes["string_filter_operators"] | undefined;
+    status?: GraphQLTypes["string_filter_operators"] | undefined;
+    user_created?: GraphQLTypes["string_filter_operators"] | undefined;
+    date_created?: GraphQLTypes["date_filter_operators"] | undefined;
+    date_created_func?:
+      | GraphQLTypes["datetime_function_filter_operators"]
+      | undefined;
+    user_updated?: GraphQLTypes["string_filter_operators"] | undefined;
+    date_updated?: GraphQLTypes["date_filter_operators"] | undefined;
+    date_updated_func?:
+      | GraphQLTypes["datetime_function_filter_operators"]
+      | undefined;
+    email?: GraphQLTypes["string_filter_operators"] | undefined;
+    field?: GraphQLTypes["string_filter_operators"] | undefined;
+    longDescription?: GraphQLTypes["string_filter_operators"] | undefined;
+    skillsAndChallenges?: GraphQLTypes["string_filter_operators"] | undefined;
+    website?: GraphQLTypes["string_filter_operators"] | undefined;
+    linkedin?: GraphQLTypes["string_filter_operators"] | undefined;
+    facebook?: GraphQLTypes["string_filter_operators"] | undefined;
+    instagram?: GraphQLTypes["string_filter_operators"] | undefined;
+    youtube?: GraphQLTypes["string_filter_operators"] | undefined;
+    slug?: GraphQLTypes["string_filter_operators"] | undefined;
+    name?: GraphQLTypes["string_filter_operators"] | undefined;
+    logo?: GraphQLTypes["string_filter_operators"] | undefined;
+    shortDescription?: GraphQLTypes["string_filter_operators"] | undefined;
+    achievements?: GraphQLTypes["string_filter_operators"] | undefined;
+    distinguishingFeatures?:
+      | GraphQLTypes["string_filter_operators"]
+      | undefined;
+    areasOfInterest?: GraphQLTypes["string_filter_operators"] | undefined;
+    tags?: GraphQLTypes["Organizacje_Tagi_filter"] | undefined;
+    tags_func?: GraphQLTypes["count_function_filter_operators"] | undefined;
+    images?: GraphQLTypes["Organizacje_files_filter"] | undefined;
+    images_func?: GraphQLTypes["count_function_filter_operators"] | undefined;
+    _and?: Array<GraphQLTypes["Organizacje_filter"] | undefined> | undefined;
+    _or?: Array<GraphQLTypes["Organizacje_filter"] | undefined> | undefined;
+  };
+  ["Organizacje_Tagi_filter"]: {
+    id?: GraphQLTypes["number_filter_operators"] | undefined;
+    Organizacje_id?: GraphQLTypes["Organizacje_filter"] | undefined;
+    Tagi_id?: GraphQLTypes["Tagi_filter"] | undefined;
+    _and?:
+      | Array<GraphQLTypes["Organizacje_Tagi_filter"] | undefined>
+      | undefined;
+    _or?:
+      | Array<GraphQLTypes["Organizacje_Tagi_filter"] | undefined>
+      | undefined;
+  };
+  ["string_filter_operators"]: {
+    _eq?: string | undefined;
+    _neq?: string | undefined;
+    _contains?: string | undefined;
+    _icontains?: string | undefined;
+    _ncontains?: string | undefined;
+    _starts_with?: string | undefined;
+    _nstarts_with?: string | undefined;
+    _istarts_with?: string | undefined;
+    _nistarts_with?: string | undefined;
+    _ends_with?: string | undefined;
+    _nends_with?: string | undefined;
+    _iends_with?: string | undefined;
+    _niends_with?: string | undefined;
+    _in?: Array<string | undefined> | undefined;
+    _nin?: Array<string | undefined> | undefined;
+    _null?: boolean | undefined;
+    _nnull?: boolean | undefined;
+    _empty?: boolean | undefined;
+    _nempty?: boolean | undefined;
+  };
+  ["Tagi_filter"]: {
+    id?: GraphQLTypes["number_filter_operators"] | undefined;
+    sort?: GraphQLTypes["number_filter_operators"] | undefined;
+    user_created?: GraphQLTypes["string_filter_operators"] | undefined;
+    date_created?: GraphQLTypes["date_filter_operators"] | undefined;
+    date_created_func?:
+      | GraphQLTypes["datetime_function_filter_operators"]
+      | undefined;
+    user_updated?: GraphQLTypes["string_filter_operators"] | undefined;
+    date_updated?: GraphQLTypes["date_filter_operators"] | undefined;
+    date_updated_func?:
+      | GraphQLTypes["datetime_function_filter_operators"]
+      | undefined;
+    tag?: GraphQLTypes["string_filter_operators"] | undefined;
+    _and?: Array<GraphQLTypes["Tagi_filter"] | undefined> | undefined;
+    _or?: Array<GraphQLTypes["Tagi_filter"] | undefined> | undefined;
   };
 };
 export const enum EventEnum {
@@ -3678,17 +3723,22 @@ export const enum EventEnum {
 }
 
 type ZEUS_VARIABLES = {
+  ["Boolean"]: ValueTypes["Boolean"];
   ["Date"]: ValueTypes["Date"];
-  ["Tagi_filter"]: ValueTypes["Tagi_filter"];
-  ["number_filter_operators"]: ValueTypes["number_filter_operators"];
+  ["Float"]: ValueTypes["Float"];
   ["GraphQLStringOrFloat"]: ValueTypes["GraphQLStringOrFloat"];
-  ["string_filter_operators"]: ValueTypes["string_filter_operators"];
+  ["ID"]: ValueTypes["ID"];
+  ["Int"]: ValueTypes["Int"];
+  ["JSON"]: ValueTypes["JSON"];
+  ["String"]: ValueTypes["String"];
+  ["EventEnum"]: ValueTypes["EventEnum"];
+  ["count_function_filter_operators"]: ValueTypes["count_function_filter_operators"];
   ["date_filter_operators"]: ValueTypes["date_filter_operators"];
   ["datetime_function_filter_operators"]: ValueTypes["datetime_function_filter_operators"];
-  ["JSON"]: ValueTypes["JSON"];
-  ["Organizacje_filter"]: ValueTypes["Organizacje_filter"];
+  ["number_filter_operators"]: ValueTypes["number_filter_operators"];
   ["Organizacje_files_filter"]: ValueTypes["Organizacje_files_filter"];
-  ["count_function_filter_operators"]: ValueTypes["count_function_filter_operators"];
+  ["Organizacje_filter"]: ValueTypes["Organizacje_filter"];
   ["Organizacje_Tagi_filter"]: ValueTypes["Organizacje_Tagi_filter"];
-  ["EventEnum"]: ValueTypes["EventEnum"];
+  ["string_filter_operators"]: ValueTypes["string_filter_operators"];
+  ["Tagi_filter"]: ValueTypes["Tagi_filter"];
 };

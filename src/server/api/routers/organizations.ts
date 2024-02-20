@@ -7,7 +7,7 @@ export const organizations = createTRPCRouter({
     return (
       await ctx.query({
         Organizacje: [
-          {},
+          { sort: ["name"] },
           {
             id: true,
             slug: true,

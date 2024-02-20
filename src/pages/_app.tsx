@@ -1,6 +1,5 @@
 import { type AppType } from "next/app";
 
-import { api } from "@/utils/api";
 import { theme } from "@/styles/theme";
 import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
@@ -13,7 +12,7 @@ const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   return (
     <>
       <Head>
-        <title>SOS</title>
+        <title>Aktywni na PWr</title>
         <meta
           name="description"
           content="Strona do wyszukiwania organizacji studenckich w obrębie Politechniki Wrocławskiej"
@@ -29,4 +28,4 @@ const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   );
 };
 
-export default api.withTRPC(MyApp);
+export default MyApp;

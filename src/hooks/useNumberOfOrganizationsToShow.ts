@@ -9,7 +9,7 @@ export const useNumberOfOrganizationsToShow = () => {
   const reset = useResetAtom(numberOfOrganizationsToShowAtom);
 
   const loadMore = () => {
-    setNumberOfOrganizations((prev) => prev + 10);
+    setNumberOfOrganizations((prev) => prev + 30);
   };
 
   return { numberOfOrganizations, setNumberOfOrganizations, reset, loadMore };

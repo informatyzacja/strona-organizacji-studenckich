@@ -1,7 +1,15 @@
-import { Button, Text, Wrap, WrapItem, VStack, HStack } from "@chakra-ui/react";
+import {
+  Text,
+  Wrap,
+  WrapItem,
+  VStack,
+  HStack,
+  LinkBox,
+  LinkOverlay,
+} from "@chakra-ui/react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { Tag } from "./Tag";
+import NextLink from "next/link";
 
 export const OrganisationCard = ({
   name,
@@ -18,24 +26,42 @@ export const OrganisationCard = ({
   residence?: string;
   tags: string[];
 }) => {
-  const router = useRouter();
-
   return (
-    <VStack
+    <LinkBox
+      _hover={{
+        backgroundColor: "gray.50",
+      }}
+      transition="all ease-in-out 0.2s"
+      as="article"
       p={6}
-      w="400px"
-      h="28rem"
+      maxW="400px"
+      height={{
+        base: "auto",
+        md: "28rem",
+      }}
+      maxH="28rem"
       shadow="md"
-      justify="space-between"
-      align="start"
     >
       <VStack justifyContent="flex-start" align="start">
         <HStack w="100%" justify="space-between" align="start">
           <VStack justifyContent="flex-start" align="start">
             <Text fontSize="sm">{residence}</Text>
-            <Text fontWeight="semibold" fontSize="lg">
+            <LinkOverlay
+              as={NextLink}
+              href={
+                {
+                  pathname: "/organizacja/[slug]",
+                  query: { slug },
+                } as never
+              }
+              _hover={{
+                textDecoration: "underline",
+              }}
+              fontWeight="semibold"
+              fontSize="lg"
+            >
               {name}
-            </Text>
+            </LinkOverlay>
             <Wrap pt={2} direction="row">
               {tags.map((tag) => (
                 <WrapItem key={tag}>
@@ -63,19 +89,6 @@ export const OrganisationCard = ({
           {description}
         </Text>
       </VStack>
-      <HStack mt="auto" spacing={4} justify="start">
-        <Button
-          colorScheme="blue"
-          onClick={() => {
-            void router.push({
-              pathname: "/organizacja/[slug]",
-              query: { slug },
-            });
-          }}
-        >
-          Zobacz
-        </Button>
-      </HStack>
-    </VStack>
+    </LinkBox>
   );
 };
