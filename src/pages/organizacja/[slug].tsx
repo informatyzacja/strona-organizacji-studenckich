@@ -13,7 +13,11 @@ const OrganisationPage = ({
     <Layout>
       <NextSeo
         title={data.name}
-        description={data.shortDescription}
+        description={
+          data.shortDescription.length > 120
+            ? data.shortDescription.slice(0, 120) + "..."
+            : data.shortDescription
+        }
         openGraph={{
           locale: "pl_PL",
           type: "website",
