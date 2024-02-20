@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 import { z } from "zod";
 import { PwrLogo } from "./PwrLogo";
 
-export async function loadGoogleFont(
+async function loadGoogleFont(
   font: string,
   text: string = "aąźęłbcdefghijklmnopqrstuvwxyz",
 ) {
