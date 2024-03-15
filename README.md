@@ -1,22 +1,22 @@
-# Strona Organizacji Studenckich
+# Student Organizations Web App
 
-Strona Tworzona na potrzeby Działu Studenckiego Politechniki Wrocławskiej.
+A web app created for the needs of the Student Department of the Wrocław University of Technology.
 
-Strona umożliwi wyświetlanie informacji o organizacjach studenckich i kołach naukowych.
+The web app enables the display of information about student organizations and scientific clubs.
 
-Pozwoli na wyszukiwanie organizacji studenckich i koł naukowych po słowach kluczowych, dyscyplinach, programach, projektach.
+It allows for searching student organizations and scientific clubs by keywords, disciplines, programs, projects.
 
 ## Development
 
-### Zmienne środowiskowe
+### Environmental Variables
 
-- `NEXT_PUBLIC_DIRECTUS_URL` - adres do instancji Directusa
+- `NEXT_PUBLIC_DIRECTUS_URL` - address to the Directus instance
 
-### Wymagania
+### Requirements
 
 - [node.js@20](https://nodejs.org/en/download/)
 
-### Jak odpalić?
+### How to run?
 
 1. `npm install`
 2. `npm run dev`
