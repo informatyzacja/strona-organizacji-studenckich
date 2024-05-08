@@ -18,7 +18,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
-    "@directus/sdk": "^15.1.0",
+    "@directus/sdk": "^16.0.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@tanstack/react-query": "^4.18.0",
