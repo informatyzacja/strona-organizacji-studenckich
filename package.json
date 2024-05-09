@@ -41,7 +41,7 @@
     "sharp": "^0.33.3",
     "slugify": "^1.6.6",
     "superjson": "2.2.1",
-    "zod": "^3.23.6"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@semantic-release/git": "^10.0.1",
