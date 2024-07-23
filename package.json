@@ -29,7 +29,7 @@
     "@vercel/og": "^0.6.2",
     "framer-motion": "^11.3.12",
     "fuse.js": "^7.0.0",
-    "jotai": "^2.9.0",
+    "jotai": "^2.9.1",
     "next": "14.2.5",
     "next-seo": "^6.5.0",
     "nextjs-routes": "^2.2.1",
