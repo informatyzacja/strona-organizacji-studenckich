@@ -54,7 +54,7 @@
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "dotenv-cli": "^7.4.2",
     "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.13",
+    "eslint-config-next": "14.2.14",
     "graphql-zeus": "^6.0.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
