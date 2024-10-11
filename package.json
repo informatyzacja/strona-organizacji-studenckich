@@ -32,7 +32,7 @@
     "jotai": "^2.10.0",
     "next": "14.2.15",
     "next-seo": "^6.6.0",
-    "nextjs-routes": "^2.2.2",
+    "nextjs-routes": "^2.2.3",
     "nuqs": "^1.20.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
