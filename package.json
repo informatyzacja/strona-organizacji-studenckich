@@ -52,7 +52,7 @@
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.18.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
-    "dotenv-cli": "^7.4.4",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.1.1",
     "graphql-zeus": "^7.0.2",
