@@ -39,7 +39,7 @@ const OrganisationPage = ({
             content:
               data.shortDescription && data.shortDescription?.length > 120
                 ? data.shortDescription.slice(0, 120) + "..."
-                : data.shortDescription ?? "Organizacja studencka",
+                : (data.shortDescription ?? "Organizacja studencka"),
           },
         ]}
         openGraph={{
