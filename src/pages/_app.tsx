@@ -7,6 +7,7 @@ import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { usePreserveScroll } from "@/hooks/usePreserveScroll";
 import { DefaultSeo } from "next-seo";
 import { siteConfig } from "@/config";
+import { NuqsAdapter } from "nuqs/adapters/next/pages";
 
 const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   usePreserveScroll();
@@ -22,11 +23,13 @@ const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ChakraProvider theme={theme}>
-        <AnimatePresenceSSR mode="wait" initial={false}>
-          <Component {...pageProps} />
-        </AnimatePresenceSSR>
-      </ChakraProvider>
+      <NuqsAdapter>
+        <ChakraProvider theme={theme}>
+          <AnimatePresenceSSR mode="wait" initial={false}>
+            <Component {...pageProps} />
+          </AnimatePresenceSSR>
+        </ChakraProvider>
+      </NuqsAdapter>
     </>
   );
 };
