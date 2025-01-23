@@ -2,14 +2,14 @@ import {
   Box,
   chakra,
   Container,
+  Link,
   Stack,
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
 import type { ReactNode } from "react";
-import { FaFacebook, FaGithub, FaGlobeEurope } from "react-icons/fa";
-import logoDS from "../../public/logo-dzial-studencki.svg";
+import { FaFacebook, FaGithub } from "react-icons/fa";
 import logoPwr from "../../public/logo-pwr.svg";
 import logoSSPwr from "../../public/logo-sspwr.svg";
 
@@ -71,17 +71,18 @@ export const Footer = () => {
             alt="logo Samorządu Studenckiego Politechniki Wrocławskiej"
           />
         </a>
-        <NextImage src={logoDS as string} alt="logo Działu Studenckiego" />
+        <Link
+          href="https://dwas.pwr.edu.pl/"
+          style={{
+            fontWeight: 600,
+          }}
+        >
+          Dział Wsparcia Aktywności Studenckiej
+        </Link>
         <Stack direction={"row"} spacing={6}>
           <SocialButton
-            label={"WebsiteDS"}
-            href={"https://dzialstudencki.pwr.edu.pl/"}
-          >
-            <FaGlobeEurope />
-          </SocialButton>
-          <SocialButton
-            label={"FacebookDS"}
-            href={"https://www.facebook.com/DzialStudenckiPWr/"}
+            label={"Facebook Działu Wsparcia Studenckiego"}
+            href={"https://facebook.com/DWASPWr/"}
           >
             <FaFacebook />
           </SocialButton>
