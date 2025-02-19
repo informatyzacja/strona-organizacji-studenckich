@@ -28,7 +28,7 @@
     "@trpc/server": "^10.45.0",
     "@vercel/og": "^0.6.5",
     "framer-motion": "^12.4.4",
-    "fuse.js": "^7.0.0",
+    "fuse.js": "^7.1.0",
     "jotai": "^2.12.1",
     "next": "15.1.7",
     "next-seo": "^6.6.0",
