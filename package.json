@@ -30,7 +30,7 @@
     "framer-motion": "^12.4.4",
     "fuse.js": "^7.0.0",
     "jotai": "^2.12.1",
-    "next": "15.1.6",
+    "next": "15.1.7",
     "next-seo": "^6.6.0",
     "nextjs-routes": "^2.2.5",
     "nuqs": "^2.3.2",
