@@ -49,7 +49,7 @@
     "@types/react": "^18.3.13",
     "@types/react-dom": "^18.3.1",
     "@types/react-image-gallery": "^1.2.4",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^7.18.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "dotenv-cli": "^8.0.0",
