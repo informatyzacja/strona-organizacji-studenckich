@@ -31,7 +31,7 @@ jobs:
       - name: Setup env
         run: |
           touch .env
-          echo NEXT_PUBLIC_DIRECTUS_URL="https://directus.informatyzacja.duckdns.org" > .env
+          echo NEXT_PUBLIC_DIRECTUS_URL="${{ secrets.NEXT_PUBLIC_DIRECTUS_URL }}" > .env
       - name: Install
         run: npm ci
       - name: Cache build
