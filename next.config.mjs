@@ -30,7 +30,7 @@ const config = {
       },
       {
         protocol: "https",
-        hostname: "directus.universe.nexus",
+        hostname: "directus.informatyzacja.duckdns.org",
         port: "",
         pathname: "/**",
       },
