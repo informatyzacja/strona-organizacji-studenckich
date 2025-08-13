@@ -34,7 +34,7 @@ export const OrganisationCard = ({
       transition="all ease-in-out 0.2s"
       as="article"
       p={6}
-      maxW="400px"
+      w={{ base: "100%", sm: "400px" }}
       height={{
         base: "auto",
         md: "28rem",

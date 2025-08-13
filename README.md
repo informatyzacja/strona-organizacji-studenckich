@@ -10,11 +10,11 @@ It allows for searching student organizations and scientific clubs by keywords, 
 
 ### Environmental Variables
 
-- `NEXT_PUBLIC_DIRECTUS_URL` - address to the Directus instance
+- `NEXT_PUBLIC_API_URL`
 
 ### Requirements
 
-- [node.js@20](https://nodejs.org/en/download/)
+- [node.js@22](https://nodejs.org/en/download/)
 
 ### How to run?
 

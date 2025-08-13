@@ -1,12 +1,7 @@
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { Layout } from "@/components/Layout";
 import { OrganisationCard } from "@/components/OrganisationCard";
-import { Search } from "@/components/Search";
-import { useNumberOfOrganizationsToShow } from "@/hooks/useNumberOfOrganizationsToShow";
-import { useSearch } from "@/hooks/useSearch";
-import { trpcClient } from "@/server/client";
 
-import { directusFileUrl } from "@/utils/directus";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import {
   Container,
@@ -14,21 +9,19 @@ import {
   Heading,
   Tag,
   Box,
-  Button,
   Wrap,
   WrapItem,
   Text,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import type { StudentOrganization } from "@/types";
 import type { InferGetServerSidePropsType } from "next";
 
 const SearchPage = ({
   organizations,
-  tags,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { numberOfOrganizations, loadMore } = useNumberOfOrganizationsToShow();
-  const { search, setSearch, results } = useSearch(organizations);
-
+  //   const { numberOfOrganizations, loadMore } = useNumberOfOrganizationsToShow();
+  //   const { search, setSearch, results } = useSearch(organizations);
   return (
     <Layout>
       <Container pt={20} maxW="container.xl">
@@ -39,10 +32,10 @@ const SearchPage = ({
           <Heading size="lg" fontWeight="semibold" pb={16} textAlign="center">
             Wyszukiwarka organizacji studenckich
           </Heading>
-          <Search tags={tags} value={search} setValue={setSearch} />
+          {/* <Search tags={tags} value={search} setValue={setSearch} /> */}
           <Box>
             <AnimatePresenceSSR>
-              {results?.length === 0 ? (
+              {organizations?.length === 0 ? (
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -59,9 +52,9 @@ const SearchPage = ({
             </AnimatePresenceSSR>
 
             <VStack>
-              {results && results?.length > 0 ? (
+              {organizations && organizations?.length > 0 ? (
                 <Text color="GrayText" ml={10} fontSize="sm" alignSelf="start">
-                  {results?.length} wyników
+                  {organizations?.length} wyników
                 </Text>
               ) : null}
               <Wrap
@@ -71,7 +64,7 @@ const SearchPage = ({
                 justify="center"
               >
                 <AnimatePresenceSSR mode="popLayout">
-                  {results?.slice(0, numberOfOrganizations).map((org) => (
+                  {organizations?.slice(0, 100).map((org) => (
                     <motion.div
                       key={org.name}
                       layout
@@ -84,20 +77,20 @@ const SearchPage = ({
                         <OrganisationCard
                           name={org.name}
                           description={org.shortDescription ?? ""}
-                          logoUrl={directusFileUrl(org.logo)}
-                          slug={org.slug}
-                          tags={org.tags}
+                          logoUrl={null}
+                          slug={"ok"}
+                          tags={[]}
                         />
                       </WrapItem>
                     </motion.div>
                   ))}
                 </AnimatePresenceSSR>
               </Wrap>
-              {results && results?.length > numberOfOrganizations ? (
+              {organizations && organizations?.length > 10 ? (
                 <Box>
-                  <Button mt={8} mb={8} onClick={() => loadMore()}>
+                  {/* <Button mt={8} mb={8} onClick={() => loadMore()}>
                     Pokaż więcej
-                  </Button>
+                  </Button> */}
                 </Box>
               ) : null}
             </VStack>
@@ -109,12 +102,39 @@ const SearchPage = ({
 };
 
 export const getServerSideProps = async () => {
-  const organizations = await trpcClient.organizations.list.fetch();
-  const tags = await trpcClient.tags.list.fetch();
+  const { data: organizations } = await fetchStudentOrganizations();
 
   return {
-    props: { organizations, tags },
+    props: {
+      organizations,
+    },
   };
 };
+
+async function fetchStudentOrganizations() {
+  try {
+    const response = await fetch(
+      "https://api.topwr.solvro.pl/api/v1/student_organizations/",
+      { cache: "no-store" },
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch student organizations: ${String(response.status)}`,
+      );
+    }
+
+    const { data } = (await response.json()) as {
+      data: StudentOrganization[];
+    };
+
+    console.log(data);
+
+    return { data };
+  } catch (error) {
+    console.error("Error fetching student organizations:", error);
+    return { data: [] };
+  }
+}
 
 export default SearchPage;

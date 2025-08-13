@@ -4,7 +4,7 @@ import withRoutes from "nextjs-routes/config";
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
  * This is especially useful for Docker builds.
  */
-!process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"));
+!process.env.SKIP_ENV_VALIDATION;
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -30,7 +30,7 @@ const config = {
       },
       {
         protocol: "https",
-        hostname: "directus.informatyzacja.duckdns.org",
+        hostname: "api.topwr.solvro.pl",
         port: "",
         pathname: "/**",
       },
