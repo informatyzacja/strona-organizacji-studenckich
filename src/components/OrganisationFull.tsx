@@ -1,7 +1,7 @@
-import { Container, Heading, Text, Box, Flex } from "@chakra-ui/react";
+import { Container, Heading, Box, Flex } from "@chakra-ui/react";
 import React from "react";
-// import Image from "next/image";
-import type { StudentOrganization } from "@/types";
+import Image from "next/image";
+import type { StudentOrganization } from "@/lib/types";
 
 const Show = <T,>({
   children,
@@ -17,19 +17,21 @@ const Show = <T,>({
   return <>{children}</>;
 };
 
-// TODO: add images
-
-export const OrganisationFull = ({ data }: { data: StudentOrganization }) => {
+export const OrganisationFull = ({
+  organization,
+}: {
+  organization: StudentOrganization;
+}) => {
   return (
     <Container maxW="container.md" mt={16} pb={16} whiteSpace="pre-wrap">
       <Box>
         <Flex align="center" justifyContent="space-between">
           <Heading as="h1" fontSize={["large", "xx-large"]} mt={4}>
-            {data.name}
+            {organization.name}
           </Heading>
-          {/* {data.logoKey ? (
+          {organization.logoUrl ? (
             <Image
-              src={`https://api.topwr.solvro.pl/api/v1/files/${data.logoKey}`}
+              src={organization.logoUrl}
               width={100}
               height={100}
               style={{
@@ -39,33 +41,35 @@ export const OrganisationFull = ({ data }: { data: StudentOrganization }) => {
                 objectFit: "contain",
               }}
               priority={true}
-              alt={`Logo ${data.name}`}
+              alt={`Logo ${organization.name}`}
             />
-          ) : null} */}
+          ) : null}
         </Flex>
       </Box>
 
-      <Show when={data.shortDescription}>
-        <Heading as="h2" size="md" mt={5} mb={2}>
-          Krótki opis
-        </Heading>
-        <Text textAlign="justify">{data.shortDescription}</Text>
-      </Show>
+      {/* <Show when={organization.shortDescription}>
+        <Text textAlign="justify" color="gray.600" mt={4}>
+          {organization.shortDescription}
+        </Text>
+      </Show> */}
 
-      <Show when={data.description}>
+      <Show when={organization.description}>
         <Heading as="h2" size="md" mt={5} mb={2}>
           Opis organizacji
         </Heading>
-        <Text textAlign="justify">{data.description}</Text>
+        <Box
+          as="div"
+          dangerouslySetInnerHTML={{ __html: organization.description || "" }}
+        />
       </Show>
 
-      {/* {data.coverKey ? (
+      {organization.coverUrl ? (
         <Box mt={6}>
-          <Heading as="h2" size="md" mt={4} mb={2}>
+          {/* <Heading as="h2" size="md" mt={4} mb={2}>
             Zdjęcie organizacji
-          </Heading>
+          </Heading> */}
           <Image
-            src={`https://api.topwr.solvro.pl/api/v1/files/${data.coverKey}`}
+            src={organization.coverUrl}
             width={800}
             height={400}
             style={{
@@ -74,10 +78,10 @@ export const OrganisationFull = ({ data }: { data: StudentOrganization }) => {
               objectFit: "cover",
               borderRadius: "8px",
             }}
-            alt={`Zdjęcie ${data.name}`}
+            alt={`Zdjęcie ${organization.name}`}
           />
         </Box>
-      ) : null} */}
+      ) : null}
     </Container>
   );
 };

@@ -15,4 +15,20 @@ export interface StudentOrganization {
   updatedAt: string;
   organizationStatus: string;
   isStrategic: boolean;
+
+  // non-api params
+  logoUrl?: string | null;
+  coverUrl?: string | null;
+}
+
+export interface paginationInfo {
+  total: number;
+  perPage: number;
+  currentPage: number;
+  lastPage: number;
+  firstPage: number;
+  firstPageUrl: string;
+  lastPageUrl: string;
+  nextPageUrl: string | null;
+  previousPageUrl: string | null;
 }

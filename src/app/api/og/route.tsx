@@ -11,7 +11,6 @@ async function loadGoogleFont(
     text,
   )}`;
 
-  console.log(url);
   const css = await (await fetch(url)).text();
 
   const resource = css.match(

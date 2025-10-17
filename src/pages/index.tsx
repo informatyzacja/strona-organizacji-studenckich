@@ -12,16 +12,34 @@ import {
   Wrap,
   WrapItem,
   Text,
+  Button,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import type { StudentOrganization } from "@/types";
-import type { InferGetServerSidePropsType } from "next";
+import type { paginationInfo, StudentOrganization } from "@/lib/types";
+import { useState } from "react";
+import { fetchImageUrl, fetchOrganizations } from "@/lib/helpers";
 
-const SearchPage = ({
-  organizations,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  //   const { numberOfOrganizations, loadMore } = useNumberOfOrganizationsToShow();
-  //   const { search, setSearch, results } = useSearch(organizations);
+const PAGE_LIMIT = 10;
+
+export default function SearchPage({
+  initialOrganizations,
+  initialPaginationInfo,
+}: {
+  initialOrganizations: StudentOrganization[];
+  initialPaginationInfo: paginationInfo;
+}) {
+  const [organizations, setOrganizations] = useState(initialOrganizations);
+  const [paginationInfo, setPaginationInfo] = useState(initialPaginationInfo);
+
+  async function loadMore() {
+    const { data, meta } = await fetchOrganizations({
+      page: paginationInfo.currentPage + 1,
+      limit: PAGE_LIMIT,
+    });
+    setOrganizations((prev) => [...prev, ...data]);
+    setPaginationInfo(meta);
+  }
+
   return (
     <Layout>
       <Container pt={20} maxW="container.xl">
@@ -54,7 +72,7 @@ const SearchPage = ({
             <VStack>
               {organizations && organizations?.length > 0 ? (
                 <Text color="GrayText" ml={10} fontSize="sm" alignSelf="start">
-                  {organizations?.length} wyników
+                  {paginationInfo.total} wyników
                 </Text>
               ) : null}
               <Wrap
@@ -64,7 +82,7 @@ const SearchPage = ({
                 justify="center"
               >
                 <AnimatePresenceSSR mode="popLayout">
-                  {organizations?.slice(0, 100).map((org) => (
+                  {organizations.map((org) => (
                     <motion.div
                       key={org.name}
                       layout
@@ -74,67 +92,40 @@ const SearchPage = ({
                       transition={{ type: "spring", duration: 0.4 }}
                     >
                       <WrapItem p={2}>
-                        <OrganisationCard
-                          name={org.name}
-                          description={org.shortDescription ?? ""}
-                          logoUrl={null}
-                          slug={"ok"}
-                          tags={[]}
-                        />
+                        <OrganisationCard organization={org} />
                       </WrapItem>
                     </motion.div>
                   ))}
                 </AnimatePresenceSSR>
               </Wrap>
-              {organizations && organizations?.length > 10 ? (
-                <Box>
-                  {/* <Button mt={8} mb={8} onClick={() => loadMore()}>
-                    Pokaż więcej
-                  </Button> */}
-                </Box>
-              ) : null}
+              <Box>
+                <Button mt={8} mb={8} onClick={() => loadMore()}>
+                  Pokaż więcej
+                </Button>
+              </Box>
             </VStack>
           </Box>
         </VStack>
       </Container>
     </Layout>
   );
-};
+}
 
 export const getServerSideProps = async () => {
-  const { data: organizations } = await fetchStudentOrganizations();
-
+  const { data, meta } = await fetchOrganizations({
+    page: 1,
+    limit: PAGE_LIMIT,
+  });
+  const organizationsWithLogos = await Promise.all(
+    data.map(async (org) => ({
+      ...org,
+      logoUrl: org.logoKey ? await fetchImageUrl(org.logoKey) : null,
+    })),
+  );
   return {
     props: {
-      organizations,
+      initialOrganizations: organizationsWithLogos,
+      initialPaginationInfo: meta,
     },
   };
 };
-
-async function fetchStudentOrganizations() {
-  try {
-    const response = await fetch(
-      "https://api.topwr.solvro.pl/api/v1/student_organizations/",
-      { cache: "no-store" },
-    );
-
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch student organizations: ${String(response.status)}`,
-      );
-    }
-
-    const { data } = (await response.json()) as {
-      data: StudentOrganization[];
-    };
-
-    console.log(data);
-
-    return { data };
-  } catch (error) {
-    console.error("Error fetching student organizations:", error);
-    return { data: [] };
-  }
-}
-
-export default SearchPage;
