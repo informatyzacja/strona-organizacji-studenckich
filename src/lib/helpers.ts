@@ -1,12 +1,23 @@
 import type { paginationInfo, StudentOrganization } from "./types";
 
-export async function fetchOrganizations(pagination?: {
-  page: number;
-  limit: number;
+export async function fetchOrganizations({
+  query,
+  pagination,
+}: {
+  query?: string;
+  pagination?: {
+    page: number;
+    limit: number;
+  };
 }): Promise<{ data: StudentOrganization[]; meta: paginationInfo }> {
-  const url = pagination
-    ? `${process.env.NEXT_PUBLIC_API_URL}/student_organizations?page=${pagination.page}&limit=${pagination.limit}`
-    : `${process.env.NEXT_PUBLIC_API_URL}/student_organizations`;
+  let url;
+  if (!pagination) {
+    url = `${process.env.NEXT_PUBLIC_API_URL}/student_organizations?tags=true`;
+  } else if (!query) {
+    url = `${process.env.NEXT_PUBLIC_API_URL}/student_organizations?tags=true&page=${pagination.page}&limit=${pagination.limit}`;
+  } else {
+    url = `${process.env.NEXT_PUBLIC_API_URL}/student_organizations?tags=true&name=%${query}%&page=${pagination.page}&limit=${pagination.limit}`;
+  }
 
   const response = await fetch(url, { cache: "no-store" });
 
@@ -27,7 +38,7 @@ export async function fetchOrganization(
   id: number,
 ): Promise<{ organization: StudentOrganization }> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/student_organizations/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/student_organizations/${id}?tags=true`,
     { cache: "no-store" },
   );
 

@@ -13,6 +13,8 @@ import {
   WrapItem,
   Text,
   Button,
+  HStack,
+  Input,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import type { paginationInfo, StudentOrganization } from "@/lib/types";
@@ -30,11 +32,27 @@ export default function SearchPage({
 }) {
   const [organizations, setOrganizations] = useState(initialOrganizations);
   const [paginationInfo, setPaginationInfo] = useState(initialPaginationInfo);
+  const [query, setQuery] = useState("");
+
+  async function searchOrganizations(query: string) {
+    const { data, meta } = await fetchOrganizations({
+      query,
+      pagination: {
+        page: 1,
+        limit: PAGE_LIMIT,
+      },
+    });
+    setOrganizations(data);
+    setPaginationInfo(meta);
+  }
 
   async function loadMore() {
     const { data, meta } = await fetchOrganizations({
-      page: paginationInfo.currentPage + 1,
-      limit: PAGE_LIMIT,
+      query,
+      pagination: {
+        page: paginationInfo.currentPage + 1,
+        limit: PAGE_LIMIT,
+      },
     });
     setOrganizations((prev) => [...prev, ...data]);
     setPaginationInfo(meta);
@@ -50,7 +68,19 @@ export default function SearchPage({
           <Heading size="lg" fontWeight="semibold" pb={16} textAlign="center">
             Wyszukiwarka organizacji studenckich
           </Heading>
-          {/* <Search tags={tags} value={search} setValue={setSearch} /> */}
+
+          <HStack w="80%" pb={8}>
+            <Input
+              placeholder="Szukaj organizacji..."
+              value={query}
+              onChange={(e) => {
+                const value = e.target.value;
+                setQuery(value);
+                void searchOrganizations(value);
+              }}
+            />
+          </HStack>
+
           <Box>
             <AnimatePresenceSSR>
               {organizations?.length === 0 ? (
@@ -113,8 +143,10 @@ export default function SearchPage({
 
 export const getServerSideProps = async () => {
   const { data, meta } = await fetchOrganizations({
-    page: 1,
-    limit: PAGE_LIMIT,
+    pagination: {
+      page: 1,
+      limit: PAGE_LIMIT,
+    },
   });
   const organizationsWithLogos = await Promise.all(
     data.map(async (org) => ({

@@ -79,7 +79,7 @@ export default function OrganisationPage({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const { data } = await fetchOrganizations();
+    const { data } = await fetchOrganizations({});
 
     const paths = data.map((org) => ({
       params: { slug: org.id.toString() },
