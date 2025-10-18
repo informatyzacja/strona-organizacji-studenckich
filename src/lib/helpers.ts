@@ -1,65 +1,21 @@
-import type { paginationInfo, StudentOrganization } from "./types";
+import { API_URL } from "./config";
 
-export async function fetchOrganizations({
-  query,
-  pagination,
-}: {
-  query?: string;
-  pagination?: {
-    page: number;
-    limit: number;
-  };
-}): Promise<{ data: StudentOrganization[]; meta: paginationInfo }> {
-  let url;
-  if (!pagination) {
-    url = `${process.env.NEXT_PUBLIC_API_URL}/student_organizations?tags=true`;
-  } else if (!query) {
-    url = `${process.env.NEXT_PUBLIC_API_URL}/student_organizations?tags=true&page=${pagination.page}&limit=${pagination.limit}`;
-  } else {
-    url = `${process.env.NEXT_PUBLIC_API_URL}/student_organizations?tags=true&name=%${query}%&page=${pagination.page}&limit=${pagination.limit}`;
-  }
-
-  const response = await fetch(url, { cache: "no-store" });
-
+export async function fetchQuery<T>(path: string, options?: RequestInit) {
+  const url = `${API_URL}${path}`;
+  const response = await fetch(url, {
+    cache: "no-store",
+    ...options,
+  });
   if (!response.ok) {
-    throw new Error(
-      `Failed to fetch student organizations: ${response.status}`,
-    );
+    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
   }
 
-  const { data, meta } = (await response.json()) as {
-    data: StudentOrganization[];
-    meta: paginationInfo;
-  };
-  return { data, meta };
-}
+  const data = (await response.json()) as T;
 
-export async function fetchOrganization(
-  id: number,
-): Promise<{ organization: StudentOrganization }> {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/student_organizations/${id}?tags=true`,
-    { cache: "no-store" },
-  );
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch student organization: ${response.status}`);
-  }
-
-  const { data } = (await response.json()) as { data: StudentOrganization };
-  return { organization: data };
+  return data;
 }
 
 export async function fetchImageUrl(imageKey: string): Promise<string> {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/files/${imageKey}`,
-    { cache: "no-store" },
-  );
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch image: ${response.status}`);
-  }
-
-  const { url } = (await response.json()) as { url: string };
+  const { url } = await fetchQuery<{ url: string }>(`/files/${imageKey}`);
   return url;
 }

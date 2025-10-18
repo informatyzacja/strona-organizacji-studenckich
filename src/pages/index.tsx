@@ -17,19 +17,18 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import type { paginationInfo, StudentOrganization } from "@/lib/types";
+import type { PaginationInfo, StudentOrganization } from "@/lib/types";
+import type { InferGetServerSidePropsType } from "next";
 import { useState } from "react";
-import { fetchImageUrl, fetchOrganizations } from "@/lib/helpers";
+import { fetchImageUrl, fetchQuery } from "@/lib/helpers";
+import { STUDENT_ORGANIZATIONS_API_PATH } from "@/lib/config";
 
 const PAGE_LIMIT = 10;
 
 export default function SearchPage({
   initialOrganizations,
   initialPaginationInfo,
-}: {
-  initialOrganizations: StudentOrganization[];
-  initialPaginationInfo: paginationInfo;
-}) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [organizations, setOrganizations] = useState(initialOrganizations);
   const [paginationInfo, setPaginationInfo] = useState(initialPaginationInfo);
   const [query, setQuery] = useState("");
@@ -161,3 +160,23 @@ export const getServerSideProps = async () => {
     },
   };
 };
+
+async function fetchOrganizations(options?: {
+  query?: string;
+  pagination?: { page: number; limit: number };
+}): Promise<{ data: StudentOrganization[]; meta: PaginationInfo }> {
+  const params = new URLSearchParams({ tags: "true" });
+
+  if (options?.query) {
+    params.append("name", `%${options?.query}%`);
+  }
+
+  if (options?.pagination) {
+    params.append("page", options?.pagination.page.toString());
+    params.append("limit", options?.pagination.limit.toString());
+  }
+
+  return fetchQuery<{ data: StudentOrganization[]; meta: PaginationInfo }>(
+    `${STUDENT_ORGANIZATIONS_API_PATH}?${params.toString()}`,
+  );
+}

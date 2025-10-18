@@ -1,21 +1,16 @@
 import React from "react";
 import { Layout } from "@/components/Layout";
-import type { GetStaticPaths } from "next";
+import type { GetStaticPaths, InferGetStaticPropsType } from "next";
 import { OrganisationFull } from "@/components/OrganisationFull";
 import { NextSeo } from "next-seo";
 import { siteConfig } from "@/config";
-import {
-  fetchImageUrl,
-  fetchOrganization,
-  fetchOrganizations,
-} from "@/lib/helpers";
+import { fetchImageUrl, fetchQuery } from "@/lib/helpers";
 import type { StudentOrganization } from "@/lib/types";
+import { STUDENT_ORGANIZATIONS_API_PATH } from "@/lib/config";
 
 export default function OrganisationPage({
   organization,
-}: {
-  organization: StudentOrganization;
-}) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   if (!organization) {
     return (
       <Layout>
@@ -79,7 +74,9 @@ export default function OrganisationPage({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const { data } = await fetchOrganizations({});
+    const { data } = await fetchQuery<{
+      data: StudentOrganization[];
+    }>(STUDENT_ORGANIZATIONS_API_PATH);
 
     const paths = data.map((org) => ({
       params: { slug: org.id.toString() },
@@ -105,15 +102,26 @@ export const getStaticProps = async ({
 }) => {
   try {
     const { organization } = await fetchOrganization(Number(params.slug));
-    organization.logoUrl = organization.logoKey
-      ? await fetchImageUrl(organization.logoKey)
-      : null;
-    organization.coverUrl = organization.coverKey
-      ? await fetchImageUrl(organization.coverKey)
-      : null;
+
+    if (organization.logoKey) {
+      organization.logoUrl = await fetchImageUrl(organization.logoKey);
+    }
+
+    if (organization.coverKey) {
+      organization.coverUrl = await fetchImageUrl(organization.coverKey);
+    }
 
     return { props: { organization }, revalidate: 3600 };
   } catch {
     return { notFound: true };
   }
 };
+
+async function fetchOrganization(
+  id: number,
+): Promise<{ organization: StudentOrganization }> {
+  const data = await fetchQuery<{ data: StudentOrganization }>(
+    `${STUDENT_ORGANIZATIONS_API_PATH}/${id}?tags=true`,
+  );
+  return { organization: data.data };
+}
