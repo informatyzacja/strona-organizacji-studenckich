@@ -1,12 +1,7 @@
 import { AnimatePresenceSSR } from "@/components/AnimatePresenceSSR";
 import { Layout } from "@/components/Layout";
 import { OrganisationCard } from "@/components/OrganisationCard";
-import { Search } from "@/components/Search";
-import { useNumberOfOrganizationsToShow } from "@/hooks/useNumberOfOrganizationsToShow";
-import { useSearch } from "@/hooks/useSearch";
-import { trpcClient } from "@/server/client";
 
-import { directusFileUrl } from "@/utils/directus";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import {
   Container,
@@ -14,20 +9,53 @@ import {
   Heading,
   Tag,
   Box,
-  Button,
   Wrap,
   WrapItem,
   Text,
+  Button,
+  HStack,
+  Input,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import type { PaginationInfo, StudentOrganization } from "@/lib/types";
 import type { InferGetServerSidePropsType } from "next";
+import { useState } from "react";
+import { fetchImageUrl, fetchQuery } from "@/lib/helpers";
+import { STUDENT_ORGANIZATIONS_API_PATH } from "@/lib/config";
 
-const SearchPage = ({
-  organizations,
-  tags,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { numberOfOrganizations, loadMore } = useNumberOfOrganizationsToShow();
-  const { search, setSearch, results } = useSearch(organizations);
+const PAGE_LIMIT = 10;
+
+export default function SearchPage({
+  initialOrganizations,
+  initialPaginationInfo,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [organizations, setOrganizations] = useState(initialOrganizations);
+  const [paginationInfo, setPaginationInfo] = useState(initialPaginationInfo);
+  const [query, setQuery] = useState("");
+
+  async function searchOrganizations(query: string) {
+    const { data, meta } = await fetchOrganizations({
+      query,
+      pagination: {
+        page: 1,
+        limit: PAGE_LIMIT,
+      },
+    });
+    setOrganizations(data);
+    setPaginationInfo(meta);
+  }
+
+  async function loadMore() {
+    const { data, meta } = await fetchOrganizations({
+      query,
+      pagination: {
+        page: paginationInfo.currentPage + 1,
+        limit: PAGE_LIMIT,
+      },
+    });
+    setOrganizations((prev) => [...prev, ...data]);
+    setPaginationInfo(meta);
+  }
 
   return (
     <Layout>
@@ -39,10 +67,22 @@ const SearchPage = ({
           <Heading size="lg" fontWeight="semibold" pb={16} textAlign="center">
             Wyszukiwarka organizacji studenckich
           </Heading>
-          <Search tags={tags} value={search} setValue={setSearch} />
+
+          <HStack w="80%" pb={8}>
+            <Input
+              placeholder="Szukaj organizacji..."
+              value={query}
+              onChange={(e) => {
+                const value = e.target.value;
+                setQuery(value);
+                void searchOrganizations(value);
+              }}
+            />
+          </HStack>
+
           <Box>
             <AnimatePresenceSSR>
-              {results?.length === 0 ? (
+              {organizations?.length === 0 ? (
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -59,9 +99,9 @@ const SearchPage = ({
             </AnimatePresenceSSR>
 
             <VStack>
-              {results && results?.length > 0 ? (
+              {organizations && organizations?.length > 0 ? (
                 <Text color="GrayText" ml={10} fontSize="sm" alignSelf="start">
-                  {results?.length} wyników
+                  {paginationInfo.total} wyników
                 </Text>
               ) : null}
               <Wrap
@@ -71,7 +111,7 @@ const SearchPage = ({
                 justify="center"
               >
                 <AnimatePresenceSSR mode="popLayout">
-                  {results?.slice(0, numberOfOrganizations).map((org) => (
+                  {organizations.map((org) => (
                     <motion.div
                       key={org.name}
                       layout
@@ -81,40 +121,62 @@ const SearchPage = ({
                       transition={{ type: "spring", duration: 0.4 }}
                     >
                       <WrapItem p={2}>
-                        <OrganisationCard
-                          name={org.name}
-                          description={org.shortDescription ?? ""}
-                          logoUrl={directusFileUrl(org.logo)}
-                          slug={org.slug}
-                          tags={org.tags}
-                        />
+                        <OrganisationCard organization={org} />
                       </WrapItem>
                     </motion.div>
                   ))}
                 </AnimatePresenceSSR>
               </Wrap>
-              {results && results?.length > numberOfOrganizations ? (
-                <Box>
-                  <Button mt={8} mb={8} onClick={() => loadMore()}>
-                    Pokaż więcej
-                  </Button>
-                </Box>
-              ) : null}
+              <Box>
+                <Button mt={8} mb={8} onClick={() => loadMore()}>
+                  Pokaż więcej
+                </Button>
+              </Box>
             </VStack>
           </Box>
         </VStack>
       </Container>
     </Layout>
   );
-};
+}
 
 export const getServerSideProps = async () => {
-  const organizations = await trpcClient.organizations.list.fetch();
-  const tags = await trpcClient.tags.list.fetch();
-
+  const { data, meta } = await fetchOrganizations({
+    pagination: {
+      page: 1,
+      limit: PAGE_LIMIT,
+    },
+  });
+  const organizationsWithLogos = await Promise.all(
+    data.map(async (org) => ({
+      ...org,
+      logoUrl: org.logoKey ? await fetchImageUrl(org.logoKey) : null,
+    })),
+  );
   return {
-    props: { organizations, tags },
+    props: {
+      initialOrganizations: organizationsWithLogos,
+      initialPaginationInfo: meta,
+    },
   };
 };
 
-export default SearchPage;
+async function fetchOrganizations(options?: {
+  query?: string;
+  pagination?: { page: number; limit: number };
+}): Promise<{ data: StudentOrganization[]; meta: PaginationInfo }> {
+  const params = new URLSearchParams({ tags: "true" });
+
+  if (options?.query) {
+    params.append("name", `%${options?.query}%`);
+  }
+
+  if (options?.pagination) {
+    params.append("page", options?.pagination.page.toString());
+    params.append("limit", options?.pagination.limit.toString());
+  }
+
+  return fetchQuery<{ data: StudentOrganization[]; meta: PaginationInfo }>(
+    `${STUDENT_ORGANIZATIONS_API_PATH}?${params.toString()}`,
+  );
+}

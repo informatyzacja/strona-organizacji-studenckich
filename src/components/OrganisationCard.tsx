@@ -1,30 +1,12 @@
-import {
-  Text,
-  Wrap,
-  WrapItem,
-  VStack,
-  HStack,
-  LinkBox,
-  LinkOverlay,
-} from "@chakra-ui/react";
-import Image from "next/image";
-import { Tag } from "./Tag";
+import { Text, VStack, HStack, LinkBox, LinkOverlay } from "@chakra-ui/react";
 import NextLink from "next/link";
+import type { StudentOrganization } from "@/lib/types";
+import Image from "next/image";
 
 export const OrganisationCard = ({
-  name,
-  description,
-  logoUrl,
-  slug,
-  residence,
-  tags,
+  organization,
 }: {
-  name: string;
-  description: string;
-  logoUrl: string | null;
-  slug: string;
-  residence?: string;
-  tags: string[];
+  organization: StudentOrganization;
 }) => {
   return (
     <LinkBox
@@ -34,7 +16,7 @@ export const OrganisationCard = ({
       transition="all ease-in-out 0.2s"
       as="article"
       p={6}
-      maxW="400px"
+      w={{ base: "100%", sm: "400px" }}
       height={{
         base: "auto",
         md: "28rem",
@@ -45,13 +27,12 @@ export const OrganisationCard = ({
       <VStack justifyContent="flex-start" align="start">
         <HStack w="100%" justify="space-between" align="start">
           <VStack justifyContent="flex-start" align="start">
-            <Text fontSize="sm">{residence}</Text>
             <LinkOverlay
               as={NextLink}
               href={
                 {
-                  pathname: "/organizacja/[slug]",
-                  query: { slug },
+                  pathname: "/organizacja/[id]",
+                  query: { id: organization.id },
                 } as never
               }
               _hover={{
@@ -60,19 +41,19 @@ export const OrganisationCard = ({
               fontWeight="semibold"
               fontSize="lg"
             >
-              {name}
+              {organization.name}
             </LinkOverlay>
-            <Wrap pt={2} direction="row">
-              {tags.map((tag) => (
+            {/* <Wrap pt={2} direction="row">
+              {organization.tags?.map((tag) => (
                 <WrapItem key={tag}>
                   <Tag tag={tag} />
                 </WrapItem>
               ))}
-            </Wrap>
+            </Wrap> */}
           </VStack>
-          {logoUrl ? (
+          {organization.logoUrl ? (
             <Image
-              src={logoUrl}
+              src={organization.logoUrl}
               width={100}
               height={100}
               style={{
@@ -81,12 +62,12 @@ export const OrganisationCard = ({
                 width: "6.25rem",
                 objectFit: "contain",
               }}
-              alt={`Logo ${name}`}
+              alt={`Logo ${organization.name}`}
             />
           ) : null}
         </HStack>
-        <Text pt={4} color="GrayText">
-          {description}
+        <Text pt={4} color="GrayText" noOfLines={10} wordBreak="break-word">
+          {organization.shortDescription}
         </Text>
       </VStack>
     </LinkBox>

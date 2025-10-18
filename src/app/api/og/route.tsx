@@ -1,8 +1,7 @@
-import { trpcClient } from "@/server/client";
-import { directusFileUrl } from "@/utils/directus";
 import { ImageResponse } from "next/og";
 import { z } from "zod";
 import { PwrLogo } from "./PwrLogo";
+import Image from "next/image";
 
 async function loadGoogleFont(
   font: string,
@@ -12,7 +11,6 @@ async function loadGoogleFont(
     text,
   )}`;
 
-  console.log(url);
   const css = await (await fetch(url)).text();
 
   const resource = css.match(
@@ -28,6 +26,8 @@ async function loadGoogleFont(
 
   throw new Error("failed to load font data");
 }
+
+// TODO: fix for new api
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -55,14 +55,17 @@ export async function GET(request: Request) {
             fontFamily: "Lato",
           }}
         >
-          <img
+          <Image
             src="https://i.imgur.com/isIDXkL.jpeg"
+            alt=""
+            fill
             style={{
               width: "100%",
               position: "absolute",
               height: "100%",
               objectFit: "cover",
             }}
+            priority
           />
           <div
             style={{
@@ -129,8 +132,6 @@ export async function GET(request: Request) {
     );
   }
 
-  const org = await trpcClient.organizations.get.fetch({ slug });
-
   const ogImageSchema = z.object({
     heading: z.string(),
     mode: z.string(),
@@ -139,7 +140,7 @@ export async function GET(request: Request) {
   const values = ogImageSchema.parse({
     ...Object.fromEntries(url.searchParams),
     mode: "white",
-    heading: org.name,
+    // heading: org.name,
   });
   const heading =
     values.heading.length > 40
@@ -172,14 +173,14 @@ export async function GET(request: Request) {
             width: "100%",
           }}
         >
-          <img
+          {/* <img
             src={directusFileUrl(org.logo)}
             style={{
               height: 200,
               maxWidth: 500,
               objectFit: "contain",
             }}
-          />
+          /> */}
           <PwrLogo />
         </div>
         <div tw="flex flex-col flex-1 py-10">
@@ -192,13 +193,13 @@ export async function GET(request: Request) {
               fontSize,
             }}
           >
-            {org.name}
+            {/* {org.name} */}
           </div>
           <div
             tw="flex text-xl uppercase font-bold tracking-tight"
             style={{ fontFamily: "Inter", fontWeight: "normal" }}
           >
-            {org.field}
+            {/* {org.field} */}
           </div>
         </div>
         <div tw="flex items-center w-full justify-between">

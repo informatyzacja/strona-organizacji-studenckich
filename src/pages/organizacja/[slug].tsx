@@ -1,22 +1,33 @@
 import React from "react";
 import { Layout } from "@/components/Layout";
-import { trpcClient } from "@/server/client";
 import type { GetStaticPaths, InferGetStaticPropsType } from "next";
 import { OrganisationFull } from "@/components/OrganisationFull";
 import { NextSeo } from "next-seo";
 import { siteConfig } from "@/config";
+import { fetchImageUrl, fetchQuery } from "@/lib/helpers";
+import type { StudentOrganization } from "@/lib/types";
+import { STUDENT_ORGANIZATIONS_API_PATH } from "@/lib/config";
 
-const OrganisationPage = ({
-  data,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+export default function OrganisationPage({
+  organization,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (!organization) {
+    return (
+      <Layout>
+        <div>Organization not found</div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <NextSeo
-        title={data.name}
+        title={organization.name}
         description={
-          data.shortDescription && data.shortDescription?.length > 120
-            ? data.shortDescription.slice(0, 120) + "..."
-            : data.shortDescription
+          organization.shortDescription &&
+          organization.shortDescription.length > 120
+            ? organization.shortDescription.slice(0, 120) + "..."
+            : (organization.shortDescription ?? undefined)
         }
         twitter={{
           cardType: "summary_large_image",
@@ -28,18 +39,19 @@ const OrganisationPage = ({
           },
           {
             name: "twitter:image:src",
-            content: `${siteConfig.canonical}/api/og?org=${data.slug}`,
+            content: `${siteConfig.canonical}/api/og?org=${organization.id}`,
           },
           {
             name: "twitter:title",
-            content: data.name,
+            content: organization.name,
           },
           {
             name: "twitter:description",
             content:
-              data.shortDescription && data.shortDescription?.length > 120
-                ? data.shortDescription.slice(0, 120) + "..."
-                : (data.shortDescription ?? "Organizacja studencka"),
+              organization.shortDescription &&
+              organization.shortDescription.length > 120
+                ? organization.shortDescription.slice(0, 120) + "..."
+                : (organization.shortDescription ?? "Organizacja studencka"),
           },
         ]}
         openGraph={{
@@ -47,32 +59,40 @@ const OrganisationPage = ({
           type: "website",
           images: [
             {
-              url: `${siteConfig.canonical}/api/og?org=${data.slug}`,
+              url: `${siteConfig.canonical}/api/og?org=${organization.id}`,
               width: 1200,
               height: 630,
-              alt: data.name,
+              alt: organization.name,
             },
           ],
         }}
       />
-      <OrganisationFull data={data} />
+      <OrganisationFull organization={organization} />
     </Layout>
   );
-};
-
-export default OrganisationPage;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await trpcClient.organizations.list.fetch();
+  try {
+    const { data } = await fetchQuery<{
+      data: StudentOrganization[];
+    }>(STUDENT_ORGANIZATIONS_API_PATH);
 
-  const paths = data.map((org) => ({
-    params: { slug: org.slug },
-  }));
+    const paths = data.map((org) => ({
+      params: { slug: org.id.toString() },
+    }));
 
-  return {
-    paths,
-    fallback: false,
-  };
+    return {
+      paths,
+      fallback: "blocking",
+    };
+  } catch (error) {
+    console.error("Error fetching organizations for static paths:", error);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
 };
 
 export const getStaticProps = async ({
@@ -80,9 +100,28 @@ export const getStaticProps = async ({
 }: {
   params: { slug: string };
 }) => {
-  const { slug } = params;
-  const data = await trpcClient.organizations.get.fetch({ slug });
-  return {
-    props: { data },
-  };
+  try {
+    const { organization } = await fetchOrganization(Number(params.slug));
+
+    if (organization.logoKey) {
+      organization.logoUrl = await fetchImageUrl(organization.logoKey);
+    }
+
+    if (organization.coverKey) {
+      organization.coverUrl = await fetchImageUrl(organization.coverKey);
+    }
+
+    return { props: { organization }, revalidate: 3600 };
+  } catch {
+    return { notFound: true };
+  }
 };
+
+async function fetchOrganization(
+  id: number,
+): Promise<{ organization: StudentOrganization }> {
+  const data = await fetchQuery<{ data: StudentOrganization }>(
+    `${STUDENT_ORGANIZATIONS_API_PATH}/${id}?tags=true`,
+  );
+  return { organization: data.data };
+}
